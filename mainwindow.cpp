@@ -49,12 +49,15 @@
 #include <QLabel>
 #include <QInputDialog>
 #include <QMenu>
+#include "retta.h"
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
+
   ui->setupUi(this);
+  i = 0;
   setGeometry(400, 250, 542, 390);
   showAct = new QAction(("&Draw a new Straight Line"), this);
      QMenuBar* bar = ui->menuBar;
@@ -71,9 +74,21 @@ MainWindow::MainWindow(QWidget *parent) :
          bar->addMenu(menu1);
 
 
+         QMenu* menu2 = new QMenu("Clear", bar);
+
+         menu2->addAction(showAct);
+        connect(showAct, SIGNAL(triggered()), this, SLOT(aboutAction()));
 
 
-  setupDemo(1);
+
+         bar->addMenu(menu2);
+
+
+
+
+
+
+//setupDemo(1);
   //setupPlayground(ui->customPlot);
   // 0:  setupQuadraticDemo(ui->customPlot);
   // 1:  setupSimpleDemo(ui->customPlot);
@@ -133,6 +148,7 @@ void MainWindow::aboutAction()
     bool ok;
 
     QInputDialog  msgBox;
+
     msgBox.setFixedSize(100000,100000);
 
    QString text = msgBox.getText(this, tr("INSERT LINE"),
@@ -141,14 +157,26 @@ void MainWindow::aboutAction()
       if (ok && !text.isEmpty())
 
 
-          if (text.toStdString().at(0) != 'x' ||text.toStdString().at(0) != 'y' )  {
+          if (text.toStdString().at(0) != 'x' && text.toStdString().at(0) != 'y' )  {
        std::cout  << "SBAGLIATO" << std::endl;
 
       }
 
 
 else{
- std::cout  << text.toStdString().at(0) << std::endl;}
+
+
+
+        }
+
+
+    Retta retta (text.toStdString());
+
+    drawPoints(retta.getX(), retta.getY(),ui->customPlot);
+
+
+
+          }
 
 
     //do your task for help about item.
@@ -164,7 +192,7 @@ else{
 
 
 
-}
+
 
 
 
@@ -226,7 +254,69 @@ void MainWindow::setupSimpleDemo(QCustomPlot *customPlot)
   // Note: we could have also just called customPlot->rescaleAxes(); instead
   // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking:
   customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+
 }
+
+
+
+void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *customPlot){
+    // add two new graphs and set their look:
+    customPlot->addGraph();
+
+    if (i == 0){
+    customPlot->graph()->setPen(QPen(Qt::blue));}
+
+    if (i == 1){
+    customPlot->graph()->setPen(QPen(Qt::red));}
+
+
+    if (i == 2){
+    customPlot->graph()->setPen(QPen(Qt::yellow));}
+
+    if (i == 3){
+    customPlot->graph()->setPen(QPen(Qt::black));}
+
+    if (i == 4){
+    customPlot->graph()->setPen(QPen(Qt::green));}
+
+    i++;
+
+    // line color blue for first graph
+   // customPlot->graph()->setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
+    //customPlot->addGraph();
+   // customPlot->graph(1)->setPen(QPen(Qt::red)); // line color red for second graph
+
+    // (see QCPAxisRect::setupFullAxesBox for a quicker method to do this)
+    customPlot->xAxis2->setVisible(true);
+    customPlot->xAxis2->setTickLabels(false);
+    customPlot->yAxis2->setVisible(true);
+    customPlot->yAxis2->setTickLabels(false);
+    // make left and bottom axes always transfer their ranges to right and top axes:
+    connect(customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->xAxis2, SLOT(setRange(QCPRange)));
+    connect(customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->yAxis2, SLOT(setRange(QCPRange)));
+    // pass data points to graphs:
+    customPlot->graph()->setData(xg, yg);
+    // let the ranges scale themselves so graph 0 fits perfectly in the visible area:
+    //customPlot->graph()->rescaleAxes();
+     //customPlot->graph()->rescaleAxes(true);
+     customPlot->xAxis->setRange(-10, 10);
+     customPlot->yAxis->setRange(-10, 10);
+    // same thing for graph 1, but only enlarge ranges (in case graph 1 is smaller than graph 0):
+
+    // Note: we could have also just called customPlot->rescaleAxes(); instead
+    // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking:
+    customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+customPlot->replot();
+
+}
+
+
+
+
+
+
+
+
 
 void MainWindow::setupSincScatterDemo(QCustomPlot *customPlot)
 {
