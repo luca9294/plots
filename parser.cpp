@@ -185,7 +185,28 @@ double Parser::getQ()
 
                     double m2 = atof(m.c_str());
                     result2 = -m2;
-                }}}}
+                }
+
+
+    else{
+            std::advance(i, 1);
+
+            string m = *i;
+
+
+
+
+            //flag = true;
+            double m2 = atof(m.c_str());
+            result2 = m2;
+}}
+
+        }
+
+
+
+
+    }
 
 
 

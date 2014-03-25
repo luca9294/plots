@@ -4,6 +4,8 @@
 #include <qpoint.h>
 #include <qvector.h>
 #include "parser.h"
+
+
 using namespace std;
 class Retta
 {
@@ -20,9 +22,12 @@ private:
 
 
 
+
 public:
     QVector<double> getX();
     QVector<double> getY();
+    bool isOK();
+    string getString();
     Retta(string);
 
 

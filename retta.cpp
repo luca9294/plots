@@ -1,5 +1,7 @@
 #include "retta.h"
 
+#include <QRegExp>
+#include <QString>
 #include <iostream>
 
 Retta::Retta(string str)
@@ -13,6 +15,37 @@ this->str = str;
 
 
 }
+
+bool Retta::isOK(){
+    QString string = QString::fromUtf8(str.c_str());
+
+
+        QRegExp r("[y] [=] [-+]?[0-9]*[.]?[0-9]*x [+-] [0-9]+[.]?[0-9]*");
+
+    // y = mx
+        QRegExp r1("[y] [=] [-+]?[0-9]*[.]?[0-9]*x");
+
+    // y = k
+        QRegExp r2("[y] [=] [-+]?[0-9]*[.]?[0-9]*");
+
+    // x = k
+        QRegExp r3("[x] [=] [-+]?[0-9]*[.]?[0-9]*");
+
+    if (r.exactMatch(string)){return true;}
+    else if (r1.exactMatch(string)){return true;}
+    else if (r2.exactMatch(string)){return true;}
+    else if (r3.exactMatch(string)){return true;}
+    else return false;
+
+
+}
+
+  string Retta::getString(){
+      return str;
+
+  }
+
+
 
   QVector<double> Retta::getX(){
 
