@@ -11,6 +11,7 @@ class Retta
 private:
     double m, q;
     string str;
+    Parser *parser;
     QPoint zero;
     QPoint zerox;
     QPoint zeroy;

@@ -156,7 +156,7 @@ void MainWindow::aboutAction()
 
 
           if (text.toStdString().at(0) != 'x' && text.toStdString().at(0) != 'y' )  {
-       std::cout  << "SBAGLIATO" << std::endl;
+
 
       }
 

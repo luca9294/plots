@@ -8,9 +8,16 @@ Parser::Parser(string str)
     char b = result[result.length()-1];
 
     if (b != *" "){
-            result  = result + " ";
+        result  = result + " ";
+    }
+
+    flag = false;
 }
+bool Parser::isX(){
+    return flag;
 }
+
+
 
 
 double Parser::getM()
@@ -18,13 +25,13 @@ double Parser::getM()
     double result2 = 3;
 
 
-     char chars[] = "()";
+    char chars[] = "()";
 
-   for (unsigned int i = 0; i < strlen(chars); ++i)
-   {
-      // you need include <algorithm> to use general algorithms like std::remove()
-      result.erase (std::remove(result.begin(), result.end(), chars[i]), result.end());
-   }
+    for (unsigned int i = 0; i < strlen(chars); ++i)
+    {
+        // you need include <algorithm> to use general algorithms like std::remove()
+        result.erase (std::remove(result.begin(), result.end(), chars[i]), result.end());
+    }
 
 
 
@@ -50,47 +57,48 @@ double Parser::getM()
 
     if (*i == "y")
     {
-         std::advance(i, 1);
-            if (*i == "="){
-
-
         std::advance(i, 1);
+        if (*i == "="){
+
+
+            std::advance(i, 1);
 
 
 
-        string m = *i;
-cout << "QUESTO" << m << endl;
+            string m = *i;
+            cout << "QUESTO" << m << endl;
 
-if (!(m.find('x')  != std::string::npos)){
-result2 = 0;
-
-
-}
-
-else{
+            if (!(m.find('x')  != std::string::npos)){
+                result2 = 0;
 
 
-        if (m == "x")
-        {
-            m = "1";
+            }
 
+            else{
+
+
+                if (m == "x")
+                {
+                    m = "1";
+
+                }
+
+                if (m == "-x")
+                {
+                    m = "-1";
+
+                }
+
+
+
+                double m2 = atof(m.c_str());
+                result2 = m2;
+            }
         }
-
-         if (m == "-x")
-        {
-            m = "-1";
-
-        }
-
-
-
-        double m2 = atof(m.c_str());
-        result2 = m2;
     }
-    }
-}
     else if (*i == "x"){
         result2 = 0;
+        flag = true;
 
     }
 
@@ -107,13 +115,13 @@ double Parser::getQ()
 
     double result2 = 3;
 
-     char chars[] = "()";
+    char chars[] = "()";
 
-   for (unsigned int i = 0; i < strlen(chars); ++i)
-   {
-      // you need include <algorithm> to use general algorithms like std::remove()
-      result.erase (std::remove(result.begin(), result.end(), chars[i]), result.end());
-   }
+    for (unsigned int i = 0; i < strlen(chars); ++i)
+    {
+        // you need include <algorithm> to use general algorithms like std::remove()
+        result.erase (std::remove(result.begin(), result.end(), chars[i]), result.end());
+    }
 
 
     tokenizer words(result, " "); //the delimiters are space and = and ;
@@ -137,47 +145,47 @@ double Parser::getQ()
 
     if (*i == "y")
     {
-         std::advance(i, 1);
-            if (*i == "="){
+        std::advance(i, 1);
+        if (*i == "="){
 
-      std::advance(i, 1);
+            std::advance(i, 1);
 
-      std::string strin = (*i);
+            std::string strin = (*i);
 
-      if (! (strin.find("x") != std::string::npos)){
-      result2  = atof(strin.c_str());
+            if (! (strin.find("x") != std::string::npos)){
+                result2  = atof(strin.c_str());
 
-      }
+            }
 
-      else{
-
-
-
-
-       std::advance(i, 1);
+            else{
 
 
 
 
-        if (*i == ""){
-
-            result2 = 0;
-
-
-        }
+                std::advance(i, 1);
 
 
 
 
-        if (*i == "-"){
-      std::advance(i, 1);
+                if (*i == ""){
 
-        string m = *i;
+                    result2 = 0;
 
 
-        double m2 = atof(m.c_str());
-        result2 = -m2;
-    }
+                }
+
+
+
+
+                if (*i == "-"){
+                    std::advance(i, 1);
+
+                    string m = *i;
+
+
+                    double m2 = atof(m.c_str());
+                    result2 = -m2;
+                }}}}
 
 
 
@@ -189,18 +197,18 @@ double Parser::getQ()
 
 
 
-             std::advance(i, 1);
+        std::advance(i, 2);
 
         string m = *i;
 
 
 
 
-
+        flag = true;
         double m2 = atof(m.c_str());
         result2 = m2;
     }
-    }}}
+
 
     return result2;
 

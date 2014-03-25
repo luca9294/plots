@@ -16,6 +16,7 @@ class Parser{
         Parser(string str);
         double getM();
         double getQ();
+        bool isX();
 
 
 
