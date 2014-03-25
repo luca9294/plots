@@ -8,8 +8,6 @@ this->str = str;
     Parser parser (str);
     m = parser.getM();
     q = parser.getQ();
-    std::cout << m << std::endl;
-    std::cout << q << std::endl;
 
 
 }

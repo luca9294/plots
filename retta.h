@@ -3,6 +3,7 @@
 #include "parser.h"
 #include <qpoint.h>
 #include <qvector.h>
+#include "parser.h"
 using namespace std;
 class Retta
 {
@@ -13,6 +14,7 @@ private:
     QPoint zero;
     QPoint zerox;
     QPoint zeroy;
+
 
 
 

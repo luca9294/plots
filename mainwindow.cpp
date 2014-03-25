@@ -50,6 +50,7 @@
 #include <QInputDialog>
 #include <QMenu>
 #include "retta.h"
+#include <cstdlib>
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -60,6 +61,7 @@ MainWindow::MainWindow(QWidget *parent) :
   i = 0;
   setGeometry(400, 250, 542, 390);
   showAct = new QAction(("&Draw a new Straight Line"), this);
+  showAct2 = new QAction(("&Clear All"), this);
      QMenuBar* bar = ui->menuBar;
 
 
@@ -67,21 +69,17 @@ MainWindow::MainWindow(QWidget *parent) :
          QMenu* menu1 = new QMenu("Straight Lines", bar);
 
          menu1->addAction(showAct);
+
         connect(showAct, SIGNAL(triggered()), this, SLOT(aboutAction()));
+
+
+        menu1->addAction(showAct2);
+
+       connect(showAct2, SIGNAL(triggered()), this, SLOT(aboutAction2()));
 
 
 
          bar->addMenu(menu1);
-
-
-         QMenu* menu2 = new QMenu("Clear", bar);
-
-         menu2->addAction(showAct);
-        connect(showAct, SIGNAL(triggered()), this, SLOT(aboutAction()));
-
-
-
-         bar->addMenu(menu2);
 
 
 
@@ -170,6 +168,7 @@ else{
         }
 
 
+
     Retta retta (text.toStdString());
 
     drawPoints(retta.getX(), retta.getY(),ui->customPlot);
@@ -188,13 +187,13 @@ else{
 
 
 //msgBox.exec();
+void MainWindow::aboutAction2()
+{
 
+ui->customPlot->clearGraphs();
+ui->customPlot->replot();
 
-
-
-
-
-
+          }
 
 void MainWindow::setupQuadraticDemo(QCustomPlot *customPlot)
 {
@@ -262,6 +261,11 @@ void MainWindow::setupSimpleDemo(QCustomPlot *customPlot)
 void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *customPlot){
     // add two new graphs and set their look:
     customPlot->addGraph();
+
+   if (i == 4){
+   i=0;
+   }
+
 
     if (i == 0){
     customPlot->graph()->setPen(QPen(Qt::blue));}

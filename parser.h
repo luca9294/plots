@@ -18,9 +18,11 @@ class Parser{
         double getQ();
 
 
+
     protected:
     private:
         string result;
+        bool flag;
 
 
 };

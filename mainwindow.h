@@ -20,7 +20,7 @@ public:
     
     void setupDemo(int demoIndex);
     void drawPoints( QVector<double> x,QVector<double> y, QCustomPlot *customPlot);
-    void setupQuadraticDemo(QCustomPlot *customPlot);
+   void setupQuadraticDemo(QCustomPlot *customPlot);
     void setupSimpleDemo(QCustomPlot *customPlot);
     void setupSincScatterDemo(QCustomPlot *customPlot);
     void setupScatterStyleDemo(QCustomPlot *customPlot);
@@ -46,12 +46,16 @@ public:
     void bracketDataSlot();
     void screenShot();
     void allScreenShots();
-     void aboutAction();
+    void aboutAction();
+    void aboutAction2();
+
+
     
 private:
     Ui::MainWindow *ui;
     QString demoName;
-      QAction* showAct;
+   QAction* showAct;
+    QAction* showAct2;
     QTimer dataTimer;
     QCPItemTracer *itemDemoPhaseTracer;
     int currentDemoIndex;

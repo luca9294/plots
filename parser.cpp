@@ -5,12 +5,18 @@
 Parser::Parser(string str)
 {
     result = str;
+    char b = result[result.length()-1];
+
+    if (b != *" "){
+            result  = result + " ";
+}
 }
 
 
 double Parser::getM()
 {
     double result2 = 3;
+
 
      char chars[] = "()";
 
@@ -53,7 +59,16 @@ double Parser::getM()
 
 
         string m = *i;
-cout << m << endl;
+cout << "QUESTO" << m << endl;
+
+if (!(m.find('x')  != std::string::npos)){
+result2 = 0;
+
+
+}
+
+else{
+
 
         if (m == "x")
         {
@@ -73,6 +88,12 @@ cout << m << endl;
         result2 = m2;
     }
     }
+}
+    else if (*i == "x"){
+        result2 = 0;
+
+    }
+
 
     return result2;
 
@@ -83,13 +104,6 @@ cout << m << endl;
 
 double Parser::getQ()
 {
-
-
-   //char ch = result.back();
-
-   //if (ch != ' '){
-
-  // result += " ";}
 
     double result2 = 3;
 
@@ -126,8 +140,21 @@ double Parser::getQ()
          std::advance(i, 1);
             if (*i == "="){
 
+      std::advance(i, 1);
 
-        std::advance(i, 2);
+      std::string strin = (*i);
+
+      if (! (strin.find("x") != std::string::npos)){
+      result2  = atof(strin.c_str());
+
+      }
+
+      else{
+
+
+
+
+       std::advance(i, 1);
 
 
 
@@ -138,6 +165,9 @@ double Parser::getQ()
 
 
         }
+
+
+
 
         if (*i == "-"){
       std::advance(i, 1);
@@ -170,7 +200,7 @@ double Parser::getQ()
         double m2 = atof(m.c_str());
         result2 = m2;
     }
-    }}
+    }}}
 
     return result2;
 
