@@ -130,7 +130,7 @@ void MainWindow::aboutAction()
     QString text = msgBox.getText(this, tr("INSERT LINE"),
                                   tr("Enter the explicity equation of a straight Line:            \t\t             \nThe equation should be of the form: y = (-)mx (+/-) q or x = k or y = k\nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
                                   "", &ok);
-    if (ok && !text.isEmpty()){
+    if ((ok && !text.isEmpty()) && i<5){
         Retta retta (text.toStdString());
 
         if (!retta.isOK())  {
@@ -183,6 +183,12 @@ void MainWindow::aboutAction()
            }
 
         }}
+
+    else{
+        QMessageBox msgBox;
+        msgBox.setText("Unfortunatly, you can draw max 5 functions in the same cartesian plane");
+        msgBox.exec();
+    }
 }
 
 
@@ -207,6 +213,11 @@ void MainWindow::aboutAction2()
     ui->customPlot->clearGraphs();
     ui->customPlot->replot();
     i = 0;
+    ui->label0->clear();
+    ui->label1->clear();
+      ui->label2->clear();
+       ui->label3->clear();
+        ui->label4->clear();
 
 }
 

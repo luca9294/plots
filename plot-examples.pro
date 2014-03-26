@@ -11,14 +11,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
            mainwindow.cpp \
     qcustomplot.cpp \
-    parser.cpp \
-    retta.cpp
+    retta.cpp \
+    parser_line.cpp \
+    parabola.cpp
 
 HEADERS  += mainwindow.h \
     qcustomplot.h \
-    parser.h \
     tokenizer.h \
-    retta.h
+    retta.h \
+    parser_line.h \
+    parabola.h
 
 FORMS    += mainwindow.ui
 
