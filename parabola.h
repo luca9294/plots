@@ -1,10 +1,32 @@
 #ifndef PARABOLA_H
 #define PARABOLA_H
 
-class parabola
+#include <QVector>
+#include <QPoint>
+#include "retta.h"
+#include "parser_parabola.h"
+
+
+
+    using namespace std;
+class Parabola
+
 {
+
 public:
-    parabola();
+    Parabola(string);
+    QVector<double> getX();
+    QVector<double> getY();
+    bool isOK();
+    string getString();
+
+private:
+    double a,b,c;
+    QPoint vertex;
+    QPoint focus;
+    Parser_parabola *parser;
+    //Retta directrix;
+    string str;
 };
 
 #endif // PARABOLA_H

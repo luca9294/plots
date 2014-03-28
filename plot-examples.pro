@@ -13,14 +13,16 @@ SOURCES += main.cpp\
     qcustomplot.cpp \
     retta.cpp \
     parser_line.cpp \
-    parabola.cpp
+    parabola.cpp \
+    parser_parabola.cpp
 
 HEADERS  += mainwindow.h \
     qcustomplot.h \
     tokenizer.h \
     retta.h \
     parser_line.h \
-    parabola.h
+    parabola.h \
+    parser_parabola.h
 
 FORMS    += mainwindow.ui
 

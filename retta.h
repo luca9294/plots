@@ -1,9 +1,9 @@
 #ifndef RETTA_H
 #define RETTA_H
-#include "parser.h"
+#include "parser_line.h"
 #include <qpoint.h>
 #include <qvector.h>
-#include "parser.h"
+
 
 
 using namespace std;

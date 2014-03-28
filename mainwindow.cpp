@@ -51,7 +51,9 @@
 #include <QMessageBox>
 #include <QMenu>
 #include "retta.h"
+#include "parabola.h"
 #include <cstdlib>
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -82,6 +84,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     bar->addMenu(menu1);
 
+Parabola p("y = x^2");
+
+drawPoints(p.getX(), p.getY(),ui->customPlot);
 
 
 
