@@ -46,16 +46,18 @@ public:
     void bracketDataSlot();
     void screenShot();
     void allScreenShots();
-    void aboutAction();
-    void aboutAction2();
+    void rettaAction();
+    void clearAction();
+    void parabolaAction();
 
 
     
 private:
     Ui::MainWindow *ui;
     QString demoName;
-   QAction* showAct;
-    QAction* showAct2;
+    QAction* rettaMenu;
+    QAction* clearMenu;
+    QAction* parabolaMenu;
     QTimer dataTimer;
     QCPItemTracer *itemDemoPhaseTracer;
     int currentDemoIndex;

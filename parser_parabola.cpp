@@ -171,7 +171,14 @@ double Parser_parabola::getB()
                 if (*i == "-"){
                     std::advance(i, 1);
 
-                    string m = *i;
+                      string m = *i;
+
+                      if (m == "x"){
+                          m = "1";
+
+                      }
+
+
 
 
                     double m2 = atof(m.c_str());
@@ -184,7 +191,10 @@ double Parser_parabola::getB()
 
                     string m = *i;
 
+                    if (m == "x"){
+                        m = "1";
 
+                    }
 
 
                     //flag = true;
@@ -274,7 +284,13 @@ double Parser_parabola::getC()
             std::string strin = (*i);
 
             if (! (strin.find("x") != std::string::npos)){
-             result2  = atof(strin.c_str());;
+               std::advance(i, -1);
+               if (*i == "-"){
+               std::advance(i, 1);
+                strin = "-" +(*i);
+               }
+
+                result2  = atof(strin.c_str());;
 
             }
 

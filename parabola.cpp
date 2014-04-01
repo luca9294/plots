@@ -28,11 +28,11 @@ string Parabola::getString(){
 
 QVector<double> Parabola::getX(){
 
-  QVector<double> x(250000); // initialize with entries 0..100
+  QVector<double> x(25000); // initialize with entries 0..100
 
  // if (!parser->isX()){
-  int w = -1000;
-  for (int i=0; i<250000; ++i)
+  double w = -1000;
+  for (int i=0; i<25000; ++i)
   {
     x[i] = w; // x goes from -1 to 1
    // y[i] = x[i]*x[i];  // let's plot a quadratic function
@@ -60,18 +60,19 @@ return x;
 
 
 QVector<double> Parabola::getY(){
-  QVector<double> x(250000), y(250000);  // initialize with entries 0..100
+  QVector<double> x(25000), y(25000);  // initialize with entries 0..100
 
 
  //     if (!parser->isX()){
-  int p = -1000;
+  double p = -1000;
 
-  for (int i=0; i<250000; ++i)
+  for (int i=0; i<25000; ++i)
   {
     x[i] = p; // x goes from -1 to 1
     y[i] = a*x[i]*x[i] + b*x[i] + c;  // let's plot a quadratic function
 
   p=p+0.1;
+
 }//}
 
   /*else {

@@ -63,30 +63,36 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     i = 0;
     setGeometry(400, 250, 542, 390);
-    showAct = new QAction(("&Draw a new Straight Line"), this);
-    showAct2 = new QAction(("&Clear All"), this);
+    rettaMenu = new QAction(("&Draw a new Straight Line"), this);
+    parabolaMenu = new QAction(("&Draw a new Parabola"), this);
+    clearMenu = new QAction(("&Clear All"), this);
     QMenuBar* bar = ui->menuBar;
 
 
 
-    QMenu* menu1 = new QMenu("Straight Lines", bar);
+    QMenu* menu1 = new QMenu("Draw Functions", bar);
 
-    menu1->addAction(showAct);
+    menu1->addAction(rettaMenu);
 
-    connect(showAct, SIGNAL(triggered()), this, SLOT(aboutAction()));
+    connect(rettaMenu, SIGNAL(triggered()), this, SLOT(rettaAction()));
 
 
-    menu1->addAction(showAct2);
+    menu1->addAction(parabolaMenu);
+    connect(parabolaMenu, SIGNAL(triggered()), this, SLOT(parabolaAction()));
 
-    connect(showAct2, SIGNAL(triggered()), this, SLOT(aboutAction2()));
 
+
+    menu1->addAction(clearMenu);
+
+
+
+
+    connect(clearMenu, SIGNAL(triggered()), this, SLOT(clearAction()));
 
 
     bar->addMenu(menu1);
 
-Parabola p("y = x^2");
 
-drawPoints(p.getX(), p.getY(),ui->customPlot);
 
 
 
@@ -123,7 +129,7 @@ void MainWindow::setupDemo(int demoIndex)
     currentDemoIndex = demoIndex;
     ui->customPlot->replot();
 }
-void MainWindow::aboutAction()
+void MainWindow::rettaAction()
 {
 
     bool ok;
@@ -176,15 +182,72 @@ void MainWindow::aboutAction()
            ui->label4->setText(string);
            ui->label4->setStyleSheet("color : green; background-color : white;");
            break;
+           }
+
+        }}
+
+    else{
+        QMessageBox msgBox;
+        msgBox.setText("Unfortunatly, you can draw max 5 functions in the same cartesian plane");
+        msgBox.exec();
+    }
+}
 
 
 
+void MainWindow::parabolaAction()
+{
+
+    bool ok;
+
+    QInputDialog  msgBox;
+
+    msgBox.setFixedSize(100000,100000);
+
+    QString text = msgBox.getText(this, tr("INSERT PARABOLA"),
+                                  tr("Enter the explicity equation of a parabola Line:            \t\t             \nThe equation should be of the form: y = (-)ax^2 (+/-) bx + c or x = (-)ay^2 (+/-) by + c\nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
+                                  "", &ok);
+    if ((ok && !text.isEmpty()) && i<5){
+        Parabola retta (text.toStdString());
+
+        if (1 == 0)  {
+            QMessageBox msgBox;
+            msgBox.setText("The INPUT format is not right.\nPay attention to the white spaces!\nAccept formats: y = mx + q, y = k, x = k");
+            msgBox.exec();
+        }
 
 
+        else{
+            drawPoints(retta.getX(), retta.getY(),ui->customPlot);
+           QString string = "<b>";
+           string.append(QString::fromUtf8(retta.getString().c_str()));
+           string.append("</b>");
+           switch (i){
 
+            case 1:
+            ui->label0->setText(string);
+            ui->label0->setStyleSheet("color : blue;  background-color : white; ");
+            break;
 
+           case 2:
+           ui->label1->setText(string);
+           ui->label1->setStyleSheet("color : red; background-color : white;");
+           break;
 
+           case 3:
+           ui->label2->setText(string);
+           ui->label2->setStyleSheet("color : yellow; background-color : white;");
+           break;
 
+           case 4:
+           ui->label3->setText(string);
+           ui->label3->setStyleSheet("color : black; background-color : white;");
+           break;
+
+           case 5:
+           ui->label4->setText(string);
+           ui->label4->setStyleSheet("color : green; background-color : white;");
+           break;
            }
 
         }}
@@ -212,7 +275,7 @@ void MainWindow::aboutAction()
 
 
 //msgBox.exec();
-void MainWindow::aboutAction2()
+void MainWindow::clearAction()
 {
 
     ui->customPlot->clearGraphs();
@@ -220,9 +283,9 @@ void MainWindow::aboutAction2()
     i = 0;
     ui->label0->clear();
     ui->label1->clear();
-      ui->label2->clear();
-       ui->label3->clear();
-        ui->label4->clear();
+    ui->label2->clear();
+    ui->label3->clear();
+    ui->label4->clear();
 
 }
 
