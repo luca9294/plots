@@ -210,7 +210,7 @@ void MainWindow::parabolaAction()
     if ((ok && !text.isEmpty()) && i<5){
         Parabola retta (text.toStdString());
 
-        if (1 == 0)  {
+        if (!retta.isOK())  {
             QMessageBox msgBox;
             msgBox.setText("The INPUT format is not right.\nPay attention to the white spaces!\nAccept formats: y = ax^2 + bx + c");
             msgBox.exec();
@@ -218,7 +218,15 @@ void MainWindow::parabolaAction()
 
 
         else{
+
+            if (!retta.isX()){
+
+            drawPoints(retta.getX(), retta.getY(),ui->customPlot);}
+
+            else{
             drawPoints(retta.getX(), retta.getY(),ui->customPlot);
+            i--;
+            drawPoints(retta.getX1(), retta.getY1(),ui->customPlot);}
            QString string = "<b>";
            string.append(QString::fromUtf8(retta.getString().c_str()));
            string.append("</b>");
