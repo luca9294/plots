@@ -1,4 +1,5 @@
 #include "parabola.h"
+#include <QRegExp>
 
 
 #include <iostream>
@@ -17,9 +18,37 @@ this->str = str;
         cout << b << endl;
         cout << c << endl;
 }
+
+
 string Parabola::getString(){
     return str;
 
+
+
+}
+
+
+bool Parabola::isOK(){
+    QString string = QString::fromUtf8(str.c_str());
+    string.replace("^", "");
+
+        // y = ax^2 + bx + c
+        QRegExp r("[y] [=] [-+]?[0-9]*[.]?[0-9]*x2 [+-] [0-9]*[.]?[0-9]*x [+-] [0-9]+[.]?[0-9]*");
+
+    // y = ax^2
+        QRegExp r1("[y] [=] [-+]?[0-9]*[.]?[0-9]?x2");
+
+    // y = ax^2 + c
+        QRegExp r2("[y] [=] [-+]?[0-9]*[.]?[0-9]*x2 [-+] [0-9]*[.]?[0-9]*");
+
+    // x = ax^2 + bx
+        QRegExp r3("[y] [=] [-+]?[0-9]*[.]?[0-9]*x2 [+-] [0-9]*[.]?[0-9]*x");
+
+    if (r.exactMatch(string)){return true;}
+    else if (r1.exactMatch(string)){return true;}
+    else if (r2.exactMatch(string)){return true;}
+    else if (r3.exactMatch(string)){return true;}
+    else return false;
 
 
 }
