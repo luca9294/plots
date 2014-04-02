@@ -12,7 +12,13 @@ Parser_parabola::Parser_parabola(string str)
         result  = result + " ";
     }
 
-    //flag = false;
+    if (result[0] == 'y'){
+
+    flag = false;}
+
+    else {flag = true;}
+
+
 }
 bool Parser_parabola::isX(){
     return flag;
@@ -58,7 +64,7 @@ double Parser_parabola::getA()
 
     if (*i == "y" || *i == "x")
     {
-        if (*i == "x"){
+        if (*i == "x" ||  *i == "y"){
             flag = true;
 
         }
@@ -77,13 +83,13 @@ double Parser_parabola::getA()
 
 
 
-            if (a == "x^2")
+            if (a == "x^2" || a == "y^2")
             {
                 a = "1";
 
             }
 
-           else if (a == "-x^2")
+           else if (a == "-x^2" || a == "-y^2" )
             {
                 a = "-1";
 
@@ -145,17 +151,37 @@ double Parser_parabola::getB()
 
     std::advance(i, 0);
 
-    if (*i == "y")
+    if (*i == "y" ||  *i == "x")
     {
+
+
         std::advance(i, 1);
         if (*i == "="){
 
-            std::advance(i, 3);
 
+   std::advance(i, 2);
+   if (*i == ""){
+
+     result2  = 0;
+   }
+
+
+   else{
+         std::advance(i, 1);
             std::string strin = (*i);
 
-            if (! (strin.find("x") != std::string::npos)){
+               cout << strin << endl;
+
+            if (!(strin.find("x") != std::string::npos) && !(strin.find("y") != std::string::npos)){
                 result2  = 0;
+                cout << "NO X NO Y" << endl;
+
+            }
+
+            else if (strin == ""){
+                 result2  = 0;
+                   cout << "NIENT" << endl;
+
 
             }
 
@@ -173,7 +199,7 @@ double Parser_parabola::getB()
 
                       string m = *i;
 
-                      if (m == "x"){
+                      if (m == "x" ||  m == "y"){
                           m = "1";
 
                       }
@@ -191,7 +217,7 @@ double Parser_parabola::getB()
 
                     string m = *i;
 
-                    if (m == "x"){
+                    if (m == "x" || m == "y"){
                         m = "1";
 
                     }
@@ -210,26 +236,10 @@ double Parser_parabola::getB()
     }
 
 
+}
 
 
 
-
-    else{
-
-
-
-
-        std::advance(i, 2);
-
-        string m = *i;
-
-
-
-
-        flag = true;
-        double m2 = atof(m.c_str());
-        result2 = m2;
-    }
 
 
     return result2;
@@ -274,7 +284,7 @@ double Parser_parabola::getC()
 
     std::advance(i, 0);
 
-    if (*i == "y")
+    if (*i == "y" || *i == "x" )
     {
         std::advance(i, 1);
         if (*i == "="){
@@ -283,7 +293,7 @@ double Parser_parabola::getC()
 
             std::string strin = (*i);
 
-            if (! (strin.find("x") != std::string::npos)){
+            if (! (strin.find("x") != std::string::npos) &&  ! (strin.find("y") != std::string::npos)){
                std::advance(i, -1);
                if (*i == "-"){
                std::advance(i, 1);
