@@ -52,6 +52,7 @@
 #include <QMenu>
 #include "retta.h"
 #include "parabola.h"
+#include <QtGui/QPen>
 #include <cstdlib>
 #include <iostream>
 
@@ -93,9 +94,7 @@ MainWindow::MainWindow(QWidget *parent) :
     bar->addMenu(menu1);
 
 
-
-
-
+//setupDemo(0);
 
 
 
@@ -152,6 +151,7 @@ void MainWindow::rettaAction()
 
 
         else{
+
             drawPoints(retta.getX(), retta.getY(),ui->customPlot);
            QString string = "<b>";
            string.append(QString::fromUtf8(retta.getString().c_str()));
@@ -223,7 +223,7 @@ void MainWindow::parabolaAction()
 
             drawPoints(retta.getX(), retta.getY(),ui->customPlot);}
 
-            else{
+           else{
             drawPoints(retta.getX(), retta.getY(),ui->customPlot);
             i--;
             drawPoints(retta.getX1(), retta.getY1(),ui->customPlot);}
@@ -302,10 +302,12 @@ void MainWindow::setupQuadraticDemo(QCustomPlot *customPlot)
     demoName = "Quadratic Demo";
     // generate some data:
     QVector<double> x(101), y(101); // initialize with entries 0..100
+    double w = 0.5;
     for (int i=0; i<101; ++i)
     {
-        x[i] = i/50.0 - 1; // x goes from -1 to 1
-        y[i] = x[i]*x[i];  // let's plot a quadratic function
+        y[i] = w; // x goes from -1 to 1
+        x[i] = y[i]*y[i] - y[i];  // let's plot a quadratic function
+    w+=0.1;
     }
     // create graph and assign data to it:
     customPlot->addGraph();
@@ -313,9 +315,10 @@ void MainWindow::setupQuadraticDemo(QCustomPlot *customPlot)
     // give the axes some labels:
     customPlot->xAxis->setLabel("x");
     customPlot->yAxis->setLabel("y");
+    customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+
     // set axes ranges, so we see all data:
-    customPlot->xAxis->setRange(-1, 1);
-    customPlot->yAxis->setRange(0, 1);
+
 }
 
 void MainWindow::setupSimpleDemo(QCustomPlot *customPlot)
@@ -364,6 +367,7 @@ void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *c
     // add two new graphs and set their look:
     customPlot->addGraph();
 
+
     if (i == 5){
         i=0;
     }
@@ -393,7 +397,7 @@ void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *c
     // customPlot->graph(1)->setPen(QPen(Qt::red)); // line color red for second graph
 
     // (see QCPAxisRect::setupFullAxesBox for a quicker method to do this)
-    customPlot->xAxis2->setVisible(true);
+  customPlot->xAxis2->setVisible(true);
     customPlot->xAxis2->setTickLabels(false);
     customPlot->yAxis2->setVisible(true);
     customPlot->yAxis2->setTickLabels(false);
@@ -411,7 +415,7 @@ void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *c
 
     // Note: we could have also just called customPlot->rescaleAxes(); instead
     // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking:
-    customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+   customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
     customPlot->replot();
 
 }

@@ -174,13 +174,13 @@ double Parser_parabola::getB()
 
             if (!(strin.find("x") != std::string::npos) && !(strin.find("y") != std::string::npos)){
                 result2  = 0;
-                cout << "NO X NO Y" << endl;
+
 
             }
 
             else if (strin == ""){
                  result2  = 0;
-                   cout << "NIENT" << endl;
+
 
 
             }
@@ -289,7 +289,14 @@ double Parser_parabola::getC()
         std::advance(i, 1);
         if (*i == "="){
 
-            std::advance(i, 3);
+            std::advance(i, 2);
+            if (*i == ""){
+
+              result2  = 0;
+            }
+            else{
+
+             std::advance(i, 1);
 
             std::string strin = (*i);
 
@@ -382,4 +389,4 @@ double Parser_parabola::getC()
 
 
 
-
+}

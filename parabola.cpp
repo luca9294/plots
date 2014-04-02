@@ -13,6 +13,7 @@ this->str = str;
       b = parser->getB();
       c = parser -> getC();
       parser = new Parser_parabola (str);
+      perform();
 
         cout << a << endl;
         cout << b << endl;
@@ -21,6 +22,74 @@ this->str = str;
 
 bool Parabola::isX(){
     return parser->isX();
+
+}
+
+void Parabola::perform(){
+   QVector<double> x(25000);
+   QVector<double> y(25000);
+   QVector<double> x1(25000);
+   QVector<double> y1(25000);
+
+
+
+   if (!parser->isX()){
+   double w = -1000;
+   for (int i=0; i<25000; ++i)
+   {
+     x[i] = w; // x goes from -1 to 1
+     y[i] = a*x[i]*x[i]+b*x[i] + c;  // let's plot a quadratic function
+
+
+   w=w+0.1;
+
+   }}
+
+   else {
+
+  double w =  -(b / (2*a));
+
+
+     //  double w =  -20;
+       for (int i=0; i<25000; ++i)
+       {
+
+
+           y[i] = w; // x goes from -1 to 1
+           x[i] = (a)*(y[i])*(y[i])+(b)*(y[i]) + c;  // let's plot a quadratic function
+
+
+
+       w+=0.1;
+
+       }
+
+       w =  -(b / (2*a));
+
+
+          //  double w =  -20;
+            for (int i=0; i<25000; ++i)
+            {
+
+
+                y1[i] = w; // x goes from -1 to 1
+                x1[i] = (a)*(y[i])*(y[i])+(b)*(y[i]) + c;  // let's plot a quadratic function
+
+
+
+            w-=0.1;
+
+            }
+
+            xg1 = x1;
+            yg1 = y1;
+
+
+
+ }
+xg = x;
+yg = y;
+
 
 }
 
@@ -82,121 +151,28 @@ bool Parabola::isOK(){
 
 QVector<double> Parabola::getX(){
 
-  QVector<double> x(25000); // initialize with entries 0..100
-
-  if (!parser->isX()){
-  double w = -1000;
-  for (int i=0; i<25000; ++i)
-  {
-    x[i] = w; // x goes from -1 to 1
-   // y[i] = x[i]*x[i];  // let's plot a quadratic function
-
-
-  w=w+0.1;
-
-  }}
-
-  else {
-
- double w =  -(b/2*a);
-
-    //  double w =  -20;
-      for (int i=0; i<250; ++i)
-      {
-        x[i] = a*w*w + b*w + c; // x goes from -1 to 1
-        cout << "x " <<  x[i] << endl;
-      w+=0.1;
-
-      }
-
-
-
-}
-
-
-return x;
+return xg;
 
 }
 
 
 QVector<double> Parabola::getY(){
-  QVector<double> x(25000), y(25000);  // initialize with entries 0..100
 
-
-if (!parser->isX()){
-  double p = -1000;
-
-  for (int i=0; i<25000; ++i)
-  {
-    x[i] = p; // x goes from -1 to 1
-    y[i] = a*x[i]*x[i] + b*x[i] + c;  // let's plot a quadratic function
-
-  p=p+0.1;
-
-}}
-
-  else {
-      double p = -(b/2*a);
-   // p = -20;
-      for (int i=0; i<250; ++i)
-      {
-   // x goes from -1 to 1
-        y[i] = p;  // let's plot a quadratic function
-  cout <<  y[i] << endl;
-
-      p+=0.1;}
-
-  }
-return y;
+return yg;
 
 }
 
 
 QVector<double> Parabola::getX1(){
+    return xg1;
 
-  QVector<double> x(25000); // initialize with entries 0..100
-
-
-
- double w =  -(b/2*a);
-
-    //  double w =  -20;
-      for (int i=0; i<250; ++i)
-      {
-        x[i] = a*w*w + b*w + c; // x goes from -1 to 1
-        cout << "x " <<  x[i] << endl;
-      w+=0.1;
-
-      }
-
-
-
-
-
-return x;
 
 }
 
 
 QVector<double> Parabola::getY1(){
-  QVector<double> x(25000), y(25000);  // initialize with entries 0..100
+    return yg1;
 
-
-
-
-
-      double p = -(b/2*a);
-   // p = -20;
-      for (int i=0; i<250; ++i)
-      {
-   // x goes from -1 to 1
-        y[i] = p;  // let's plot a quadratic function
-  cout <<  y[i] << endl;
-
-      p-=0.1;}
-
-
-return y;
 
 }
 

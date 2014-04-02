@@ -15,6 +15,7 @@ class Parabola
 
 public:
     Parabola(string);
+    void perform();
     QVector<double> getX();
     QVector<double> getY();
     QVector<double> getX1();
@@ -25,6 +26,10 @@ public:
 
 private:
     double a,b,c;
+    QVector<double> xg;
+    QVector<double> yg;
+    QVector<double> xg1;
+    QVector<double> yg1;
     QPoint vertex;
     QPoint focus;
     Parser_parabola *parser;
