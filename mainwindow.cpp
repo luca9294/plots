@@ -66,7 +66,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setGeometry(400, 250, 542, 390);
     rettaMenu = new QAction(("&Draw a new Straight Line"), this);
     parabolaMenu = new QAction(("&Draw a new Parabola"), this);
-    EllipseMenu = new QAction(("&Draw a new Ellipse"), this);
     clearMenu = new QAction(("&Clear All"), this);
     QMenuBar* bar = ui->menuBar;
 
@@ -81,10 +80,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     menu1->addAction(parabolaMenu);
     connect(parabolaMenu, SIGNAL(triggered()), this, SLOT(parabolaAction()));
-
-
-    menu1->addAction(paraMenu);
-    connect(EllipseMenu, SIGNAL(triggered()), this, SLOT(parabolaAction()));
 
 
 

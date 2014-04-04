@@ -14,9 +14,7 @@ SOURCES += main.cpp\
     retta.cpp \
     parser_line.cpp \
     parabola.cpp \
-    parser_parabola.cpp \
-    ellipse.cpp \
-    parser_ellipse.cpp
+    parser_parabola.cpp
 
 HEADERS  += mainwindow.h \
     qcustomplot.h \
@@ -24,9 +22,7 @@ HEADERS  += mainwindow.h \
     retta.h \
     parser_line.h \
     parabola.h \
-    parser_parabola.h \
-    ellipse.h \
-    parser_ellipse.h
+    parser_parabola.h
 
 FORMS    += mainwindow.ui
 
