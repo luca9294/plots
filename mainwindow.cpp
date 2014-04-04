@@ -52,6 +52,7 @@
 #include <QMenu>
 #include "retta.h"
 #include "parabola.h"
+#include "parser_ellipse.h"
 #include <QtGui/QPen>
 #include <cstdlib>
 #include <iostream>
@@ -92,6 +93,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     bar->addMenu(menu1);
+
+
+    parser_ellipse p ("x^2/10 + y^2/5 = 1");
+
+    cout << "a: " << p.getA() << endl;
+    cout << "b: " << p.getB() << endl;
 
 
 //setupDemo(0);
