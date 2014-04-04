@@ -208,9 +208,9 @@ void MainWindow::parabolaAction()
                                   tr("Enter the explicity equation of a parabola Line:            \t\t             \nThe equation should be of the form: y = (-)ax^2 (+/-) bx + c or x = (-)ay^2 (+/-) by + c\nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
                                   "", &ok);
     if ((ok && !text.isEmpty()) && i<5){
-        Parabola retta (text.toStdString());
+        Parabola parabola (text.toStdString());
 
-        if (!retta.isOK())  {
+        if (!parabola.isOK())  {
             QMessageBox msgBox;
             msgBox.setText("The INPUT format is not right.\nPay attention to the white spaces!\nAccept formats: y = ax^2 + bx + c");
             msgBox.exec();
@@ -219,16 +219,16 @@ void MainWindow::parabolaAction()
 
         else{
 
-            if (!retta.isX()){
+            if (!parabola.isX()){
 
-            drawPoints(retta.getX(), retta.getY(),ui->customPlot);}
+            drawPoints(parabola.getX(), parabola.getY(),ui->customPlot);}
 
            else{
-            drawPoints(retta.getX(), retta.getY(),ui->customPlot);
+            drawPoints(parabola.getX(), parabola.getY(),ui->customPlot);
             i--;
-            drawPoints(retta.getX1(), retta.getY1(),ui->customPlot);}
+            drawPoints(parabola.getX1(), parabola.getY1(),ui->customPlot);}
            QString string = "<b>";
-           string.append(QString::fromUtf8(retta.getString().c_str()));
+           string.append(QString::fromUtf8(parabola.getString().c_str()));
            string.append("</b>");
            switch (i){
 

@@ -47,6 +47,7 @@ void Parabola::perform(){
 
    else {
 
+
   double w =  -(b / (2*a));
 
 
