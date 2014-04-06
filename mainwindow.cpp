@@ -97,7 +97,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
    ellipse p ("x^2/25 + y^2/9 = 1");
    drawPoints(p.getX(),p.getY(),ui->customPlot);
-
+   i--;
+   drawPoints(p.getX1(),p.getY1(),ui->customPlot);
 
 
 }
@@ -303,14 +304,38 @@ void MainWindow::setupQuadraticDemo(QCustomPlot *customPlot)
 {
     demoName = "Quadratic Demo";
     // generate some data:
-    QVector<double> x(101), y(101); // initialize with entries 0..100
-    double w = 0.5;
-    for (int i=0; i<101; ++i)
+    double a =sqrt(5);
+    double b =1;
+
+    QVector<double> x(100*a*2+1), y(100*a*2+1); // initialize with entries 0..100
+
+    double w = -a;
+    int count = 0;
+    for (int i=0; w<a; ++i)
     {
-        y[i] = w; // x goes from -1 to 1
-        x[i] = y[i]*y[i] - y[i];  // let's plot a quadratic function
-    w+=0.1;
+
+        x[i] = w;  // let's plot a quadratic function
+        y[i] = b*sqrt((1) - ((x[i]*x[i]) / (a*a)));
+
+        cout << "x "<< x[i] << endl;
+        cout << "y"<< y[i] << endl;
+count++;
+    w+=0.01;
+         cout << "i "<< i << endl;
     }
+ cout << "prova "<< x[x.size()-1]<< endl;
+    if (x[x.size()-1] != a){
+    x[x.size()-1] = a;
+    y[x.size()-1] = b*sqrt((1) - ((x[i]*x[i]) / (a*a)));
+
+    }
+cout << "prova2 "<< x[x.size()-1]<< endl;
+
+
+
+
+
+     cout << "count: "<< count << endl;
     // create graph and assign data to it:
     customPlot->addGraph();
     customPlot->graph(0)->setData(x, y);
