@@ -67,12 +67,15 @@ MainWindow::MainWindow(QWidget *parent) :
     setGeometry(400, 250, 542, 390);
     rettaMenu = new QAction(("&Draw a new Straight Line"), this);
     parabolaMenu = new QAction(("&Draw a new Parabola"), this);
+    ellipseMenu = new QAction(("&Ellipse centered in the origin"), this);
+    ellipseMenu2 = new QAction(("&Ellipse not centered in the origin"), this);
     clearMenu = new QAction(("&Clear All"), this);
     QMenuBar* bar = ui->menuBar;
 
 
 
     QMenu* menu1 = new QMenu("Draw Functions", bar);
+    QMenu* menu2 = new QMenu("&Draw a new Ellipse", bar);
 
     menu1->addAction(rettaMenu);
 
@@ -84,8 +87,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
-    menu1->addAction(clearMenu);
 
+    menu2->addAction(ellipseMenu);
+    connect(ellipseMenu, SIGNAL(triggered()), this, SLOT(ellipseAction()));
+    menu2->addAction(ellipseMenu2);
+
+
+    menu1->addMenu(menu2);
+    menu1->addAction(clearMenu);
 
 
 
@@ -95,10 +104,7 @@ MainWindow::MainWindow(QWidget *parent) :
     bar->addMenu(menu1);
 
 
-   ellipse p ("x^2/25 + y^2/9 = 1");
-   drawPoints(p.getX(),p.getY(),ui->customPlot);
-   i--;
-   drawPoints(p.getX1(),p.getY1(),ui->customPlot);
+
 
 
 }
@@ -195,6 +201,100 @@ void MainWindow::rettaAction()
         msgBox.exec();
     }
 }
+
+
+
+
+
+void MainWindow::ellipseAction()
+{
+
+    bool ok;
+
+    QInputDialog  msgBox;
+
+    msgBox.setFixedSize(100000,100000);
+
+    QString text = msgBox.getText(this, tr("INSERT ELLIPSE origin centered"),
+                                  tr("Enter the explicity equation of a Eclipse:            \t\t             \nThe equation should be of the form: x^2/(-)a^2 (+/-) y^2/b^2 = 1 7\nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
+                                  "", &ok);
+    if ((ok && !text.isEmpty()) && i<5){
+
+
+         Ellipse eclipse (text.toStdString());
+         if (!eclipse.isOK())  {
+             QMessageBox msgBox;
+             msgBox.setText("The INPUT format is not right.\nPay attention to the white spaces!\nAccept formats: x^2/A + y^2/B = 1");
+             msgBox.exec();
+         }
+
+else{
+
+        drawPoints(eclipse.getX(), eclipse.getY(),ui->customPlot);
+        i--;
+        drawPoints(eclipse.getX1(), eclipse.getY1(),ui->customPlot);
+
+
+
+
+
+/*
+
+        else{
+
+            if (!parabola.isX()){
+
+            drawPoints(parabola.getX(), parabola.getY(),ui->customPlot);}
+
+           else{
+            drawPoints(parabola.getX(), parabola.getY(),ui->customPlot);
+            i--;
+            drawPoints(parabola.getX1(), parabola.getY1(),ui->customPlot);}
+*/
+
+QString string = "<b>";
+           string.append(QString::fromUtf8(eclipse.getString().c_str()));
+           string.append("</b>");
+           switch (i){
+
+            case 1:
+            ui->label0->setText(string);
+            ui->label0->setStyleSheet("color : blue;  background-color : white; ");
+            break;
+
+           case 2:
+           ui->label1->setText(string);
+           ui->label1->setStyleSheet("color : red; background-color : white;");
+           break;
+
+           case 3:
+           ui->label2->setText(string);
+           ui->label2->setStyleSheet("color : yellow; background-color : white;");
+           break;
+
+           case 4:
+           ui->label3->setText(string);
+           ui->label3->setStyleSheet("color : black; background-color : white;");
+           break;
+
+           case 5:
+           ui->label4->setText(string);
+           ui->label4->setStyleSheet("color : green; background-color : white;");
+           break;
+           }
+}
+}
+
+    else{
+        QMessageBox msgBox;
+        msgBox.setText("Unfortunatly, you can draw max 5 functions in the same cartesian plane");
+        msgBox.exec();
+    }
+}
+
+
+
+
 
 
 
@@ -317,19 +417,17 @@ void MainWindow::setupQuadraticDemo(QCustomPlot *customPlot)
         x[i] = w;  // let's plot a quadratic function
         y[i] = b*sqrt((1) - ((x[i]*x[i]) / (a*a)));
 
-        cout << "x "<< x[i] << endl;
-        cout << "y"<< y[i] << endl;
+
 count++;
     w+=0.01;
-         cout << "i "<< i << endl;
+
     }
- cout << "prova "<< x[x.size()-1]<< endl;
+
     if (x[x.size()-1] != a){
     x[x.size()-1] = a;
     y[x.size()-1] = b*sqrt((1) - ((x[i]*x[i]) / (a*a)));
 
     }
-cout << "prova2 "<< x[x.size()-1]<< endl;
 
 
 
@@ -424,10 +522,14 @@ void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *c
     // customPlot->graph(1)->setPen(QPen(Qt::red)); // line color red for second graph
 
     // (see QCPAxisRect::setupFullAxesBox for a quicker method to do this)
-  customPlot->xAxis2->setVisible(true);
+
+
+
+    customPlot->xAxis2->setVisible(true);
     customPlot->xAxis2->setTickLabels(false);
     customPlot->yAxis2->setVisible(true);
     customPlot->yAxis2->setTickLabels(false);
+
     // make left and bottom axes always transfer their ranges to right and top axes:
     connect(customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->xAxis2, SLOT(setRange(QCPRange)));
     connect(customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->yAxis2, SLOT(setRange(QCPRange)));
@@ -438,11 +540,18 @@ void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *c
     //customPlot->graph()->rescaleAxes(true);
     customPlot->xAxis->setRange(-10, 10);
     customPlot->yAxis->setRange(-10, 10);
+
     // same thing for graph 1, but only enlarge ranges (in case graph 1 is smaller than graph 0):
 
     // Note: we could have also just called customPlot->rescaleAxes(); instead
     // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking:
-   customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+
+      // make top right axes clones of bottom left axes. Looks prettier:
+
+
+ customPlot->yAxis->scaleRange(1, customPlot->xAxis->range().center());
+
+      customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
     customPlot->replot();
 
 }

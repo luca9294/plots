@@ -4,7 +4,7 @@
 #include <math.h>
 #include <iostream>
 
-ellipse::ellipse(string str)
+Ellipse::Ellipse(string str)
 {
 this->str = str;
 
@@ -20,12 +20,12 @@ this->str = str;
 
 }
 
-bool ellipse::isX(){
+bool Ellipse::isX(){
     return parser->isX();
 
 }
 
-void ellipse::perform(){
+void Ellipse::perform(){
 
 
 
@@ -46,7 +46,7 @@ void ellipse::perform(){
        cout << "y"<< y[i] << endl;
 count++;
    w+=0.01;
-        cout << "i "<< i << endl;
+
    }
 
    if (x[x.size()-1] != a){
@@ -137,7 +137,7 @@ yg1 = y1;
 }
 
 
-string ellipse::getString(){
+string Ellipse::getString(){
     return str;
 
 
@@ -145,45 +145,49 @@ string ellipse::getString(){
 }
 
 
-bool ellipse::isOK(){
+bool Ellipse::isOK(){
     QString string = QString::fromUtf8(str.c_str());
     string.replace("^", "");
+  //  string.replace("/", "");
 
-        // y = ax^2 + bx + c
-        QRegExp r("[y] [=] [-+]?[0-9]*[.]?[0-9]*x2 [+-] [0-9]*[.]?[0-9]*x [+-] [0-9]+[.]?[0-9]*");
 
-    // y = ax^2
-        QRegExp r1("[y] [=] [-+]?[0-9]*[.]?[0-9]?x2");
+        // x^2/A + y^2/B = 1
+        QRegExp r("x2/[0-9]*[.]?[0-9]*[ ][+][ ]y2/[0-9]*[.]?[0-9]*[ ][=][ ][1]");
 
-    // y = ax^2 + c
-        QRegExp r2("[y] [=] [-+]?[0-9]*[.]?[0-9]*x2 [-+] [0-9]*[.]?[0-9]*");
 
-    // x = ax^2 + bx
-        QRegExp r3("[y] [=] [-+]?[0-9]*[.]?[0-9]*x2 [+-] [0-9]*[.]?[0-9]*x");
-
-        // y = ax^2 + bx + c
-        QRegExp r4("[x] [=] [-+]?[0-9]*[.]?[0-9]*y2 [+-] [0-9]*[.]?[0-9]*y [+-] [0-9]+[.]?[0-9]*");
 
     // y = ax^2
-        QRegExp r5("[x] [=] [-+]?[0-9]*[.]?[0-9]?y2");
+       // QRegExp r1("[y] [=] [-+]?[0-9]*[.]?[0-9]?x2");
 
     // y = ax^2 + c
-        QRegExp r6("[x] [=] [-+]?[0-9]*[.]?[0-9]*y2 [-+] [0-9]*[.]?[0-9]*");
+        //QRegExp r2("[y] [=] [-+]?[0-9]*[.]?[0-9]*x2 [-+] [0-9]*[.]?[0-9]*");
 
     // x = ax^2 + bx
-        QRegExp r7("[x] [=] [-+]?[0-9]*[.]?[0-9]*y2 [+-] [0-9]*[.]?[0-9]*y");
+//        QRegExp r3("[y] [=] [-+]?[0-9]*[.]?[0-9]*x2 [+-] [0-9]*[.]?[0-9]*x");
+
+        // y = ax^2 + bx + c
+//        QRegExp r4("[x] [=] [-+]?[0-9]*[.]?[0-9]*y2 [+-] [0-9]*[.]?[0-9]*y [+-] [0-9]+[.]?[0-9]*");
+
+    // y = ax^2
+  //      QRegExp r5("[x] [=] [-+]?[0-9]*[.]?[0-9]?y2");
+
+    // y = ax^2 + c
+    //    QRegExp r6("[x] [=] [-+]?[0-9]*[.]?[0-9]*y2 [-+] [0-9]*[.]?[0-9]*");
+
+    // x = ax^2 + bx
+      //  QRegExp r7("[x] [=] [-+]?[0-9]*[.]?[0-9]*y2 [+-] [0-9]*[.]?[0-9]*y");
 
 
 
 
     if (r.exactMatch(string)){return true;}
-    else if (r1.exactMatch(string)){return true;}
+    /*else if (r1.exactMatch(string)){return true;}
     else if (r2.exactMatch(string)){return true;}
     else if (r3.exactMatch(string)){return true;}
     else if (r4.exactMatch(string)){return true;}
     else if (r5.exactMatch(string)){return true;}
     else if (r6.exactMatch(string)){return true;}
-    else if (r7.exactMatch(string)){return true;}
+    else if (r7.exactMatch(string)){return true;}*/
 
     else return false;
 
@@ -192,28 +196,28 @@ bool ellipse::isOK(){
 
 
 
-QVector<double> ellipse::getX(){
+QVector<double> Ellipse::getX(){
 
 return xg;
 
 }
 
 
-QVector<double> ellipse::getY(){
+QVector<double> Ellipse::getY(){
 
 return yg;
 
 }
 
 
-QVector<double> ellipse::getX1(){
+QVector<double> Ellipse::getX1(){
     return xg1;
 
 
 }
 
 
-QVector<double> ellipse::getY1(){
+QVector<double> Ellipse::getY1(){
     return yg1;
 
 

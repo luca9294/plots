@@ -114,7 +114,7 @@ double parser_ellipse::getB()
     std::advance(i, 2);
 
     std::string b = *i;
-    b = b[b.length()-1];
+  b =   b.substr(4,b.length()-4);
 
 
             double af = atof(b.c_str());

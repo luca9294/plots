@@ -7,10 +7,10 @@
 
 
 
-class ellipse
+class Ellipse
 {
 public:
-    ellipse(string);
+    Ellipse(string);
     void perform();
     QVector<double> getX();
     QVector<double> getY();

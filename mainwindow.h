@@ -49,6 +49,7 @@ public:
     void rettaAction();
     void clearAction();
     void parabolaAction();
+    void ellipseAction();
 
 
     
@@ -58,6 +59,8 @@ private:
     QAction* rettaMenu;
     QAction* clearMenu;
     QAction* parabolaMenu;
+    QAction* ellipseMenu;
+    QAction* ellipseMenu2;
     QTimer dataTimer;
     QCPItemTracer *itemDemoPhaseTracer;
     int currentDemoIndex;
