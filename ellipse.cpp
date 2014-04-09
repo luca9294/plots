@@ -148,11 +148,11 @@ string Ellipse::getString(){
 bool Ellipse::isOK(){
     QString string = QString::fromUtf8(str.c_str());
     string.replace("^", "");
-  //  string.replace("/", "");
+
 
 
         // x^2/A + y^2/B = 1
-        QRegExp r("x2/[0-9]*[.]?[0-9]*[ ][+][ ]y2/[0-9]*[.]?[0-9]*[ ][=][ ][1]");
+        QRegExp r("x2[/]?[0-9]*[.]?[0-9]*[ ][+][ ]y2[/]?[0-9]*[.]?[0-9]*[ ][=][ ][1]");
 
 
 

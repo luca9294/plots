@@ -19,9 +19,11 @@ public:
     bool isOK();
     bool isX();
     string getString();
+    double a,b;
+    string str;
 
 private:
-    double a,b;
+
     QVector<double> xg;
     QVector<double> yg;
     QVector<double> xg1;
@@ -29,7 +31,7 @@ private:
     QPoint vertex;
     QPoint focus;
     parser_ellipse *parser;
-    string str;
+
 
 
 

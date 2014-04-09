@@ -59,8 +59,18 @@ double parser_ellipse::getA()
     std::advance(i, 0);
 
     std::string a = *i;
-  a =   a.substr(4,a.length()-4);
+    if (a == "x^2"){
 
+        a = "1";
+
+    }
+
+    else{
+
+    a =   a.substr(4,a.length()-4);
+
+
+}
 
 
             double af = atof(a.c_str());
@@ -114,8 +124,14 @@ double parser_ellipse::getB()
     std::advance(i, 2);
 
     std::string b = *i;
-  b =   b.substr(4,b.length()-4);
 
+    if (b == "y^2"){
+    b = "1";
+    }
+
+else{
+  b =   b.substr(4,b.length()-4);
+}
 
             double af = atof(b.c_str());
             result2 =  sqrt (af);

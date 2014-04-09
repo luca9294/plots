@@ -69,6 +69,9 @@ MainWindow::MainWindow(QWidget *parent) :
     parabolaMenu = new QAction(("&Draw a new Parabola"), this);
     ellipseMenu = new QAction(("&Ellipse centered in the origin"), this);
     ellipseMenu2 = new QAction(("&Ellipse not centered in the origin"), this);
+    circleMenu = new QAction(("&Circle centered in the origin"), this);
+    circleMenu2 = new QAction(("&Circle not centered in the origin"), this);
+
     clearMenu = new QAction(("&Clear All"), this);
     QMenuBar* bar = ui->menuBar;
 
@@ -76,6 +79,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QMenu* menu1 = new QMenu("Draw Functions", bar);
     QMenu* menu2 = new QMenu("&Draw a new Ellipse", bar);
+    QMenu* menu3 = new QMenu("&Draw a new Circle", bar);
 
     menu1->addAction(rettaMenu);
 
@@ -92,6 +96,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ellipseMenu, SIGNAL(triggered()), this, SLOT(ellipseAction()));
     menu2->addAction(ellipseMenu2);
 
+
+    menu3->addAction(circleMenu);
+    //connect(circleMenu, SIGNAL(triggered()), this, SLOT(circleAction()));
+    menu3->addAction(circleMenu2);
+
+
+    menu1->addMenu(menu3);
 
     menu1->addMenu(menu2);
     menu1->addAction(clearMenu);
@@ -137,6 +148,11 @@ void MainWindow::setupDemo(int demoIndex)
     currentDemoIndex = demoIndex;
     ui->customPlot->replot();
 }
+
+
+
+
+
 void MainWindow::rettaAction()
 {
 
@@ -216,7 +232,7 @@ void MainWindow::ellipseAction()
     msgBox.setFixedSize(100000,100000);
 
     QString text = msgBox.getText(this, tr("INSERT ELLIPSE origin centered"),
-                                  tr("Enter the explicity equation of a Eclipse:            \t\t             \nThe equation should be of the form: x^2/(-)a^2 (+/-) y^2/b^2 = 1 7\nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
+                                  tr("Enter the explicity equation of a Eclipse:            \t\t             \nThe equation should be of the form: x^2/A + y^2/B = 1 7\nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
                                   "", &ok);
     if ((ok && !text.isEmpty()) && i<5){
 

@@ -52,6 +52,7 @@ public:
     void ellipseAction();
 
 
+
     
 private:
     Ui::MainWindow *ui;
@@ -61,6 +62,8 @@ private:
     QAction* parabolaMenu;
     QAction* ellipseMenu;
     QAction* ellipseMenu2;
+    QAction* circleMenu;
+    QAction* circleMenu2;
     QTimer dataTimer;
     QCPItemTracer *itemDemoPhaseTracer;
     int currentDemoIndex;
