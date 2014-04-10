@@ -12,10 +12,6 @@ this->str = str;
       a = parser->getA();
       b = parser->getB();
 
-
-      cout << a << endl;
-      cout << b << endl;
-    //  parser = new Parser_parabola (str);
       perform();
 
 }

@@ -50,6 +50,7 @@ public:
     void clearAction();
     void parabolaAction();
     void ellipseAction();
+    void circleAction();
 
 
 

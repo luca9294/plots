@@ -53,6 +53,7 @@
 #include "retta.h"
 #include "parabola.h"
 #include "ellipse.h"
+#include "circle.h"
 #include <QtGui/QPen>
 #include <cstdlib>
 #include <iostream>
@@ -98,7 +99,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     menu3->addAction(circleMenu);
-    //connect(circleMenu, SIGNAL(triggered()), this, SLOT(circleAction()));
+    connect(circleMenu, SIGNAL(triggered()), this, SLOT(circleAction()));
     menu3->addAction(circleMenu2);
 
 
@@ -148,6 +149,84 @@ void MainWindow::setupDemo(int demoIndex)
     currentDemoIndex = demoIndex;
     ui->customPlot->replot();
 }
+
+
+
+
+
+void MainWindow::circleAction()
+{
+
+    bool ok;
+
+    QInputDialog  msgBox;
+
+    msgBox.setFixedSize(100000,100000);
+
+    QString text = msgBox.getText(this, tr("INSERT CIRCLE"),
+                                  tr("Enter the explicity equation of a centered origin circle:            \t\t             \nThe equation should be of the form: x^2 + y^2 = r^2 \nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
+                                  "", &ok);
+    if ((ok && !text.isEmpty()) && i<5){
+        Circle circle (text.toStdString());
+
+      if (!circle.isOK())  {
+            QMessageBox msgBox;
+            msgBox.setText("The INPUT format is not right.\nPay attention to the white spaces!\nAccept formats: x^2 + y^2 = A\nwhere A stands for r^2");
+            msgBox.exec();
+        }
+
+
+        else{
+
+           drawPoints(circle.getX(), circle.getY(),ui->customPlot);
+           i--;
+           drawPoints(circle.getX1(), circle.getY1(),ui->customPlot);
+           QString string = "<b>";
+           string.append(QString::fromUtf8(circle.getString().c_str()));
+           string.append("</b>");
+           switch (i){
+
+            case 1:
+            ui->label0->setText(string);
+            ui->label0->setStyleSheet("color : blue;  background-color : white; ");
+            break;
+
+           case 2:
+           ui->label1->setText(string);
+           ui->label1->setStyleSheet("color : red; background-color : white;");
+           break;
+
+           case 3:
+           ui->label2->setText(string);
+           ui->label2->setStyleSheet("color : yellow; background-color : white;");
+           break;
+
+           case 4:
+           ui->label3->setText(string);
+           ui->label3->setStyleSheet("color : black; background-color : white;");
+           break;
+
+           case 5:
+           ui->label4->setText(string);
+           ui->label4->setStyleSheet("color : green; background-color : white;");
+           break;
+           }
+
+        }}
+
+    else{
+        QMessageBox msgBox;
+        msgBox.setText("Unfortunatly, you can draw max 5 functions in the same cartesian plane");
+        msgBox.exec();
+    }
+}
+
+
+
+
+
+
+
 
 
 
