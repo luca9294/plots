@@ -18,9 +18,10 @@ public:
     double getA();
     double getB();
     bool isX();
+     string result;
 
 private:
-    string result;
+
     bool flag;
 
 

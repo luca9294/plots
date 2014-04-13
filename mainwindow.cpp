@@ -52,6 +52,7 @@
 #include <QMenu>
 #include "retta.h"
 #include "parabola.h"
+#include "ellipse_n.h"
 #include "ellipse.h"
 #include "circle.h"
 #include <QtGui/QPen>
@@ -96,7 +97,7 @@ MainWindow::MainWindow(QWidget *parent) :
     menu2->addAction(ellipseMenu);
     connect(ellipseMenu, SIGNAL(triggered()), this, SLOT(ellipseAction()));
     menu2->addAction(ellipseMenu2);
-
+    connect(ellipseMenu2, SIGNAL(triggered()), this, SLOT(ellipseAction2()));
 
     menu3->addAction(circleMenu);
     connect(circleMenu, SIGNAL(triggered()), this, SLOT(circleAction()));
@@ -115,9 +116,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     bar->addMenu(menu1);
 
-
-
-
+    Ellipse_n el ("(x^2 - 1)/16 + (y^2 - 4)/1 = 1 ");
+drawPoints(el.getX1(),el.getY1(),ui->customPlot);
+i--;
+drawPoints(el.getX(),el.getY(),ui->customPlot);
 
 }
 
@@ -178,7 +180,7 @@ void MainWindow::circleAction()
 
         else{
 
-           drawPoints(circle.getX(), circle.getY(),ui->customPlot);
+          drawPoints(circle.getX(), circle.getY(),ui->customPlot);
            i--;
            drawPoints(circle.getX1(), circle.getY1(),ui->customPlot);
            QString string = "<b>";
@@ -387,6 +389,91 @@ QString string = "<b>";
     }
 }
 
+void MainWindow::ellipseAction2()
+{
+
+    bool ok;
+
+    QInputDialog  msgBox;
+
+    msgBox.setFixedSize(100000,100000);
+
+    QString text = msgBox.getText(this, tr("INSERT ELLIPSE non origin centered"),
+                                  tr("Enter the explicity equation of a Eclipse:            \t\t             \nThe equation should be of the form: (x^2 -(+) Xc)/A + (y^2 -(+) Yc)/B = 1 7\nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
+                                  "", &ok);
+    if ((ok && !text.isEmpty()) && i<5){
+
+
+         Ellipse_n eclipse (text.toStdString());
+        /* if (!eclipse.isOK())  {
+             QMessageBox msgBox;
+             msgBox.setText("The INPUT format is not right.\nPay attention to the white spaces!\nAccept formats: x^2/A + y^2/B = 1");
+             msgBox.exec();
+         }
+
+else{*/
+
+        drawPoints(eclipse.getX(), eclipse.getY(),ui->customPlot);
+        i--;
+        drawPoints(eclipse.getX1(), eclipse.getY1(),ui->customPlot);
+
+
+
+
+
+/*
+
+        else{
+
+            if (!parabola.isX()){
+
+            drawPoints(parabola.getX(), parabola.getY(),ui->customPlot);}
+
+           else{
+            drawPoints(parabola.getX(), parabola.getY(),ui->customPlot);
+            i--;
+            drawPoints(parabola.getX1(), parabola.getY1(),ui->customPlot);}
+*/
+
+QString string = "<b>";
+           string.append(QString::fromUtf8(eclipse.getString().c_str()));
+           string.append("</b>");
+           switch (i){
+
+            case 1:
+            ui->label0->setText(string);
+            ui->label0->setStyleSheet("color : blue;  background-color : white; ");
+            break;
+
+           case 2:
+           ui->label1->setText(string);
+           ui->label1->setStyleSheet("color : red; background-color : white;");
+           break;
+
+           case 3:
+           ui->label2->setText(string);
+           ui->label2->setStyleSheet("color : yellow; background-color : white;");
+           break;
+
+           case 4:
+           ui->label3->setText(string);
+           ui->label3->setStyleSheet("color : black; background-color : white;");
+           break;
+
+           case 5:
+           ui->label4->setText(string);
+           ui->label4->setStyleSheet("color : green; background-color : white;");
+           break;
+           }
+}
+
+
+    else{
+        QMessageBox msgBox;
+        msgBox.setText("Unfortunatly, you can draw max 5 functions in the same cartesian plane");
+        msgBox.exec();
+    }
+}
 
 
 

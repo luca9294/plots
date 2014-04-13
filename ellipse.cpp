@@ -38,8 +38,6 @@ void Ellipse::perform(){
        x[i] = w;  // let's plot a quadratic function
        y[i] = b*sqrt((1) - ((x[i]*x[i]) / (a*a)));
 
-       cout << "x "<< x[i] << endl;
-       cout << "y"<< y[i] << endl;
 count++;
    w+=0.01;
 

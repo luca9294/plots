@@ -21,13 +21,15 @@ public:
     string getString();
     double a,b;
     string str;
-
-private:
-
     QVector<double> xg;
     QVector<double> yg;
     QVector<double> xg1;
     QVector<double> yg1;
+
+
+private:
+
+
     QPoint vertex;
     QPoint focus;
     parser_ellipse *parser;
