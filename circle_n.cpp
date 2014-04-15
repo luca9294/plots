@@ -10,19 +10,13 @@ circle_n::circle_n(string str) : Ellipse_n(str)
 {
 this->str = str;
 
-
-    cout <<  "a" << a << endl;
-    cout <<  "b" << b << endl;
-
+if (isOK()){
 perform2();
 
 perform();
+}
 
 
-cout <<  "Xc" << Xc << endl;
-cout <<  "Yc" << Yc << endl;
-cout <<  "a" << a << endl;
-cout <<  "b" << b << endl;
 
 
 
@@ -47,11 +41,11 @@ bool circle_n::isOK(){
     string.replace("(", "");
     string.replace(")", "");
 
-
+    cout << string.toStdString() << endl;
 
 
         // x^2/A + y^2/B = 1
-        QRegExp r("[x] [+-] [0-9]+[.]?[0-9]* [+] [y] [+-] [0-9]+[.]?[0-9]* [=] [0-9]+[.]?[0-9]*");
+        QRegExp r("x [+-] [0-9]+[ ][+][ ]y[ ][+-] [0-9]+[ ]=[ ][0-9]+");
 
 
     if (r.exactMatch(string)){return true;}

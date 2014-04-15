@@ -207,19 +207,19 @@ void MainWindow::circleAction2()
     msgBox.setFixedSize(100000,100000);
 
     QString text = msgBox.getText(this, tr("INSERT CIRCLE"),
-                                  tr("Enter the explicity equation of a centered origin circle:            \t\t             \nThe equation should be of the form: (x - Xc)^2 + (y - Yc)^2 = r^2 \nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
+                                  tr("Enter the explicity equation of a non-centered origin circle:            \t\t             \nThe equation should be of the form: (x - Xc)^2 + (y - Yc)^2 = r^2 \nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
                                   "", &ok);
     if ((ok && !text.isEmpty()) && i<5){
         circle_n circle (text.toStdString());
 
-      /*if (!circle.isOK())  {
+      if (!circle.isOK())  {
             QMessageBox msgBox;
-            msgBox.setText("The INPUT format is not right.\nPay attention to the white spaces!\nAccept formats: x^2 + y^2 = A\nwhere A stands for r^2");
+            msgBox.setText("The INPUT format is not right.\nPay attention to the white spaces!\nAccept formats: (x -(+) Xc)^2 + (y -(+) Yc)^2 = A\nwhere A stands for r^2");
             msgBox.exec();
         }
-*/
 
-        //else{
+
+        else{
 
          drawPoints(circle.getX(), circle.getY(),ui->customPlot);
           i--;
@@ -253,7 +253,7 @@ void MainWindow::circleAction2()
            ui->label4->setText(string);
            ui->label4->setStyleSheet("color : green; background-color : white;");
            break;
-   //        }
+        }
 
         }}
 

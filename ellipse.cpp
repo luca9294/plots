@@ -7,7 +7,7 @@
 Ellipse::Ellipse(string str)
 {
 
-    if (!str.empty() && isOK()){
+    if (!str.empty()){
     this->str = str;
 
     parser = new parser_ellipse (str);
