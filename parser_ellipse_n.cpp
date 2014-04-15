@@ -2,6 +2,8 @@
 #include "tokenizer.h"
 #include <algorithm>
 #include <math.h>
+#include <qstring.h>
+
 
 
 
@@ -24,13 +26,23 @@ perform();
 
 
 void parser_ellipse_n::perform(){
-    char chars[] = "()";
+  char chars[] = "()";
+  bool negative = false;
 
-    for (unsigned int i = 0; i < strlen(chars); ++i)
+   for (unsigned int i = 0; i < strlen(chars); ++i)
     {
        // you need include <algorithm> to use general algorithms like std::remove()
        result.erase (std::remove(result.begin(), result.end(), chars[i]), result.end());
     }
+
+
+   QString d = QString::fromUtf8(result.c_str());
+   d.replace("^2", "");
+
+result = d.toStdString();
+
+
+    cout << "test: " << result << endl;
 
     tokenizer words(result, " "); //the delimiters are space and = and ;
 
@@ -49,11 +61,25 @@ void parser_ellipse_n::perform(){
     list<string>::iterator i = lista.begin();
 
 
-    std::advance(i, 2);
+    std::advance(i, 1);
 
 
 
     string str = *i;
+
+    if (str == "-"){
+        negative = false;
+
+               }
+    else{
+        negative = true;
+
+    }
+
+
+    std::advance(i, 1);
+
+
 
 
 
@@ -62,54 +88,80 @@ void parser_ellipse_n::perform(){
 
 
 
-    for (int i = 0; i< str.length(); i++){
 
+
+
+    for (int i = 0; i< str.length(); i++){
 
     //To CALCULATE Xc
 
-
     if (str[i] == '/'){
 
-        //cout << "CIAOO: " << i << endl;
         std::string p= str.substr(0,i);
-        cout << "Xc: " << p << endl;
         Xc = atof(p.c_str());
 
       p= str.substr(i+1,str.length()-1-i);
 
-
-      cout << "a^2: " << p << endl;
+     if (negative){
+     Xc = -Xc;
+     }
 
       a = sqrt(atof(p.c_str()));
+      break;
+}
+
+Xc = atof(str.c_str());
+a = 1;
+
+
 }
 
 
-}
-
-
-    std::advance(i, 4);
+    std::advance(i, 3);
 
     str = *i;
 
+cout << str << endl;
+    if (str == "-"){
+        negative = false;
 
+               }
+    else{
+        negative = true;
+
+    }
+
+
+std::advance(i, 1);
+
+  str = *i;
     for (int i = 0; i< str.length(); i++){
 
     if (str[i] == '/'){
 
          string p= str.substr(0,i);
 
-        cout << "Yc: " << p << endl;
+
          Yc =  (atof(p.c_str()));
 
-      p = str.substr(i+1,str.length()-1-i);
+         if (negative){
+             Yc = -Yc;
+
+         }
+
+       p = str.substr(i+1,str.length()-1-i);
        b = sqrt (atof(p.c_str()));
-        cout << "b^2: " << p << endl;
+        break;
 
 
     }
 
-    }
+    Yc =   atof(str.c_str());
+    b = 1;
 
+
+
+    }
 
 
 

@@ -6,13 +6,15 @@
 
 Ellipse::Ellipse(string str)
 {
-this->str = str;
+
+    if (!str.empty()){
+    this->str = str;
 
     parser = new parser_ellipse (str);
       a = parser->getA();
       b = parser->getB();
 
-      perform();
+      perform();}
 
 }
 

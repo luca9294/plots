@@ -116,10 +116,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     bar->addMenu(menu1);
 
-    Ellipse_n el ("(x^2 - 1)/16 + (y^2 - 4)/1 = 1 ");
-drawPoints(el.getX1(),el.getY1(),ui->customPlot);
-i--;
-drawPoints(el.getX(),el.getY(),ui->customPlot);
+  Ellipse_n el ("(x + 1)^2/25 + (y + 2)^2/9 = 1");
+//drawPoints(el.getX1(),el.getY1(),ui->customPlot);
+//i--;
+//drawPoints(el.getX(),el.getY(),ui->customPlot);
 
 }
 
@@ -391,7 +391,7 @@ QString string = "<b>";
 
 void MainWindow::ellipseAction2()
 {
-
+/*
     bool ok;
 
     QInputDialog  msgBox;
@@ -413,7 +413,7 @@ void MainWindow::ellipseAction2()
 
 else{*/
 
-        drawPoints(eclipse.getX(), eclipse.getY(),ui->customPlot);
+      /*  drawPoints(eclipse.getX(), eclipse.getY(),ui->customPlot);
         i--;
         drawPoints(eclipse.getX1(), eclipse.getY1(),ui->customPlot);
 
@@ -434,7 +434,7 @@ else{*/
             i--;
             drawPoints(parabola.getX1(), parabola.getY1(),ui->customPlot);}
 */
-
+/*
 QString string = "<b>";
            string.append(QString::fromUtf8(eclipse.getString().c_str()));
            string.append("</b>");
@@ -465,15 +465,15 @@ QString string = "<b>";
            ui->label4->setStyleSheet("color : green; background-color : white;");
            break;
            }
+           */
 }
 
 
-    else{
+ /*   else{
         QMessageBox msgBox;
         msgBox.setText("Unfortunatly, you can draw max 5 functions in the same cartesian plane");
         msgBox.exec();
-    }
-}
+    }*/
 
 
 

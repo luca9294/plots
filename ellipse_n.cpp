@@ -4,24 +4,30 @@
 #include <math.h>
 #include <iostream>
 
-Ellipse_n::Ellipse_n(string str) : Ellipse(str)
+Ellipse_n::Ellipse_n(string str) : Ellipse("")
 {
 this->str = str;
 
     parser = new parser_ellipse_n (str);
-      a = parser->getA();
-      b = parser->getB();
-      Xc = parser->getXc();
-      Yc = parser->getYc();
-
-      perform();
+     a = parser->getA();
+     b = parser->getB();
+     Xc = parser->getXc();
+     Yc = parser->getYc();
+    cout<< "a: " << a << endl;
+        cout<< "b: " << b << endl;
+            cout<< "Xc: " << Xc << endl;
+                cout<< "Yc: " << Yc << endl;
+     // perform();
 
 }
 
 
 
 void Ellipse_n::perform(){
-   QVector<double> x(100*a*2+1), y(100*a*2+1); // initialize with entries 0..100
+
+
+
+    QVector<double> x(100*a*2+1), y(100*a*2+1); // initialize with entries 0..100
 
    double w = -a;
    int count = 0;
@@ -85,7 +91,6 @@ yg1[i] = yg1[i] + Yc;
 
 
 
-cout << yg[i]<< endl;
 }
 
 
