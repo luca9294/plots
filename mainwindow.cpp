@@ -116,15 +116,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     bar->addMenu(menu1);
 
-  Ellipse_n el ("(x - 1)^2/25 + (y - 2)^2/9 = 1");
-  drawPoints(el.getX1(),el.getY1(),ui->customPlot);
-  i--;
-  drawPoints(el.getX(),el.getY(),ui->customPlot);
+
 
 }
-
-
-
 
 
 
@@ -379,9 +373,12 @@ void MainWindow::ellipseAction2()
          Ellipse_n eclipse (text.toStdString());
 
 
-        drawPoints(eclipse.getX(), eclipse.getY(),ui->customPlot);
-        i--;
-        drawPoints(eclipse.getX1(), eclipse.getY1(),ui->customPlot);
+
+         if (eclipse.isOK()){
+
+         drawPoints(eclipse.getX(), eclipse.getY(),ui->customPlot);
+         i--;
+         drawPoints(eclipse.getX1(), eclipse.getY1(),ui->customPlot);
 
 
 
@@ -415,7 +412,18 @@ QString string = "<b>";
            ui->label4->setText(string);
            ui->label4->setStyleSheet("color : green; background-color : white;");
            break;
-           }
+           }}
+
+
+
+         else{
+             QMessageBox msgBox;
+             msgBox.setText("Please write the eclipse in the right form ");
+             msgBox.exec();
+
+
+
+         }
 }
 
 

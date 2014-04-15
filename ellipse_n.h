@@ -10,11 +10,13 @@ public:
     void perform();
     double getXc();
     double getYc();
+    bool isOK();
 
 private:
         parser_ellipse_n *parser;
         double Xc;
         double Yc;
+
 };
 
 #endif // ELLIPSE_N_H
