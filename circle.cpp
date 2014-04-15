@@ -18,8 +18,6 @@ double af = atof(str1.c_str());
 a =  sqrt (af);
 b =  sqrt (af);
 
-cout << "a " << a << endl;
-cout << "b " << b << endl;
 
 
 }

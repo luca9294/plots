@@ -7,7 +7,7 @@
 Ellipse::Ellipse(string str)
 {
 
-    if (!str.empty()){
+    if (!str.empty() && isOK()){
     this->str = str;
 
     parser = new parser_ellipse (str);
@@ -76,52 +76,6 @@ count++;
 
 
 
-
-   /*}}
-
-   else {
-
-
-  double w =  -(b / (2*a));
-
-
-     //  double w =  -20;
-       for (int i=0; i<25000; ++i)
-       {
-
-
-           y[i] = w; // x goes from -1 to 1
-           x[i] = (a)*(y[i])*(y[i])+(b)*(y[i]) + c;  // let's plot a quadratic function
-
-
-
-       w+=0.1;
-
-       }
-
-       w =  -(b / (2*a));
-
-
-          //  double w =  -20;
-            for (int i=0; i<25000; ++i)
-            {
-
-
-                y1[i] = w; // x goes from -1 to 1
-                x1[i] = (a)*(y[i])*(y[i])+(b)*(y[i]) + c;  // let's plot a quadratic function
-
-
-
-            w-=0.1;
-
-            }
-
-            xg1 = x1;
-            yg1 = y1;
-
-
-
- }*/
 xg = x;
 yg = y;
 

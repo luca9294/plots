@@ -11,11 +11,12 @@ public:
     double getXc();
     double getYc();
     bool isOK();
+    double Xc;
+    double Yc;
 
 private:
         parser_ellipse_n *parser;
-        double Xc;
-        double Yc;
+
 
 };
 

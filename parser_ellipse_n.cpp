@@ -111,6 +111,9 @@ result = d.toStdString();
 }
 
 Xc = atof(str.c_str());
+if (negative){
+Xc = -Xc;
+}
 a = 1;
 
 
@@ -157,6 +160,9 @@ std::advance(i, 1);
     }
 
     Yc =   atof(str.c_str());
+    if (negative){
+    Yc = -Yc;
+    }
     b = 1;
 
 

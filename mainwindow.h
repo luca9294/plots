@@ -51,7 +51,7 @@ public:
     void ellipseAction();
     void ellipseAction2();
     void circleAction();
-
+    void circleAction2();
 
 
     

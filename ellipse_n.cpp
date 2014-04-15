@@ -8,6 +8,7 @@ Ellipse_n::Ellipse_n(string str) : Ellipse("")
 {
 this->str = str;
 
+
     parser = new parser_ellipse_n (str);
      a = parser->getA();
      b = parser->getB();
@@ -40,15 +41,19 @@ cout <<"to " << string.toStdString() << endl;
         QRegExp r1("x [+-] [0-9]*[.]?[0-9]? [+] y [+-] [0-9]*[.]?[0-9]? [=] [1]");
 
 
+         QRegExp r2("x [+-] [0-9]*[.]?[0-9]?/[0-9]*[.]?[0-9]?] [+] y [+-] [0-9]*[.]?[0-9]? [=] [1]");
+
+          QRegExp r3("x [+-] [0-9]*[.]?[0-9]? [+] y [+-] [0-9]*[.]?[0-9]?/[0-9]*[.]?[0-9]? [=] [1]");
+
 
 
 
     if (r.exactMatch(string)){return true;}
     else if (r1.exactMatch(string)){return true;}
 
-    /*else if (r2.exactMatch(string)){return true;}
+    else if (r2.exactMatch(string)){return true;}
     else if (r3.exactMatch(string)){return true;}
-    else if (r4.exactMatch(string)){return true;}
+    /*else if (r4.exactMatch(string)){return true;}
     else if (r5.exactMatch(string)){return true;}
     else if (r6.exactMatch(string)){return true;}
     else if (r7.exactMatch(string)){return true;}*/
