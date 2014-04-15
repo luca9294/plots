@@ -17,11 +17,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     int i;
     ~MainWindow();
-    
-    void setupDemo(int demoIndex);
+
+
     void drawPoints( QVector<double> x,QVector<double> y, QCustomPlot *customPlot);
-   void setupQuadraticDemo(QCustomPlot *customPlot);
-    void setupSimpleDemo(QCustomPlot *customPlot);
+
     void setupSincScatterDemo(QCustomPlot *customPlot);
     void setupScatterStyleDemo(QCustomPlot *customPlot);
     void setupLineStyleDemo(QCustomPlot *customPlot);

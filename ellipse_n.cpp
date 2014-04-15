@@ -13,11 +13,8 @@ this->str = str;
      b = parser->getB();
      Xc = parser->getXc();
      Yc = parser->getYc();
-    cout<< "a: " << a << endl;
-        cout<< "b: " << b << endl;
-            cout<< "Xc: " << Xc << endl;
-                cout<< "Yc: " << Yc << endl;
-     // perform();
+
+     perform();
 
 }
 

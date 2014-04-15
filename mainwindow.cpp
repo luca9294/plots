@@ -116,41 +116,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     bar->addMenu(menu1);
 
-  Ellipse_n el ("(x + 1)^2/25 + (y + 2)^2/9 = 1");
-//drawPoints(el.getX1(),el.getY1(),ui->customPlot);
-//i--;
-//drawPoints(el.getX(),el.getY(),ui->customPlot);
+  Ellipse_n el ("(x - 1)^2/25 + (y - 2)^2/9 = 1");
+  drawPoints(el.getX1(),el.getY1(),ui->customPlot);
+  i--;
+  drawPoints(el.getX(),el.getY(),ui->customPlot);
 
 }
 
-void MainWindow::setupDemo(int demoIndex)
-{
-    switch (demoIndex)
-    {
-    case 0:  setupQuadraticDemo(ui->customPlot); break;
-    case 1:  setupSimpleDemo(ui->customPlot); break;
-    case 2:  setupSincScatterDemo(ui->customPlot); break;
-    case 3:  setupScatterStyleDemo(ui->customPlot); break;
-    case 4:  setupScatterPixmapDemo(ui->customPlot); break;
-    case 5:  setupLineStyleDemo(ui->customPlot); break;
-    case 6:  setupDateDemo(ui->customPlot); break;
-    case 7:  setupTextureBrushDemo(ui->customPlot); break;
-    case 8:  setupMultiAxisDemo(ui->customPlot); break;
-    case 9:  setupLogarithmicDemo(ui->customPlot); break;
-    case 10: setupRealtimeDataDemo(ui->customPlot); break;
-    case 11: setupParametricCurveDemo(ui->customPlot); break;
-    case 12: setupBarChartDemo(ui->customPlot); break;
-    case 13: setupStatisticalDemo(ui->customPlot); break;
-    case 14: setupSimpleItemDemo(ui->customPlot); break;
-    case 15: setupItemDemo(ui->customPlot); break;
-    case 16: setupStyledDemo(ui->customPlot); break;
-    case 17: setupAdvancedAxesDemo(ui->customPlot); break;
-    }
-    setWindowTitle("QCustomPlot: "+demoName);
-    statusBar()->clearMessage();
-    currentDemoIndex = demoIndex;
-    ui->customPlot->replot();
-}
 
 
 
@@ -391,7 +363,7 @@ QString string = "<b>";
 
 void MainWindow::ellipseAction2()
 {
-/*
+
     bool ok;
 
     QInputDialog  msgBox;
@@ -399,42 +371,21 @@ void MainWindow::ellipseAction2()
     msgBox.setFixedSize(100000,100000);
 
     QString text = msgBox.getText(this, tr("INSERT ELLIPSE non origin centered"),
-                                  tr("Enter the explicity equation of a Eclipse:            \t\t             \nThe equation should be of the form: (x^2 -(+) Xc)/A + (y^2 -(+) Yc)/B = 1 7\nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
+                                  tr("Enter the explicity equation of a Eclipse:            \t\t             \nThe equation should be of the form: (x -(+) Xc)^2/A + (y^2 -(+) Yc)^2/B = 1 7\nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
                                   "", &ok);
     if ((ok && !text.isEmpty()) && i<5){
 
 
          Ellipse_n eclipse (text.toStdString());
-        /* if (!eclipse.isOK())  {
-             QMessageBox msgBox;
-             msgBox.setText("The INPUT format is not right.\nPay attention to the white spaces!\nAccept formats: x^2/A + y^2/B = 1");
-             msgBox.exec();
-         }
 
-else{*/
 
-      /*  drawPoints(eclipse.getX(), eclipse.getY(),ui->customPlot);
+        drawPoints(eclipse.getX(), eclipse.getY(),ui->customPlot);
         i--;
         drawPoints(eclipse.getX1(), eclipse.getY1(),ui->customPlot);
 
 
 
 
-
-/*
-
-        else{
-
-            if (!parabola.isX()){
-
-            drawPoints(parabola.getX(), parabola.getY(),ui->customPlot);}
-
-           else{
-            drawPoints(parabola.getX(), parabola.getY(),ui->customPlot);
-            i--;
-            drawPoints(parabola.getX1(), parabola.getY1(),ui->customPlot);}
-*/
-/*
 QString string = "<b>";
            string.append(QString::fromUtf8(eclipse.getString().c_str()));
            string.append("</b>");
@@ -465,17 +416,17 @@ QString string = "<b>";
            ui->label4->setStyleSheet("color : green; background-color : white;");
            break;
            }
-           */
 }
 
 
- /*   else{
+
+         else{
         QMessageBox msgBox;
         msgBox.setText("Unfortunatly, you can draw max 5 functions in the same cartesian plane");
         msgBox.exec();
-    }*/
+    }
 
-
+}
 
 
 
@@ -582,91 +533,7 @@ void MainWindow::clearAction()
 
 }
 
-void MainWindow::setupQuadraticDemo(QCustomPlot *customPlot)
-{
-    demoName = "Quadratic Demo";
-    // generate some data:
-    double a =sqrt(5);
-    double b =1;
 
-    QVector<double> x(100*a*2+1), y(100*a*2+1); // initialize with entries 0..100
-
-    double w = -a;
-    int count = 0;
-    for (int i=0; w<a; ++i)
-    {
-
-        x[i] = w;  // let's plot a quadratic function
-        y[i] = b*sqrt((1) - ((x[i]*x[i]) / (a*a)));
-
-
-count++;
-    w+=0.01;
-
-    }
-
-    if (x[x.size()-1] != a){
-    x[x.size()-1] = a;
-    y[x.size()-1] = b*sqrt((1) - ((x[i]*x[i]) / (a*a)));
-
-    }
-
-
-
-
-
-     cout << "count: "<< count << endl;
-    // create graph and assign data to it:
-    customPlot->addGraph();
-    customPlot->graph(0)->setData(x, y);
-    // give the axes some labels:
-    customPlot->xAxis->setLabel("x");
-    customPlot->yAxis->setLabel("y");
-    customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-
-    // set axes ranges, so we see all data:
-
-}
-
-void MainWindow::setupSimpleDemo(QCustomPlot *customPlot)
-{
-    demoName = "Simple Demo";
-
-    // add two new graphs and set their look:
-    customPlot->addGraph();
-    customPlot->graph(0)->setPen(QPen(Qt::blue)); // line color blue for first graph
-    customPlot->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
-    customPlot->addGraph();
-    customPlot->graph(1)->setPen(QPen(Qt::red)); // line color red for second graph
-    // generate some points of data (y0 for first, y1 for second graph):
-    QVector<double> x(250), y0(250), y1(250);
-    for (int i=0; i<250; ++i)
-    {
-        x[i] = i;
-        y0[i] = exp(-i/150.0)*cos(i/10.0); // exponentially decaying cosine
-        y1[i] = exp(-i/150.0);             // exponential envelope
-    }
-    // configure right and top axis to show ticks but no labels:
-    // (see QCPAxisRect::setupFullAxesBox for a quicker method to do this)
-    customPlot->xAxis2->setVisible(true);
-    customPlot->xAxis2->setTickLabels(false);
-    customPlot->yAxis2->setVisible(true);
-    customPlot->yAxis2->setTickLabels(false);
-    // make left and bottom axes always transfer their ranges to right and top axes:
-    connect(customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->xAxis2, SLOT(setRange(QCPRange)));
-    connect(customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->yAxis2, SLOT(setRange(QCPRange)));
-    // pass data points to graphs:
-    customPlot->graph(0)->setData(x, y0);
-    customPlot->graph(1)->setData(x, y1);
-    // let the ranges scale themselves so graph 0 fits perfectly in the visible area:
-    customPlot->graph(0)->rescaleAxes();
-    // same thing for graph 1, but only enlarge ranges (in case graph 1 is smaller than graph 0):
-    customPlot->graph(1)->rescaleAxes(true);
-    // Note: we could have also just called customPlot->rescaleAxes(); instead
-    // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking:
-    customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-
-}
 
 
 
@@ -2004,7 +1871,7 @@ void MainWindow::allScreenShots()
         delete ui->customPlot;
         ui->customPlot = new QCustomPlot(ui->centralWidget);
         //ui->verticalLayout->addWidget(ui->customPlot);
-        setupDemo(currentDemoIndex+1);
+        //setupDemo(currentDemoIndex+1);
         // setup delay for demos that need time to develop proper look:
         int delay = 250;
         if (currentDemoIndex == 10) // Next is Realtime data demo
