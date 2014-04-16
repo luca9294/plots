@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     circle.cpp \
     parser_ellipse_n.cpp \
     ellipse_n.cpp \
-    circle_n.cpp
+    circle_n.cpp \
+    hyperbole.cpp \
+    parser_hyperbole.cpp
 
 HEADERS  += mainwindow.h \
     qcustomplot.h \
@@ -34,7 +36,9 @@ HEADERS  += mainwindow.h \
     circle.h \
     parser_ellipse_n.h \
     ellipse_n.h \
-    circle_n.h
+    circle_n.h \
+    hyperbole.h \
+    parser_hyperbole.h
 
 FORMS    += mainwindow.ui
 

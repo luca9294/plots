@@ -55,6 +55,7 @@
 #include "ellipse_n.h"
 #include "ellipse.h"
 #include "circle.h"
+#include "hyperbole.h"
 #include "circle_n.h"
 #include <QtGui/QPen>
 #include <cstdlib>
@@ -122,6 +123,16 @@ MainWindow::MainWindow(QWidget *parent) :
     bar->addMenu(menu1);
 
 
+
+    Hyperbole h ("");
+    drawPoints(h.xg,h.yg,ui->customPlot);
+    i--;
+    drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+    h.perform2();
+    i--;
+    drawPoints(h.xg,h.yg,ui->customPlot);
+    i--;
+    drawPoints(h.xg1 ,h.yg1,ui->customPlot);
 
 
 
