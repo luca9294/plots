@@ -8,11 +8,13 @@
 namespace Ui {
     class MainWindow;
 }
+using namespace std;
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-    
+
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     int i;
@@ -45,13 +47,14 @@ public:
     void bracketDataSlot();
     void screenShot();
     void allScreenShots();
-    void rettaAction();
+    void rettaAction(string);
     void clearAction();
     void parabolaAction();
     void ellipseAction();
     void ellipseAction2();
     void circleAction();
     void circleAction2();
+     void test();
 
 
     

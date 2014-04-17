@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 #endif
   QApplication a(argc, argv);
   MainWindow w;
-  w.setMinimumSize(1000,700);
+  w.setMinimumSize(1400, 800);
  w.show();
   
   return a.exec();

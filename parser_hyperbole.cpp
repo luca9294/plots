@@ -21,7 +21,7 @@ parser_hyperbole::parser_hyperbole(string str)
 
 
 bool parser_hyperbole::isX(){
-    return flag;
+    //return flag;
 }
 
 

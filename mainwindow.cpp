@@ -51,6 +51,7 @@
 #include <QMessageBox>
 #include <QMenu>
 #include "retta.h"
+#include "dialog.h"
 #include "parabola.h"
 #include "ellipse_n.h"
 #include "ellipse.h"
@@ -67,6 +68,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
+
+   setStyleSheet("background-color: white;");
     i = 0;
     setGeometry(400, 250, 542, 390);
     rettaMenu = new QAction(("&Draw a new Straight Line"), this);
@@ -87,8 +90,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     menu1->addAction(rettaMenu);
 
-    connect(rettaMenu, SIGNAL(triggered()), this, SLOT(rettaAction()));
-
+    //connect(rettaMenu, SIGNAL(triggered()), this, SLOT(rettaAction()));
+connect(rettaMenu, SIGNAL(triggered()), this, SLOT(test()));
 
     menu1->addAction(parabolaMenu);
     connect(parabolaMenu, SIGNAL(triggered()), this, SLOT(parabolaAction()));
@@ -114,10 +117,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
+
+
     connect(clearMenu, SIGNAL(triggered()), this, SLOT(clearAction()));
 
-
-
+// menu1->addAction(circleMenu2);
+ //
 
 
     bar->addMenu(menu1);
@@ -148,10 +153,13 @@ void MainWindow::circleAction()
     QInputDialog  msgBox;
 
     msgBox.setFixedSize(100000,100000);
+    msgBox.setStyleSheet("background-color: blue;");
 
     QString text = msgBox.getText(this, tr("INSERT CIRCLE"),
                                   tr("Enter the explicity equation of a centered origin circle:            \t\t             \nThe equation should be of the form: x^2 + y^2 = r^2 \nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
                                   "", &ok);
+
+
     if ((ok && !text.isEmpty()) && i<5){
         Circle circle (text.toStdString());
 
@@ -286,20 +294,11 @@ void MainWindow::circleAction2()
 
 
 
-void MainWindow::rettaAction()
+void MainWindow::rettaAction(string str)
 {
-
-    bool ok;
-
-    QInputDialog  msgBox;
-
-    msgBox.setFixedSize(100000,100000);
-
-    QString text = msgBox.getText(this, tr("INSERT LINE"),
-                                  tr("Enter the explicity equation of a straight Line:            \t\t             \nThe equation should be of the form: y = (-)mx (+/-) q or x = k or y = k\nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
-                                  "", &ok);
-    if ((ok && !text.isEmpty()) && i<5){
-        Retta retta (text.toStdString());
+if (i < 5){
+        cout << str << endl;
+        Retta retta (str);
 
         if (!retta.isOK())  {
             QMessageBox msgBox;
@@ -624,6 +623,15 @@ void MainWindow::clearAction()
     ui->label2->clear();
     ui->label3->clear();
     ui->label4->clear();
+
+}
+
+
+void MainWindow::test()
+{
+
+   Dialog *gwe = new Dialog(*this, &MainWindow::rettaAction);
+    gwe->exec();
 
 }
 
