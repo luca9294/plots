@@ -23,9 +23,7 @@ public:
 
     void drawPoints( QVector<double> x,QVector<double> y, QCustomPlot *customPlot);
 
-    void setupSincScatterDemo(QCustomPlot *customPlot);
-    void setupScatterStyleDemo(QCustomPlot *customPlot);
-    void setupLineStyleDemo(QCustomPlot *customPlot);
+
     void setupScatterPixmapDemo(QCustomPlot *customPlot);
     void setupDateDemo(QCustomPlot *customPlot);
     void setupTextureBrushDemo(QCustomPlot *customPlot);

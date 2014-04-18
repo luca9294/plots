@@ -51,7 +51,7 @@
 #include <QMessageBox>
 #include <QMenu>
 #include "retta.h"
-#include "dialog.h"
+#include "dialog_line.h"
 #include "parabola.h"
 #include "ellipse_n.h"
 #include "ellipse.h"
@@ -303,7 +303,13 @@ if (i < 5){
         if (!retta.isOK())  {
             QMessageBox msgBox;
             msgBox.setText("The INPUT format is not right.\nPay attention to the white spaces!\nAccept formats: y = mx + q, y = k, x = k");
-            msgBox.exec();
+            if (msgBox.exec() == QMessageBox::Ok){
+
+
+            };
+
+
+
         }
 
 
@@ -347,6 +353,9 @@ if (i < 5){
         QMessageBox msgBox;
         msgBox.setText("Unfortunatly, you can draw max 5 functions in the same cartesian plane");
         msgBox.exec();
+
+        Dialog *gwe = new Dialog(*this, &MainWindow::rettaAction);
+         gwe->exec();
     }
 }
 
@@ -715,233 +724,6 @@ void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *c
 
 
 
-void MainWindow::setupSincScatterDemo(QCustomPlot *customPlot)
-{
-    demoName = "Sinc Scatter Demo";
-    customPlot->legend->setVisible(true);
-    customPlot->legend->setFont(QFont("Helvetica",9));
-    // set locale to english, so we get english decimal separator:
-    customPlot->setLocale(QLocale(QLocale::English, QLocale::UnitedKingdom));
-    // add confidence band graphs:
-    customPlot->addGraph();
-    QPen pen;
-    pen.setStyle(Qt::DotLine);
-    pen.setWidth(1);
-    pen.setColor(QColor(180,180,180));
-    customPlot->graph(0)->setName("Confidence Band 68%");
-    customPlot->graph(0)->setPen(pen);
-    customPlot->graph(0)->setBrush(QBrush(QColor(255,50,30,20)));
-    customPlot->addGraph();
-    customPlot->legend->removeItem(customPlot->legend->itemCount()-1); // don't show two confidence band graphs in legend
-    customPlot->graph(1)->setPen(pen);
-    customPlot->graph(0)->setChannelFillGraph(customPlot->graph(1));
-    // add theory curve graph:
-    customPlot->addGraph();
-    pen.setStyle(Qt::DashLine);
-    pen.setWidth(2);
-    pen.setColor(Qt::red);
-    customPlot->graph(2)->setPen(pen);
-    customPlot->graph(2)->setName("Theory Curve");
-    // add data point graph:
-    customPlot->addGraph();
-    customPlot->graph(3)->setPen(QPen(Qt::blue));
-    customPlot->graph(3)->setLineStyle(QCPGraph::lsNone);
-    customPlot->graph(3)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCross, 4));
-    customPlot->graph(3)->setErrorType(QCPGraph::etValue);
-    customPlot->graph(3)->setErrorPen(QPen(QColor(180,180,180)));
-    customPlot->graph(3)->setName("Measurement");
-
-    // generate ideal sinc curve data and some randomly perturbed data for scatter plot:
-    QVector<double> x0(250), y0(250);
-    QVector<double> yConfUpper(250), yConfLower(250);
-    for (int i=0; i<250; ++i)
-    {
-        x0[i] = (i/249.0-0.5)*30+0.01; // by adding a small offset we make sure not do divide by zero in next code line
-        y0[i] = sin(x0[i])/x0[i]; // sinc function
-        yConfUpper[i] = y0[i]+0.15;
-        yConfLower[i] = y0[i]-0.15;
-        x0[i] *= 1000;
-    }
-    QVector<double> x1(50), y1(50), y1err(50);
-    for (int i=0; i<50; ++i)
-    {
-        // generate a gaussian distributed random number:
-        double tmp1 = rand()/(double)RAND_MAX;
-        double tmp2 = rand()/(double)RAND_MAX;
-        double r = sqrt(-2*log(tmp1))*cos(2*M_PI*tmp2); // box-muller transform for gaussian distribution
-        // set y1 to value of y0 plus a random gaussian pertubation:
-        x1[i] = (i/50.0-0.5)*30+0.25;
-        y1[i] = sin(x1[i])/x1[i]+r*0.15;
-        x1[i] *= 1000;
-        y1err[i] = 0.15;
-    }
-    // pass data to graphs and let QCustomPlot determine the axes ranges so the whole thing is visible:
-    customPlot->graph(0)->setData(x0, yConfUpper);
-    customPlot->graph(1)->setData(x0, yConfLower);
-    customPlot->graph(2)->setData(x0, y0);
-    customPlot->graph(3)->setDataValueError(x1, y1, y1err);
-    customPlot->graph(2)->rescaleAxes();
-    customPlot->graph(3)->rescaleAxes(true);
-    // setup look of bottom tick labels:
-    customPlot->xAxis->setTickLabelRotation(30);
-    customPlot->xAxis->setAutoTickCount(9);
-    customPlot->xAxis->setNumberFormat("ebc");
-    customPlot->xAxis->setNumberPrecision(1);
-    customPlot->xAxis->moveRange(-10);
-    // make top right axes clones of bottom left axes. Looks prettier:
-    customPlot->axisRect()->setupFullAxesBox();
-}
-
-void MainWindow::setupScatterStyleDemo(QCustomPlot *customPlot)
-{
-    demoName = "Scatter Style Demo";
-    customPlot->legend->setVisible(true);
-    customPlot->legend->setFont(QFont("Helvetica", 9));
-    customPlot->legend->setRowSpacing(-3);
-    QVector<QCPScatterStyle::ScatterShape> shapes;
-    shapes << QCPScatterStyle::ssCross;
-    shapes << QCPScatterStyle::ssPlus;
-    shapes << QCPScatterStyle::ssCircle;
-    shapes << QCPScatterStyle::ssDisc;
-    shapes << QCPScatterStyle::ssSquare;
-    shapes << QCPScatterStyle::ssDiamond;
-    shapes << QCPScatterStyle::ssStar;
-    shapes << QCPScatterStyle::ssTriangle;
-    shapes << QCPScatterStyle::ssTriangleInverted;
-    shapes << QCPScatterStyle::ssCrossSquare;
-    shapes << QCPScatterStyle::ssPlusSquare;
-    shapes << QCPScatterStyle::ssCrossCircle;
-    shapes << QCPScatterStyle::ssPlusCircle;
-    shapes << QCPScatterStyle::ssPeace;
-    shapes << QCPScatterStyle::ssCustom;
-
-    QPen pen;
-    // add graphs with different scatter styles:
-    for (int i=0; i<shapes.size(); ++i)
-    {
-        customPlot->addGraph();
-        pen.setColor(QColor(sin(i*0.3)*100+100, sin(i*0.6+0.7)*100+100, sin(i*0.4+0.6)*100+100));
-        // generate data:
-        QVector<double> x(10), y(10);
-        for (int k=0; k<10; ++k)
-        {
-            x[k] = k/10.0 * 4*3.14 + 0.01;
-            y[k] = 7*sin(x[k])/x[k] + (shapes.size()-i)*5;
-        }
-        customPlot->graph()->setData(x, y);
-        customPlot->graph()->rescaleAxes(true);
-        customPlot->graph()->setPen(pen);
-        customPlot->graph()->setName(QCPScatterStyle::staticMetaObject.enumerator(QCPScatterStyle::staticMetaObject.indexOfEnumerator("ScatterShape")).valueToKey(shapes.at(i)));
-        customPlot->graph()->setLineStyle(QCPGraph::lsLine);
-        // set scatter style:
-        if (shapes.at(i) != QCPScatterStyle::ssCustom)
-        {
-            customPlot->graph()->setScatterStyle(QCPScatterStyle(shapes.at(i), 10));
-        }
-        else
-        {
-            QPainterPath customScatterPath;
-            for (int i=0; i<3; ++i)
-                customScatterPath.cubicTo(qCos(2*M_PI*i/3.0)*9, qSin(2*M_PI*i/3.0)*9, qCos(2*M_PI*(i+0.9)/3.0)*9, qSin(2*M_PI*(i+0.9)/3.0)*9, 0, 0);
-            customPlot->graph()->setScatterStyle(QCPScatterStyle(customScatterPath, QPen(), QColor(40, 70, 255, 50), 10));
-        }
-    }
-    // set blank axis lines:
-    customPlot->rescaleAxes();
-    customPlot->xAxis->setTicks(false);
-    customPlot->yAxis->setTicks(false);
-    customPlot->xAxis->setTickLabels(false);
-    customPlot->yAxis->setTickLabels(false);
-    // make top right axes clones of bottom left axes:
-    customPlot->axisRect()->setupFullAxesBox();
-}
-
-void MainWindow::setupLineStyleDemo(QCustomPlot *customPlot)
-{
-    demoName = "Line Style Demo";
-    customPlot->legend->setVisible(true);
-    customPlot->legend->setFont(QFont("Helvetica", 9));
-    QPen pen;
-    QStringList lineNames;
-    lineNames << "lsNone" << "lsLine" << "lsStepLeft" << "lsStepRight"
-              << "lsStepCenter" << "lsImpulse";
-    // add graphs with different line styles:
-    for (int i=QCPGraph::lsNone; i<=QCPGraph::lsImpulse; ++i)
-    {
-        customPlot->addGraph();
-        pen.setColor(QColor(sin(i*1+1.2)*80+80, sin(i*0.3+0)*80+80, sin(i*0.3+1.5)*80+80));
-        customPlot->graph()->setPen(pen);
-        customPlot->graph()->setName(lineNames.at(i-QCPGraph::lsNone));
-        customPlot->graph()->setLineStyle((QCPGraph::LineStyle)i);
-        customPlot->graph()->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 5));
-        // generate data:
-        QVector<double> x(15), y(15);
-        for (int j=0; j<15; ++j)
-        {
-            x[j] = j/15.0 * 5*3.14 + 0.01;
-            y[j] = 7*sin(x[j])/x[j] - (i-QCPGraph::lsNone)*5 + (QCPGraph::lsImpulse)*5 + 2;
-        }
-        customPlot->graph()->setData(x, y);
-        customPlot->graph()->rescaleAxes(true);
-    }
-    // zoom out a bit:
-    customPlot->yAxis->scaleRange(1.1, customPlot->yAxis->range().center());
-    customPlot->xAxis->scaleRange(1.1, customPlot->xAxis->range().center());
-    // set blank axis lines:
-    customPlot->xAxis->setTicks(false);
-    customPlot->yAxis->setTicks(true);
-    customPlot->xAxis->setTickLabels(false);
-    customPlot->yAxis->setTickLabels(true);
-    // make top right axes clones of bottom left axes:
-    customPlot->axisRect()->setupFullAxesBox();
-}
-
-void MainWindow::setupScatterPixmapDemo(QCustomPlot *customPlot)
-{
-    demoName = "Scatter Pixmap Demo";
-    customPlot->axisRect()->setBackground(QPixmap("./solarpanels.jpg"));
-    customPlot->addGraph();
-    customPlot->graph()->setLineStyle(QCPGraph::lsLine);
-    QPen pen;
-    pen.setColor(QColor(255, 200, 20, 200));
-    pen.setStyle(Qt::DashLine);
-    pen.setWidthF(2.5);
-    customPlot->graph()->setPen(pen);
-    customPlot->graph()->setBrush(QBrush(QColor(255,200,20,70)));
-    customPlot->graph()->setScatterStyle(QCPScatterStyle(QPixmap("./sun.png")));
-    // set graph name, will show up in legend next to icon:
-    customPlot->graph()->setName("Data from Photovoltaic\nenergy barometer 2011");
-    // set data:
-    QVector<double> year, value;
-    year  << 2005 << 2006 << 2007 << 2008  << 2009  << 2010;
-    value << 2.17 << 3.42 << 4.94 << 10.38 << 15.86 << 29.33;
-    customPlot->graph()->setData(year, value);
-
-    // set title of plot:
-    customPlot->plotLayout()->insertRow(0);
-    customPlot->plotLayout()->addElement(0, 0, new QCPPlotTitle(customPlot, "Regenerative Energies"));
-    // set a fixed tick-step to one tick per year value:
-    customPlot->xAxis->setAutoTickStep(false);
-    customPlot->xAxis->setTickStep(1);
-    customPlot->xAxis->setSubTickCount(3);
-    // other axis configurations:
-    customPlot->xAxis->setLabel("Year");
-    customPlot->yAxis->setLabel("Installed Gigawatts of\nphotovoltaic in the European Union");
-    customPlot->xAxis2->setVisible(true);
-    customPlot->yAxis2->setVisible(true);
-    customPlot->xAxis2->setTickLabels(false);
-    customPlot->yAxis2->setTickLabels(false);
-    customPlot->xAxis2->setTicks(false);
-    customPlot->yAxis2->setTicks(false);
-    customPlot->xAxis2->setSubTickCount(0);
-    customPlot->yAxis2->setSubTickCount(0);
-    customPlot->xAxis->setRange(2004.5, 2010.5);
-    customPlot->yAxis->setRange(0, 30);
-    // setup legend:
-    customPlot->legend->setFont(QFont(font().family(), 7));
-    customPlot->legend->setIconSize(50, 20);
-    customPlot->legend->setVisible(true);
-}
 
 void MainWindow::setupDateDemo(QCustomPlot *customPlot)
 {

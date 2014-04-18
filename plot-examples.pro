@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     circle_n.cpp \
     hyperbole.cpp \
     parser_hyperbole.cpp \
-    dialog.cpp
+    dialog_line.cpp \
+    dialog_ellipse.cpp
 
 HEADERS  += mainwindow.h \
     qcustomplot.h \
@@ -40,8 +41,10 @@ HEADERS  += mainwindow.h \
     circle_n.h \
     hyperbole.h \
     parser_hyperbole.h \
-    dialog.h
+    dialog_line.h \
+    dialog_ellipse.h
 
 FORMS    += mainwindow.ui \
-    dialog.ui
+    dialog_line.ui \
+    dialog_ellipse.ui
 
