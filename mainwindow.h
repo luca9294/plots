@@ -22,29 +22,12 @@ public:
 
 
     void drawPoints( QVector<double> x,QVector<double> y, QCustomPlot *customPlot);
-
-
-    void setupScatterPixmapDemo(QCustomPlot *customPlot);
-    void setupDateDemo(QCustomPlot *customPlot);
-    void setupTextureBrushDemo(QCustomPlot *customPlot);
-    void setupMultiAxisDemo(QCustomPlot *customPlot);
-    void setupLogarithmicDemo(QCustomPlot *customPlot);
-    void setupRealtimeDataDemo(QCustomPlot *customPlot);
-    void setupParametricCurveDemo(QCustomPlot *customPlot);
-    void setupBarChartDemo(QCustomPlot *customPlot);
-    void setupStatisticalDemo(QCustomPlot *customPlot);
-    void setupSimpleItemDemo(QCustomPlot *customPlot);
-    void setupItemDemo(QCustomPlot *customPlot);
-    void setupStyledDemo(QCustomPlot *customPlot);
-    void setupAdvancedAxesDemo(QCustomPlot *customPlot);
     
     void setupPlayground(QCustomPlot *customPlot);
     
     private slots:
     void realtimeDataSlot();
     void bracketDataSlot();
-    void screenShot();
-    void allScreenShots();
     void rettaAction(string);
     void clearAction();
     void parabolaAction();
@@ -52,7 +35,7 @@ public:
     void ellipseAction2();
     void circleAction();
     void circleAction2();
-     void test();
+    void dialog_line();
 
 
     
