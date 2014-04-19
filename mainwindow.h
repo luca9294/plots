@@ -3,6 +3,12 @@
 
 #include <QMainWindow>
 #include <QTimer>
+
+
+
+
+
+
 #include "../../qcustomplot.h" // the header file of QCustomPlot. Don't forget to add it to your project, if you use an IDE, so it gets compiled.
 
 namespace Ui {
@@ -31,11 +37,12 @@ public:
     void rettaAction(string);
     void clearAction();
     void parabolaAction();
-    void ellipseAction();
-    void ellipseAction2();
+    void ellipseAction(string);
+    void ellipseAction2(string);
     void circleAction();
     void circleAction2();
     void dialog_line();
+    void dialog_ellips();
 
 
     

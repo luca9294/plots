@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog_ellipse</class>
- <widget class="QDialog" name="Dialog_ellipse">
-  <property name="enabled">
-   <bool>true</bool>
-  </property>
+ <class>Dialogs</class>
+ <widget class="QDialog" name="Dialogs">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>504</width>
-    <height>395</height>
+    <width>558</width>
+    <height>416</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +16,8 @@
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>50</y>
+     <x>40</x>
+     <y>70</y>
      <width>471</width>
      <height>331</height>
     </rect>
@@ -85,7 +82,7 @@ p, li { white-space: pre-wrap; }
       </rect>
      </property>
     </widget>
-    <widget class="QDialogButtonBox" name="buttonBox">
+    <widget class="QDialogButtonBox" name="buttonBox_2">
      <property name="geometry">
       <rect>
        <x>230</x>
@@ -111,19 +108,19 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>10</x>
        <y>0</y>
-       <width>351</width>
-       <height>51</height>
+       <width>421</width>
+       <height>81</height>
       </rect>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Substique &lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;A,&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;/&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;B, Xc, Yc&lt;/span&gt; with the values of your own ellipse.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;Xc, Yc &lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;represent the center of your ellipse.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Substique &lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;A,B, Xc, Yc&lt;/span&gt; with the values of your own ellipse.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;Xc, Yc &lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;represent the center of your ellipse.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;You can even change the sign sign (&lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#000000;&quot;&gt;+/-&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt;) before Xc, Yc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QTextEdit" name="textEdit_2">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>60</y>
+       <y>100</y>
        <width>371</width>
        <height>81</height>
       </rect>
@@ -139,27 +136,27 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_5">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>160</y>
+       <x>10</x>
+       <y>190</y>
        <width>261</width>
        <height>16</height>
       </rect>
      </property>
      <property name="text">
-      <string>Accepted types of ELLIPSE:</string>
+      <string>Some Accepted types of ELLIPSE:</string>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBox_2">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>180</y>
+       <x>10</x>
+       <y>210</y>
        <width>361</width>
        <height>26</height>
       </rect>
      </property>
     </widget>
-    <widget class="QDialogButtonBox" name="buttonBox_2">
+    <widget class="QDialogButtonBox" name="buttonBox_3">
      <property name="geometry">
       <rect>
        <x>230</x>
@@ -180,21 +177,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>210</x>
      <y>10</y>
-     <width>111</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;ELLIPSES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>380</x>
-     <y>170</y>
      <width>111</width>
      <height>41</height>
     </rect>

@@ -38,10 +38,15 @@
 **  directory.                                                                                             **
 **                                                                                                         **
 *************************************************************************************************************/
+
+
+
+
 #include <iostream>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
+
 #include <QDesktopWidget>
 #include <QScreen>
 #include <QMessageBox>
@@ -51,7 +56,7 @@
 #include <QMessageBox>
 #include <QMenu>
 #include "retta.h"
-#include "dialog_line.h"
+
 #include "parabola.h"
 #include "ellipse_n.h"
 #include "ellipse.h"
@@ -61,6 +66,13 @@
 #include <QtGui/QPen>
 #include <cstdlib>
 #include <iostream>
+
+
+#include "dialog_line.h"
+#include "dialogs.h"
+
+
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -75,8 +87,9 @@ MainWindow::MainWindow(QWidget *parent) :
     rettaMenu = new QAction(("&Draw a new Straight Line"), this);
 
     parabolaMenu = new QAction(("&Draw a new Parabola"), this);
-    ellipseMenu = new QAction(("&Ellipse centered in the origin"), this);
-    ellipseMenu2 = new QAction(("&Ellipse not centered in the origin"), this);
+
+    ellipseMenu = new QAction(("&Draw a new Ellipse"), this);
+
     circleMenu = new QAction(("&Circle centered in the origin"), this);
     circleMenu2 = new QAction(("&Circle not centered in the origin"), this);
 
@@ -91,19 +104,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     menu1->addAction(rettaMenu);
 
-    //connect(rettaMenu, SIGNAL(triggered()), this, SLOT(rettaAction()));
-connect(rettaMenu, SIGNAL(triggered()), this, SLOT(test()));
+
+connect(rettaMenu, SIGNAL(triggered()), this, SLOT(dialog_line()));
 
     menu1->addAction(parabolaMenu);
     connect(parabolaMenu, SIGNAL(triggered()), this, SLOT(parabolaAction()));
 
 
-
-
-    menu2->addAction(ellipseMenu);
-    connect(ellipseMenu, SIGNAL(triggered()), this, SLOT(ellipseAction()));
-    menu2->addAction(ellipseMenu2);
-    connect(ellipseMenu2, SIGNAL(triggered()), this, SLOT(ellipseAction2()));
+    menu1->addAction(ellipseMenu);
+connect(ellipseMenu, SIGNAL(triggered()), this, SLOT(dialog_ellips()));
 
     menu3->addAction(circleMenu);
     connect(circleMenu, SIGNAL(triggered()), this, SLOT(circleAction()));
@@ -113,7 +122,7 @@ connect(rettaMenu, SIGNAL(triggered()), this, SLOT(test()));
 
     menu1->addMenu(menu3);
 
-    menu1->addMenu(menu2);
+
     menu1->addAction(clearMenu);
 
 
@@ -305,7 +314,8 @@ if (i < 5){
             QMessageBox msgBox;
             msgBox.setText("The INPUT format is not right.\nPay attention to the white spaces!\nAccept formats: y = mx + q, y = k, x = k");
             if (msgBox.exec() == QMessageBox::Ok){
-
+                Dialog_line *gwe = new Dialog_line(*this, &MainWindow::rettaAction);
+                 gwe->exec();
 
             };
 
@@ -355,8 +365,7 @@ if (i < 5){
         msgBox.setText("Unfortunatly, you can draw max 5 functions in the same cartesian plane");
         msgBox.exec();
 
-        Dialog *gwe = new Dialog(*this, &MainWindow::rettaAction);
-         gwe->exec();
+
     }
 }
 
@@ -364,26 +373,24 @@ if (i < 5){
 
 
 
-void MainWindow::ellipseAction()
+void MainWindow::ellipseAction(string str)
 {
 
     bool ok;
 
-    QInputDialog  msgBox;
 
-    msgBox.setFixedSize(100000,100000);
-
-    QString text = msgBox.getText(this, tr("INSERT ELLIPSE origin centered"),
-                                  tr("Enter the explicity equation of a Eclipse:            \t\t             \nThe equation should be of the form: x^2/A + y^2/B = 1 7\nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
-                                  "", &ok);
-    if ((ok && !text.isEmpty()) && i<5){
+    if  (i<5){
 
 
-         Ellipse eclipse (text.toStdString());
+         Ellipse eclipse (str);
          if (!eclipse.isOK())  {
              QMessageBox msgBox;
              msgBox.setText("The INPUT format is not right.\nPay attention to the white spaces!\nAccept formats: x^2/A + y^2/B = 1");
              msgBox.exec();
+             Dialogs *gwe = new Dialogs(*this, &MainWindow::ellipseAction, &MainWindow::ellipseAction2);
+             gwe->exec();
+
+
          }
 
 else{
@@ -396,19 +403,6 @@ else{
 
 
 
-/*
-
-        else{
-
-            if (!parabola.isX()){
-
-            drawPoints(parabola.getX(), parabola.getY(),ui->customPlot);}
-
-           else{
-            drawPoints(parabola.getX(), parabola.getY(),ui->customPlot);
-            i--;
-            drawPoints(parabola.getX1(), parabola.getY1(),ui->customPlot);}
-*/
 
 QString string = "<b>";
            string.append(QString::fromUtf8(eclipse.getString().c_str()));
@@ -450,22 +444,14 @@ QString string = "<b>";
     }
 }
 
-void MainWindow::ellipseAction2()
+void MainWindow::ellipseAction2(string str)
 {
 
-    bool ok;
 
-    QInputDialog  msgBox;
-
-    msgBox.setFixedSize(100000,100000);
-
-    QString text = msgBox.getText(this, tr("INSERT ELLIPSE non origin centered"),
-                                  tr("Enter the explicity equation of a Eclipse:            \t\t             \nThe equation should be of the form: (x -(+) Xc)^2/A + (y^2 -(+) Yc)^2/B = 1 7\nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
-                                  "", &ok);
-    if ((ok && !text.isEmpty()) && i<5){
+    if (i<5){
 
 
-         Ellipse_n eclipse (text.toStdString());
+         Ellipse_n eclipse (str);
 
 
 
@@ -515,6 +501,9 @@ QString string = "<b>";
              QMessageBox msgBox;
              msgBox.setText("Please write the eclipse in the right form ");
              msgBox.exec();
+             Dialogs *gwe = new Dialogs(*this, &MainWindow::ellipseAction, &MainWindow::ellipseAction2);
+             gwe->exec();
+
 
 
 
@@ -606,22 +595,6 @@ void MainWindow::parabolaAction()
     }
 }
 
-
-
-
-
-
-
-
-//do your task for help about item.
-
-
-//msgBox.setFixedSize(500, 500);
-//msgBox.setLabelText("Enter the explicity equation of a straight Line:\nThe equation should be of the form: y = x + 1 or x = k\nPlease put a space between the elements of the equation.");
-//msgBox.setTextValue("");
-
-
-//msgBox.exec();
 void MainWindow::clearAction()
 {
 
@@ -636,14 +609,28 @@ void MainWindow::clearAction()
 
 }
 
+void MainWindow::dialog_ellips()
+{
+
+   Dialogs *gwe = new Dialogs(*this, &MainWindow::ellipseAction, &MainWindow::ellipseAction2);
+   gwe->exec();
+
+
+
+}
+
+
+
+
 
 void MainWindow::dialog_line()
 {
 
-   Dialog *gwe = new Dialog(*this, &MainWindow::rettaAction);
+   Dialog_line *gwe = new Dialog_line(*this, &MainWindow::rettaAction);
     gwe->exec();
 
 }
+
 
 
 
@@ -677,15 +664,6 @@ void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *c
 
     i++;
 
-    // line color blue for first graph
-    // customPlot->graph()->setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
-    //customPlot->addGraph();
-    // customPlot->graph(1)->setPen(QPen(Qt::red)); // line color red for second graph
-
-    // (see QCPAxisRect::setupFullAxesBox for a quicker method to do this)
-
-
-
     customPlot->xAxis2->setVisible(true);
     customPlot->xAxis2->setTickLabels(false);
     customPlot->yAxis2->setVisible(true);
@@ -716,11 +694,6 @@ void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *c
     customPlot->replot();
 
 }
-
-
-
-
-
 
 
 

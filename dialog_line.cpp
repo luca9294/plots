@@ -1,17 +1,17 @@
 #include "dialog_line.h"
-#include "ui_dialog.h"
+#include "ui_dialog_line.h"
 #include <QPushButton>
 #include <QComboBox>
 #include <qdialogbuttonbox.h>
 #include <mainwindow.h>
 #include <QTextEdit>
 #include <iostream>
+#include <qcursor.h>
 
 
+Dialog_line::Dialog_line( MainWindow &parent,_funcType func)  :
 
-Dialog::Dialog( MainWindow &parent,_funcType func)  :
-
-    ui(new Ui::Dialog),
+    ui(new Ui::Dialog_line),
       m_func(func),
   parent_window (parent)
 
@@ -37,7 +37,7 @@ connect(button, SIGNAL(clicked()), this, SLOT(test2()));
 
 
 
-void Dialog::test(){
+void Dialog_line::test(){
 
 
 ui->textEdit->setHtml(combo->currentText().replace("m", "<font color=\"red\"><b>m</b></font>").replace("q","<font color=\"red\"><b>q</b></font>").replace("k","<font color=\"red\"><b>k</b></font>"));
@@ -47,9 +47,15 @@ ui->textEdit->setHtml(combo->currentText().replace("m", "<font color=\"red\"><b>
 }
 
 
-void Dialog::test2(){
-
-(parent_window.*m_func)(ui->textEdit->toPlainText().toStdString());
+void Dialog_line::test2(){
+    QTextCursor cursor = ui->textEdit->textCursor();
+    cursor.atBlockStart();
+    cursor.setPosition(ui->textEdit->toPlainText().length());
+    //cursor.movePosition(ui->textEdit->toPlainText().length());
+    ui->textEdit->setTextCursor(cursor);
+    string str = ui->textEdit->toPlainText().toStdString();
+str.erase(std::remove(str.begin(), str.end(), '\n'), str.end());
+(parent_window.*m_func)(str);
 
 
 }
@@ -57,7 +63,7 @@ void Dialog::test2(){
 
 
 
-Dialog::~Dialog()
+Dialog_line::~Dialog_line()
 {
     delete ui;
 }

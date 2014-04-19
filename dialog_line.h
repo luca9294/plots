@@ -5,10 +5,10 @@
 #include <QComboBox>
 #include "mainwindow.h"
 namespace Ui {
-class Dialog;
+class Dialog_line;
 }
 
-class Dialog : public QDialog
+class Dialog_line : public QDialog
 {
     Q_OBJECT
 
@@ -18,15 +18,15 @@ public:
     typedef void (MainWindow::*_funcType)(string);
      _funcType m_func;
        MainWindow &parent_window;
-    Dialog(MainWindow &parent, _funcType func );
-     ~Dialog();
+    Dialog_line(MainWindow &parent, _funcType func );
+     ~Dialog_line();
     QDialogButtonBox buttonBox;
 
 
     QComboBox *combo;
 
 private:
-    Ui::Dialog *ui;
+    Ui::Dialog_line *ui;
 
 private slots:
 void test();
