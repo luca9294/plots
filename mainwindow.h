@@ -39,10 +39,11 @@ public:
     void parabolaAction();
     void ellipseAction(string);
     void ellipseAction2(string);
-    void circleAction();
-    void circleAction2();
+    void circleAction(string);
+    void circleAction2(string);
     void dialog_line();
     void dialog_ellips();
+    void dialog_circle();
 
 
     

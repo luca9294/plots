@@ -25,7 +25,10 @@ SOURCES += main.cpp\
     parser_hyperbole.cpp \
     dialog_line.cpp \
     dialogs.cpp \
-    prova.cpp
+    prova.cpp \
+    circle_d.cpp \
+    ../parabola_d.cpp \
+    parabola_d.cpp
 
 HEADERS  += mainwindow.h \
     qcustomplot.h \
@@ -44,10 +47,16 @@ HEADERS  += mainwindow.h \
     parser_hyperbole.h \
     dialog_line.h \
     dialogs.h \
-    prova.h
+    prova.h \
+    ../parabola_d.h \
+    circle_d.h \
+    parabola_d.h
 
 FORMS    += mainwindow.ui \
     dialog_line.ui \
     dialog_ellipse.ui \
-    dialogs.ui
+    dialogs.ui \
+    circle_d.ui \
+    ../parabola_d.ui \
+    parabola_d.ui
 

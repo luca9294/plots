@@ -46,7 +46,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
-
+#include <circle_d.h>
 #include <QDesktopWidget>
 #include <QScreen>
 #include <QMessageBox>
@@ -90,8 +90,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ellipseMenu = new QAction(("&Draw a new Ellipse"), this);
 
-    circleMenu = new QAction(("&Circle centered in the origin"), this);
-    circleMenu2 = new QAction(("&Circle not centered in the origin"), this);
+    circleMenu = new QAction(("&Draw a new Circle"), this);
+
 
     clearMenu = new QAction(("&Clear All"), this);
     QMenuBar* bar = ui->menuBar;
@@ -99,8 +99,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     QMenu* menu1 = new QMenu("Draw Functions", bar);
-    QMenu* menu2 = new QMenu("&Draw a new Ellipse", bar);
-    QMenu* menu3 = new QMenu("&Draw a new Circle", bar);
+
 
     menu1->addAction(rettaMenu);
 
@@ -114,13 +113,11 @@ connect(rettaMenu, SIGNAL(triggered()), this, SLOT(dialog_line()));
     menu1->addAction(ellipseMenu);
 connect(ellipseMenu, SIGNAL(triggered()), this, SLOT(dialog_ellips()));
 
-    menu3->addAction(circleMenu);
-    connect(circleMenu, SIGNAL(triggered()), this, SLOT(circleAction()));
-    menu3->addAction(circleMenu2);
-    connect(circleMenu2, SIGNAL(triggered()), this, SLOT(circleAction2()));
+    menu1->addAction(circleMenu);
+    connect(circleMenu, SIGNAL(triggered()), this, SLOT(dialog_circle()));
 
 
-    menu1->addMenu(menu3);
+
 
 
     menu1->addAction(clearMenu);
@@ -155,23 +152,13 @@ connect(ellipseMenu, SIGNAL(triggered()), this, SLOT(dialog_ellips()));
 
 
 
-void MainWindow::circleAction()
+void MainWindow::circleAction(string str)
 {
 
-    bool ok;
 
-    QInputDialog  msgBox;
-
-    msgBox.setFixedSize(100000,100000);
-    msgBox.setStyleSheet("background-color: blue;");
-
-    QString text = msgBox.getText(this, tr("INSERT CIRCLE"),
-                                  tr("Enter the explicity equation of a centered origin circle:            \t\t             \nThe equation should be of the form: x^2 + y^2 = r^2 \nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
-                                  "", &ok);
-
-
-    if ((ok && !text.isEmpty()) && i<5){
-        Circle circle (text.toStdString());
+    if (i<5){
+        cout << str << endl;
+        Circle circle (str);
 
       if (!circle.isOK())  {
             QMessageBox msgBox;
@@ -226,20 +213,12 @@ void MainWindow::circleAction()
 }
 
 
-void MainWindow::circleAction2()
+void MainWindow::circleAction2(string str)
 {
 
-    bool ok;
 
-    QInputDialog  msgBox;
-
-    msgBox.setFixedSize(100000,100000);
-
-    QString text = msgBox.getText(this, tr("INSERT CIRCLE"),
-                                  tr("Enter the explicity equation of a non-centered origin circle:            \t\t             \nThe equation should be of the form: (x - Xc)^2 + (y - Yc)^2 = r^2 \nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
-                                  "", &ok);
-    if ((ok && !text.isEmpty()) && i<5){
-        circle_n circle (text.toStdString());
+    if ( i<5){
+        circle_n circle (str);
 
       if (!circle.isOK())  {
             QMessageBox msgBox;
@@ -631,10 +610,13 @@ void MainWindow::dialog_line()
 
 }
 
+void MainWindow::dialog_circle()
+{
 
+   circle_d *gwe = new circle_d(*this, &MainWindow::circleAction, &MainWindow::circleAction2);
+    gwe->exec();
 
-
-
+}
 
 void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *customPlot){
     // add two new graphs and set their look:
