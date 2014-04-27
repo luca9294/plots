@@ -50,14 +50,6 @@ Dialogs::Dialogs( MainWindow &parent,_funcType func, _funcType1 func1)  :
  connect(combo1, SIGNAL(currentIndexChanged(int)), this, SLOT(test_n()));
 
 
-
-
-
-
-
-
-
-
 QPushButton* button = ui->buttonBox_2->button(QDialogButtonBox::Ok);
 QPushButton* button2 = ui->buttonBox_2->button(QDialogButtonBox::Cancel);
 connect(button, SIGNAL(clicked()), this, SLOT(test2()));

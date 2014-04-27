@@ -56,7 +56,7 @@
 #include <QMessageBox>
 #include <QMenu>
 #include "retta.h"
-
+#include "parabola_d.h"
 #include "parabola.h"
 #include "ellipse_n.h"
 #include "ellipse.h"
@@ -66,7 +66,7 @@
 #include <QtGui/QPen>
 #include <cstdlib>
 #include <iostream>
-
+#include "hyperbole_d.h"
 
 #include "dialog_line.h"
 #include "dialogs.h"
@@ -92,6 +92,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     circleMenu = new QAction(("&Draw a new Circle"), this);
 
+    hyperboleMenu = new QAction(("&Draw a new Hyperbole"), this);
+
+
+
 
     clearMenu = new QAction(("&Clear All"), this);
     QMenuBar* bar = ui->menuBar;
@@ -107,17 +111,18 @@ MainWindow::MainWindow(QWidget *parent) :
 connect(rettaMenu, SIGNAL(triggered()), this, SLOT(dialog_line()));
 
     menu1->addAction(parabolaMenu);
-    connect(parabolaMenu, SIGNAL(triggered()), this, SLOT(parabolaAction()));
+    connect(parabolaMenu, SIGNAL(triggered()), this, SLOT(dialog_parabola()));
 
 
     menu1->addAction(ellipseMenu);
-connect(ellipseMenu, SIGNAL(triggered()), this, SLOT(dialog_ellips()));
+    connect(ellipseMenu, SIGNAL(triggered()), this, SLOT(dialog_ellips()));
 
     menu1->addAction(circleMenu);
     connect(circleMenu, SIGNAL(triggered()), this, SLOT(dialog_circle()));
 
 
-
+    menu1->addAction(hyperboleMenu);
+    connect(hyperboleMenu, SIGNAL(triggered()), this, SLOT(dialog_hyperbole()));
 
 
     menu1->addAction(clearMenu);
@@ -136,7 +141,7 @@ connect(ellipseMenu, SIGNAL(triggered()), this, SLOT(dialog_ellips()));
 
 
 
-    Hyperbole h ("");
+    /*Hyperbole h ("");
     drawPoints(h.xg,h.yg,ui->customPlot);
     i--;
     drawPoints(h.xg1 ,h.yg1,ui->customPlot);
@@ -144,7 +149,7 @@ connect(ellipseMenu, SIGNAL(triggered()), this, SLOT(dialog_ellips()));
     i--;
     drawPoints(h.xg,h.yg,ui->customPlot);
     i--;
-    drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+    drawPoints(h.xg1 ,h.yg1,ui->customPlot);*/
 
 
 
@@ -502,20 +507,11 @@ QString string = "<b>";
 
 
 
-void MainWindow::parabolaAction()
+void MainWindow::parabolaAction(string str)
 {
 
-    bool ok;
-
-    QInputDialog  msgBox;
-
-    msgBox.setFixedSize(100000,100000);
-
-    QString text = msgBox.getText(this, tr("INSERT PARABOLA"),
-                                  tr("Enter the explicity equation of a parabola Line:            \t\t             \nThe equation should be of the form: y = (-)ax^2 (+/-) bx + c or x = (-)ay^2 (+/-) by + c\nPlease put a space between the elements of the equation.\n\n"), QLineEdit::Normal,
-                                  "", &ok);
-    if ((ok && !text.isEmpty()) && i<5){
-        Parabola parabola (text.toStdString());
+    if (i<5){
+        Parabola parabola (str);
 
         if (!parabola.isOK())  {
             QMessageBox msgBox;
@@ -617,6 +613,86 @@ void MainWindow::dialog_circle()
     gwe->exec();
 
 }
+
+
+void MainWindow::dialog_parabola()
+{
+
+   parabola_d *gwe = new parabola_d(*this, &MainWindow::parabolaAction);
+    gwe->exec();
+
+}
+
+
+
+void MainWindow::hyperboleAction(string str){
+
+        Hyperbole h (str);
+        drawPoints(h.xg,h.yg,ui->customPlot);
+        i--;
+        drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+        h.perform2();
+        i--;
+        drawPoints(h.xg,h.yg,ui->customPlot);
+        i--;
+        drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+
+          /* QString string = "<b>";
+           string.append(QString::fromUtf8(h.getString().c_str()));
+           string.append("</b>");
+           switch (i){
+
+            case 1:
+            ui->label0->setText(string);
+            ui->label0->setStyleSheet("color : blue;  background-color : white; ");
+            break;
+
+           case 2:
+           ui->label1->setText(string);
+           ui->label1->setStyleSheet("color : red; background-color : white;");
+           break;
+
+           case 3:
+           ui->label2->setText(string);
+           ui->label2->setStyleSheet("color : yellow; background-color : white;");
+           break;
+
+           case 4:
+           ui->label3->setText(string);
+           ui->label3->setStyleSheet("color : black; background-color : white;");
+           break;
+
+           case 5:
+           ui->label4->setText(string);
+           ui->label4->setStyleSheet("color : green; background-color : white;");
+           break;
+           }
+
+*/
+
+   /* else{
+        QMessageBox msgBox;
+        msgBox.setText("Unfortunatly, you can draw max 5 functions in the same cartesian plane");
+        msgBox.exec();
+    }*/
+
+
+
+}
+
+
+
+void MainWindow::dialog_hyperbole()
+{
+
+   hyperbole_d *gwe = new hyperbole_d(*this, &MainWindow::hyperboleAction);
+    gwe->exec();
+
+}
+
+
+
+
 
 void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *customPlot){
     // add two new graphs and set their look:

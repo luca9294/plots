@@ -36,7 +36,8 @@ public:
     void bracketDataSlot();
     void rettaAction(string);
     void clearAction();
-    void parabolaAction();
+    void parabolaAction(string);
+    void hyperboleAction(string);
     void ellipseAction(string);
     void ellipseAction2(string);
     void circleAction(string);
@@ -44,6 +45,8 @@ public:
     void dialog_line();
     void dialog_ellips();
     void dialog_circle();
+    void dialog_parabola();
+    void dialog_hyperbole();
 
 
     
@@ -54,9 +57,8 @@ private:
     QAction* clearMenu;
     QAction* parabolaMenu;
     QAction* ellipseMenu;
-    QAction* ellipseMenu2;
     QAction* circleMenu;
-    QAction* circleMenu2;
+    QAction* hyperboleMenu;
     QTimer dataTimer;
     QCPItemTracer *itemDemoPhaseTracer;
     int currentDemoIndex;

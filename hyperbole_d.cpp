@@ -1,5 +1,5 @@
-#include "parabola_d.h"
-#include "ui_parabola_d.h"
+#include "hyperbole_d.h"
+#include "ui_hyperbole_d.h"
 
 #include <QPushButton>
 #include <QComboBox>
@@ -11,9 +11,9 @@
 
 
 
-parabola_d::parabola_d( MainWindow &parent,_funcType func)  :
+hyperbole_d::hyperbole_d( MainWindow &parent,_funcType func)  :
 
-    ui(new Ui::parabola_d),
+    ui(new Ui::hyperbole_d),
       m_func(func),
       parent_window (parent)
 {
@@ -24,13 +24,15 @@ parabola_d::parabola_d( MainWindow &parent,_funcType func)  :
     combo->addItem("y = ax^2 + c");
     combo->addItem("y = ax^2 + bx");
     combo->addItem("x = ay^2 + by + c");
-combo->addItem("x = ay^2 + c");
-combo->addItem("x = ay^2 + by");
+    combo->addItem("x = ay^2 + c");
+    combo->addItem("x = ay^2 + by");
 
  connect(combo, SIGNAL(currentIndexChanged(int)), this, SLOT(test()));
 
-QPushButton* button = ui->buttonBox->button(QDialogButtonBox::Ok);
-QPushButton* button2 = ui->buttonBox->button(QDialogButtonBox::Cancel);
+
+
+QPushButton* button = ui->buttonBox_2->button(QDialogButtonBox::Ok);
+QPushButton* button2 = ui->buttonBox_2->button(QDialogButtonBox::Cancel);
 connect(button, SIGNAL(clicked()), this, SLOT(test2()));
 connect(button2, SIGNAL(clicked()), this, SLOT(close()));
 
@@ -44,7 +46,7 @@ connect(button2, SIGNAL(clicked()), this, SLOT(close()));
 
 
 
-void parabola_d::test(){
+void hyperbole_d::test(){
 ui->textEdit->setHtml(combo->currentText()
                       .replace("ax^2", "<font color=\"red\"><b>a</b></font>x^2")
                       .replace("ay^2", "<font color=\"red\"><b>a</b></font>y^2")
@@ -60,7 +62,7 @@ ui->textEdit->setHtml(combo->currentText()
 
 
 
-void parabola_d::test2(){
+void hyperbole_d::test2(){
 
     QTextCursor cursor = ui->textEdit->textCursor();
     cursor.atBlockStart();
@@ -74,7 +76,7 @@ close();
 }
 
 
-parabola_d::~parabola_d()
+hyperbole_d::~hyperbole_d()
 {
     delete ui;
 }

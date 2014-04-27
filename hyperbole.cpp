@@ -1,11 +1,15 @@
 #include "hyperbole.h"
 #include <math.h>
+#include "parser_hyperbole.h"
 
 Hyperbole::Hyperbole(string str)
 {
 this->str = str;
-a = 1;
-b = 1;
+parser_hyperbole t (str);
+a = t.getA();
+b = t.getB();
+
+
 perform();
 }
 
