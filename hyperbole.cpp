@@ -42,10 +42,20 @@ string Hyperbole::getString(){
 
 }
 
+bool Hyperbole::isX(){
+   parser_hyperbole t (str);
+    return  t.isX();
+
+
+}
+
 
 
 void Hyperbole::perform(){
 
+parser_hyperbole t (str);
+
+if (!t.isX()){
 
 
     QVector<double> x(100000), y(100000); // initialize with entries 0..100
@@ -62,13 +72,7 @@ count++;
    w+=0.01;}
 
 
-
-
-
-
-
    QVector<double> x1(100000), y1(100000); // initialize with entries 0..100
-
    w = a;
    count = 0;
   for (int i=0; i <x.length(); ++i)
@@ -99,12 +103,64 @@ xg1[i] = xg1[i];
 yg1[i] = yg1[i];
 
 */
+}
+
+else{
+    QVector<double> x(100000), y(100000); // initialize with entries 0..100
+
+   double w = a;
+   int count = 0;
+   for (int i=0; i <x.length(); ++i)
+   {
+       y[i] = w ;
+       x[i] = (b/a)*sqrt(((y[i]*y[i]) - (a*a)));  // let's plot a quadratic function
+
+
+count++;
+   w+=0.01;}
+
+
+
+   QVector<double> x1(100000), y1(100000); // initialize with entries 0..100
+
+   w = -a;
+   count = 0;
+  for (int i=0; i <x1.length(); ++i)
+  {
+         y1[i] = w;
+      x1[i] = (b/a)*sqrt(((y[i]*y[i]) - (a*a)));  // let's plot a quadratic function
+
+
+
+count++;
+  w-=0.01;
+}
+xg = x;
+yg = y;
+
+xg1 = x1;
+yg1 = y1;
 
 }
 
 
+
+
+
+
+
+}
+
+
+
+
+
+
 void Hyperbole::perform2(){
 
+    parser_hyperbole t (str);
+
+    if (!t.isX()){
 
 
     QVector<double> x(100000), y(100000); // initialize with entries 0..100
@@ -146,7 +202,65 @@ yg = y;
 
 
 xg1 = x1;
-yg1 = y1;
+yg1 = y1;}
+
+
+
+    else{
+
+
+        QVector<double> x(100000), y(100000); // initialize with entries 0..100
+
+       double w = a;
+       int count = 0;
+       for (int i=0; i <x.length(); ++i)
+       {
+           y[i] = w ;
+           x[i] = -(b/a)*sqrt(((y[i]*y[i]) - (a*a)));  // let's plot a quadratic function
+
+
+    count++;
+       w+=0.01;}
+
+
+
+       QVector<double> x1(100000), y1(100000); // initialize with entries 0..100
+
+       w = -a;
+       count = 0;
+      for (int i=0; i <x1.length(); ++i)
+      {
+             y1[i] = w;
+          x1[i] = -(b/a)*sqrt(((y[i]*y[i]) - (a*a)));  // let's plot a quadratic function
+
+
+
+    count++;
+      w-=0.01;
+    }
+    xg = x;
+    yg = y;
+
+    xg1 = x1;
+    yg1 = y1;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
 /*
 
 for (int i = 0; i<100*a*2 + 1; i ++){
@@ -159,5 +273,5 @@ yg1[i] = yg1[i];
 
 */
 
-}
+
 

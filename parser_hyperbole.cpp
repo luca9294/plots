@@ -13,15 +13,17 @@ parser_hyperbole::parser_hyperbole(string str)
     if (b != *" "){
         result  = result + " ";
     }
-
-
+    if (str[0] == 'y'){
+    flag = true;}
+    else {
+    flag = false;}
 
 }
 
 
 
 bool parser_hyperbole::isX(){
-    //return flag;
+    return flag;
 }
 
 
@@ -69,7 +71,20 @@ double parser_hyperbole::getA()
 
     }
 
+
+    else if (a == "y^2"){
+
+        a = "1";
+
+    }
+
     else{
+    string temp = a;
+
+    temp = temp.substr(0, 3);
+
+
+
 
     a =   a.substr(4,a.length()-4);
 

@@ -246,14 +246,6 @@ void MainWindow::circleAction2(string str)
 
 
 
-
-
-
-
-
-
-
-
 void MainWindow::rettaAction(string str)
 {
 if (i < 5){
@@ -596,8 +588,11 @@ void MainWindow::hyperboleAction(string str){
 
 
         Hyperbole h (str);
+
         if (i < 5){
         if (h.isOK()){
+
+            if (!h.isX()){
         drawPoints(h.xg,h.yg,ui->customPlot);
         i--;
         drawPoints(h.xg1 ,h.yg1,ui->customPlot);
@@ -605,7 +600,19 @@ void MainWindow::hyperboleAction(string str){
         i--;
         drawPoints(h.xg,h.yg,ui->customPlot);
         i--;
-        drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+        drawPoints(h.xg1 ,h.yg1,ui->customPlot);}
+
+            else{
+                drawPoints(h.xg,h.yg,ui->customPlot);
+                i--;
+                drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+                h.perform2();
+                i--;
+                drawPoints(h.xg,h.yg,ui->customPlot);
+                i--;
+                drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+            }
+
 
            QString string = "<b>";
            string.append(QString::fromUtf8(h.getString().c_str()));

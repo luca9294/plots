@@ -19,6 +19,9 @@ public:
     bool isX();
     string result;
 
+private:
+    bool flag;
+
 
 
 
