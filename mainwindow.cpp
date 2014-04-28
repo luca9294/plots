@@ -71,17 +71,14 @@
 #include "dialog_line.h"
 #include "dialogs.h"
 
-
-
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
 
-   setStyleSheet("background-color: white;");
+    setStyleSheet("background-color: white;");
+
     i = 0;
     setGeometry(400, 250, 542, 390);
     rettaMenu = new QAction(("&Draw a new Straight Line"), this);
@@ -94,13 +91,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     hyperboleMenu = new QAction(("&Draw a new Hyperbole"), this);
 
-
-
-
     clearMenu = new QAction(("&Clear All"), this);
     QMenuBar* bar = ui->menuBar;
-
-
 
     QMenu* menu1 = new QMenu("Draw Functions", bar);
 
@@ -108,11 +100,10 @@ MainWindow::MainWindow(QWidget *parent) :
     menu1->addAction(rettaMenu);
 
 
-connect(rettaMenu, SIGNAL(triggered()), this, SLOT(dialog_line()));
+    connect(rettaMenu, SIGNAL(triggered()), this, SLOT(dialog_line()));
 
     menu1->addAction(parabolaMenu);
     connect(parabolaMenu, SIGNAL(triggered()), this, SLOT(dialog_parabola()));
-
 
     menu1->addAction(ellipseMenu);
     connect(ellipseMenu, SIGNAL(triggered()), this, SLOT(dialog_ellips()));
@@ -120,38 +111,13 @@ connect(rettaMenu, SIGNAL(triggered()), this, SLOT(dialog_line()));
     menu1->addAction(circleMenu);
     connect(circleMenu, SIGNAL(triggered()), this, SLOT(dialog_circle()));
 
-
     menu1->addAction(hyperboleMenu);
     connect(hyperboleMenu, SIGNAL(triggered()), this, SLOT(dialog_hyperbole()));
 
-
     menu1->addAction(clearMenu);
-
-
-
-
-
     connect(clearMenu, SIGNAL(triggered()), this, SLOT(clearAction()));
 
-// menu1->addAction(circleMenu2);
- //
-
-
     bar->addMenu(menu1);
-
-
-
-    /*Hyperbole h ("");
-    drawPoints(h.xg,h.yg,ui->customPlot);
-    i--;
-    drawPoints(h.xg1 ,h.yg1,ui->customPlot);
-    h.perform2();
-    i--;
-    drawPoints(h.xg,h.yg,ui->customPlot);
-    i--;
-    drawPoints(h.xg1 ,h.yg1,ui->customPlot);*/
-
-
 
 }
 
@@ -627,7 +593,11 @@ void MainWindow::dialog_parabola()
 
 void MainWindow::hyperboleAction(string str){
 
+
+
         Hyperbole h (str);
+        if (i < 5){
+        if (h.isOK()){
         drawPoints(h.xg,h.yg,ui->customPlot);
         i--;
         drawPoints(h.xg1 ,h.yg1,ui->customPlot);
@@ -637,7 +607,7 @@ void MainWindow::hyperboleAction(string str){
         i--;
         drawPoints(h.xg1 ,h.yg1,ui->customPlot);
 
-          /* QString string = "<b>";
+           QString string = "<b>";
            string.append(QString::fromUtf8(h.getString().c_str()));
            string.append("</b>");
            switch (i){
@@ -666,15 +636,25 @@ void MainWindow::hyperboleAction(string str){
            ui->label4->setText(string);
            ui->label4->setStyleSheet("color : green; background-color : white;");
            break;
-           }
+           }}
 
-*/
 
-   /* else{
+
+        else{
+            QMessageBox msgBox;
+            msgBox.setText("Please write the equation of yout hyperbole in the right form");
+            msgBox.exec();
+
+
+        }}
+
+
+
+   else{
         QMessageBox msgBox;
         msgBox.setText("Unfortunatly, you can draw max 5 functions in the same cartesian plane");
         msgBox.exec();
-    }*/
+}
 
 
 
