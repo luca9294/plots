@@ -680,11 +680,86 @@ void MainWindow::hyperboleAction(string str){
 }
 
 
+void MainWindow::hyperboleAction2(string str){
+
+
+
+        Hyperbole_n h (str);
+
+        if (i < 5){
+       // if (h.isOK()){
+                drawPoints(h.xg,h.yg,ui->customPlot);
+                i--;
+                drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+                h.perform2();
+                i--;
+                drawPoints(h.xg,h.yg,ui->customPlot);
+                i--;
+                drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+
+
+
+           QString string = "<b>";
+           string.append(QString::fromUtf8(h.getString().c_str()));
+           string.append("</b>");
+           switch (i){
+
+            case 1:
+            ui->label0->setText(string);
+            ui->label0->setStyleSheet("color : blue;  background-color : white; ");
+            break;
+
+           case 2:
+           ui->label1->setText(string);
+           ui->label1->setStyleSheet("color : red; background-color : white;");
+           break;
+
+           case 3:
+           ui->label2->setText(string);
+           ui->label2->setStyleSheet("color : yellow; background-color : white;");
+           break;
+
+           case 4:
+           ui->label3->setText(string);
+           ui->label3->setStyleSheet("color : black; background-color : white;");
+           break;
+
+           case 5:
+           ui->label4->setText(string);
+           ui->label4->setStyleSheet("color : green; background-color : white;");
+           break;
+           }
+        //}
+
+
+
+        /*else{
+            QMessageBox msgBox;
+            msgBox.setText("Please write the equation of yout hyperbole in the right form");
+            msgBox.exec();*/
+
+
+        }
+
+//}
+
+
+
+   else{
+        QMessageBox msgBox;
+        msgBox.setText("Unfortunatly, you can draw max 5 functions in the same cartesian plane");
+        msgBox.exec();
+}
+
+
+
+}
+
 
 void MainWindow::dialog_hyperbole()
 {
 
-   hyperbole_d *gwe = new hyperbole_d(*this, &MainWindow::hyperboleAction);
+   hyperbole_d *gwe = new hyperbole_d(*this, &MainWindow::hyperboleAction, &MainWindow::hyperboleAction2);
     gwe->exec();
 
 }

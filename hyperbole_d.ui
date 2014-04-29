@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -143,7 +143,7 @@ p, li { white-space: pre-wrap; }
       </rect>
      </property>
      <property name="text">
-      <string>Some Accepted types of ELLIPSE:</string>
+      <string>Some Accepted types of HYPERBOLE:</string>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBox_2">

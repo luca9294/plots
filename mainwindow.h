@@ -38,7 +38,7 @@ public:
     void clearAction();
     void parabolaAction(string);
     void hyperboleAction(string);
-    //void hyperboleAction2(string);
+    void hyperboleAction2(string);
     void ellipseAction(string);
     void ellipseAction2(string);
     void circleAction(string);
