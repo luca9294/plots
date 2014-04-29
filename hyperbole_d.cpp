@@ -20,12 +20,11 @@ hyperbole_d::hyperbole_d( MainWindow &parent,_funcType func)  :
 
     ui->setupUi(this);
     combo = ui->comboBox;
-    combo->addItem("y = ax^2 + bx + c");
-    combo->addItem("y = ax^2 + c");
-    combo->addItem("y = ax^2 + bx");
-    combo->addItem("x = ay^2 + by + c");
-    combo->addItem("x = ay^2 + c");
-    combo->addItem("x = ay^2 + by");
+    combo->addItem("x^2/A - y^2/B = 1");
+    combo->addItem("y^2/A - x^2/B = 1");
+    combo->addItem("x^2 - y^2/B = 1");
+    combo->addItem("x^2 - y^2 = 1");
+
 
  connect(combo, SIGNAL(currentIndexChanged(int)), this, SLOT(test()));
 
@@ -48,12 +47,8 @@ connect(button2, SIGNAL(clicked()), this, SLOT(close()));
 
 void hyperbole_d::test(){
 ui->textEdit->setHtml(combo->currentText()
-                      .replace("ax^2", "<font color=\"red\"><b>a</b></font>x^2")
-                      .replace("ay^2", "<font color=\"red\"><b>a</b></font>y^2")
-                      .replace("bx","<font color=\"red\"><b>b</b></font>x")
-                      .replace("by","<font color=\"red\"><b>b</b></font>y")
-                      .replace("+ c","+ <font color=\"red\"><b>c</b></font>")
-                      .replace("- c","- <font color=\"red\"><b>c</b></font>"));
+                      .replace("A", "<font color=\"red\"><b>A</b></font>")
+                      .replace("B", "<font color=\"red\"><b>B</b></font>"));
 
 
 

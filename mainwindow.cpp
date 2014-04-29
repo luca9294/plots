@@ -707,7 +707,7 @@ void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *c
     if (i == 4){
         customPlot->graph()->setPen(QPen(Qt::green));}
 
-    i++;
+
 
     customPlot->xAxis2->setVisible(true);
     customPlot->xAxis2->setTickLabels(false);
@@ -737,6 +737,7 @@ void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *c
 
       customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
     customPlot->replot();
+        i++;
 
 }
 
