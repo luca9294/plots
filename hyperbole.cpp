@@ -5,13 +5,15 @@
 
 Hyperbole::Hyperbole(string str)
 {
+
+if (!str.empty())  {
 this->str = str;
 parser_hyperbole t (str);
 a = t.getA();
 b = t.getB();
 
 
-perform();
+perform();}
 }
 
 

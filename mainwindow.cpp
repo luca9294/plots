@@ -47,6 +47,7 @@
 #include "ui_mainwindow.h"
 #include <QDebug>
 #include <circle_d.h>
+#include "hyperbole_n.h"
 #include <QDesktopWidget>
 #include <QScreen>
 #include <QMessageBox>
@@ -118,6 +119,17 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(clearMenu, SIGNAL(triggered()), this, SLOT(clearAction()));
 
     bar->addMenu(menu1);
+
+    Hyperbole_n d ("(y - 1)^2/9 - (x - 2)^2/4 = 1");
+    drawPoints(d.xg, d.yg, ui->customPlot);
+    i--;
+    drawPoints(d.xg1, d.yg1, ui->customPlot);
+    d.perform2();
+    i--;
+    drawPoints(d.xg, d.yg, ui->customPlot);
+    i--;
+    drawPoints(d.xg1, d.yg1, ui->customPlot);
+
 
 }
 
