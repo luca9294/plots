@@ -120,15 +120,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     bar->addMenu(menu1);
 
-    Hyperbole_n d ("(y - 1)^2/9 - (x - 2)^2/4 = 1");
-    drawPoints(d.xg, d.yg, ui->customPlot);
-    i--;
-    drawPoints(d.xg1, d.yg1, ui->customPlot);
-    d.perform2();
-    i--;
-    drawPoints(d.xg, d.yg, ui->customPlot);
-    i--;
-    drawPoints(d.xg1, d.yg1, ui->customPlot);
 
 
 }
@@ -687,7 +678,7 @@ void MainWindow::hyperboleAction2(string str){
         Hyperbole_n h (str);
 
         if (i < 5){
-       // if (h.isOK()){
+       if (h.isOK()){
                 drawPoints(h.xg,h.yg,ui->customPlot);
                 i--;
                 drawPoints(h.xg1 ,h.yg1,ui->customPlot);
@@ -729,19 +720,19 @@ void MainWindow::hyperboleAction2(string str){
            ui->label4->setStyleSheet("color : green; background-color : white;");
            break;
            }
-        //}
+        }
 
 
 
-        /*else{
+        else{
             QMessageBox msgBox;
             msgBox.setText("Please write the equation of yout hyperbole in the right form");
-            msgBox.exec();*/
+            msgBox.exec();
 
 
         }
 
-//}
+}
 
 
 

@@ -28,29 +28,42 @@ bool Hyperbole_n::isOK(){
     string.replace("(", "");
     string.replace(")", "");
 
-        // (x - xc)^2/A + (y - yc)^2/B = 1
-        QRegExp r("x [+-] [0-9]*[.]?[0-9]?[/][0-9]*[.]?[0-9]? [-] y [+-] [0-9]*[.]?[0-9]?[/][0-9]*[.]?[0-9]? [=] [1]");
+
+cout <<"GIUSTO" <<string.toStdString() << endl;
+
+    // (x - xc)^2/A + (y - yc)^2/B = 1
+    QRegExp r("x [+-] [0-9]*[.]?[0-9]?[/][0-9]*[.]?[0-9]? [-] y [+-] [0-9]*[.]?[0-9]?[/][0-9]*[.]?[0-9]? [=] [1]");
 
 
 
 
-        //(x - xc)^2/A + (y - yc)^2/B = 1
-        QRegExp r1("x [+-] [0-9]*[.]?[0-9]? [-] y [+-] [0-9]*[.]?[0-9]? [=] [1]");
+    //(x - xc)^2/A + (y - yc)^2/B = 1
+    QRegExp r1("x [+-] [0-9]*[.]?[0-9]? [-] y [+-] [0-9]*[.]?[0-9]? [=] [1]");
 
 
-         QRegExp r2("x [+-] [0-9]*[.]?[0-9]?/[0-9]*[.]?[0-9]?] [-] y [+-] [0-9]*[.]?[0-9]? [=] [1]");
+     QRegExp r2("x [+-] [0-9]*[.]?[0-9]?/[0-9]*[.]?[0-9]?] [-] y [+-] [0-9]*[.]?[0-9]? [=] [1]");
 
-          QRegExp r3("x [+-] [0-9]*[.]?[0-9]? [-] y [+-] [0-9]*[.]?[0-9]?/[0-9]*[.]?[0-9]? [=] [1]");
+      QRegExp r3("x [+-] [0-9]*[.]?[0-9]? [-] y [+-] [0-9]*[.]?[0-9]?/[0-9]*[.]?[0-9]? [=] [1]");
 
 
+
+      QRegExp r4("y [+-] [0-9]*[.]?[0-9]?/[0-9]*[.]?[0-9]?] [-] x [+-] [0-9]*[.]?[0-9]? [=] [1]");
+
+       QRegExp r5("y [+-] [0-9]*[.]?[0-9]? [-] x [+-] [0-9]*[.]?[0-9]?/[0-9]*[.]?[0-9]? [=] [1]");
+
+QRegExp r6("y [+-] [0-9]*[.]?[0-9]? [-] x [+-] [0-9]*[.]?[0-9]? [=] [1]");
 
 
     if (r.exactMatch(string)){return true;}
+
     else if (r1.exactMatch(string)){return true;}
 
     else if (r2.exactMatch(string)){return true;}
     else if (r3.exactMatch(string)){return true;}
 
+    else if (r4.exactMatch(string)){return true;}
+    else if (r5.exactMatch(string)){return true;}
+    else if (r6.exactMatch(string)){return true;}
 
     else return false;
 
