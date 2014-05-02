@@ -3,11 +3,13 @@
 #include "parser_line.h"
 #include <qpoint.h>
 #include <qvector.h>
+#include "shape.h"
+#include "ui_mainwindow.h"
 
 
 
 using namespace std;
-class Retta
+class Retta : public Shape
 {
 
 private:
@@ -17,9 +19,7 @@ private:
     QPoint zero;
     QPoint zerox;
     QPoint zeroy;
-
-
-
+    Ui::MainWindow *ui;
 
 
 
@@ -28,7 +28,9 @@ public:
     QVector<double> getY();
     bool isOK();
     string getString();
+    string getDescription(int);
     Retta(string);
+
 
 
 

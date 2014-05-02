@@ -43,16 +43,20 @@
 
 
 #include <iostream>
+
 #include "mainwindow.h"
+#include "Form.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
 #include <circle_d.h>
 #include "hyperbole_n.h"
 #include <QDesktopWidget>
+#include <algorithm>
 #include <QScreen>
 #include <QMessageBox>
 #include <QMetaEnum>
 #include <QLabel>
+#include <QString>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QMenu>
@@ -62,6 +66,7 @@
 #include "ellipse_n.h"
 #include "ellipse.h"
 #include "circle.h"
+#include <list>
 #include "hyperbole.h"
 #include "circle_n.h"
 #include <QtGui/QPen>
@@ -118,7 +123,15 @@ MainWindow::MainWindow(QWidget *parent) :
     menu1->addAction(clearMenu);
     connect(clearMenu, SIGNAL(triggered()), this, SLOT(clearAction()));
 
-    bar->addMenu(menu1);
+
+connect(ui->customPlot, SIGNAL(plottableClick(QCPAbstractPlottable*,QMouseEvent*)), this, SLOT(prova(QCPAbstractPlottable*)));
+
+
+ bar->addMenu(menu1);
+
+ _widget=ui->stackedWidget;
+ _widget->addWidget(new QWidget);
+ _widget->addWidget(new Form);
 
 
 
@@ -143,8 +156,11 @@ void MainWindow::circleAction(string str)
 
         else{
 
-          drawPoints(circle.getX(), circle.getY(),ui->customPlot);
-           i--;
+
+
+  (circle.getX(), circle.getY(),ui->customPlot);
+           drawPoints(circle.getX(), circle.getY(),ui->customPlot);
+          i--;
            drawPoints(circle.getX1(), circle.getY1(),ui->customPlot);
            QString string = "<b>";
            string.append(QString::fromUtf8(circle.getString().c_str()));
@@ -253,7 +269,13 @@ void MainWindow::rettaAction(string str)
 {
 if (i < 5){
         cout << str << endl;
+
         Retta retta (str);
+        Shape *test = &retta;
+
+
+list.push_back(test->getDescription(i));
+
 
         if (!retta.isOK())  {
             QMessageBox msgBox;
@@ -263,7 +285,6 @@ if (i < 5){
                  gwe->exec();
 
             };
-
 
 
         }
@@ -472,7 +493,14 @@ void MainWindow::parabolaAction(string str)
 {
 
     if (i<5){
+
+
         Parabola parabola (str);
+        Parabola retta (str);
+        Shape *test = &retta;
+
+
+
 
         if (!parabola.isOK())  {
             QMessageBox msgBox;
@@ -485,13 +513,18 @@ void MainWindow::parabolaAction(string str)
 
             if (!parabola.isX()){
 
-            drawPoints(parabola.getX(), parabola.getY(),ui->customPlot);}
-
+            drawPoints(parabola.getX(), parabola.getY(),ui->customPlot);
+            Shape *shape = &parabola;
+            list.push_back(shape->getDescription(i));}
            else{
             drawPoints(parabola.getX(), parabola.getY(),ui->customPlot);
+            Shape *shape = &parabola;
+            list.push_back(shape->getDescription(i));
             i--;
             drawPoints(parabola.getX1(), parabola.getY1(),ui->customPlot);}
-           QString string = "<b>";
+            Shape *shape = &parabola;
+            list.push_back(shape->getDescription(i));
+            QString string = "<b>";
            string.append(QString::fromUtf8(parabola.getString().c_str()));
            string.append("</b>");
            switch (i){
@@ -755,13 +788,26 @@ void MainWindow::dialog_hyperbole()
 
 }
 
+void MainWindow::prova(QCPAbstractPlottable *plottable)
+{
+
+    string test = plottable->name().toStdString();
+
+test = test.substr(6,test.length());
+int pos = atoi(test.c_str()) -1;
+std::list<std::string>::const_iterator i = list.begin();
+std::advance(i,pos);
+ui->label_2->setTextFormat(Qt::RichText);
+ui->label_2->setText(i->c_str());
+}
+
 
 
 
 
 void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *customPlot){
     // add two new graphs and set their look:
-    customPlot->addGraph();
+customPlot->addGraph();
 
 
     if (i == 5){
@@ -783,7 +829,7 @@ void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *c
         customPlot->graph()->setPen(QPen(Qt::black));}
 
     if (i == 4){
-        customPlot->graph()->setPen(QPen(Qt::green));}
+       customPlot->graph()->setPen(QPen(Qt::green));}
 
 
 
@@ -796,7 +842,7 @@ void MainWindow::drawPoints(QVector<double> xg,QVector<double> yg,QCustomPlot *c
     connect(customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->xAxis2, SLOT(setRange(QCPRange)));
     connect(customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->yAxis2, SLOT(setRange(QCPRange)));
     // pass data points to graphs:
-    customPlot->graph()->setData(xg, yg);
+   customPlot->graph()->setData(xg, yg);
     // let the ranges scale themselves so graph 0 fits perfectly in the visible area:
     //customPlot->graph()->rescaleAxes();
     //customPlot->graph()->rescaleAxes(true);

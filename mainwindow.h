@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <shape.h>;
 
 
 
@@ -26,7 +27,7 @@ public:
     int i;
     ~MainWindow();
 
-
+    QStackedWidget *_widget;
     void drawPoints( QVector<double> x,QVector<double> y, QCustomPlot *customPlot);
     
     void setupPlayground(QCustomPlot *customPlot);
@@ -48,7 +49,8 @@ public:
     void dialog_circle();
     void dialog_parabola();
     void dialog_hyperbole();
-
+ void prova(QCPAbstractPlottable*);
+//void prova(i);
 
     
 private:
@@ -63,6 +65,7 @@ private:
     QTimer dataTimer;
     QCPItemTracer *itemDemoPhaseTracer;
     int currentDemoIndex;
+    list<string> list;
 };
 
 #endif // MAINWINDOW_H

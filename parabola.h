@@ -5,11 +5,12 @@
 #include <QPoint>
 #include "retta.h"
 #include "parser_parabola.h"
+#include "shape.h"
 
 
 
     using namespace std;
-class Parabola
+class Parabola : public Shape
 
 {
 
@@ -33,7 +34,7 @@ private:
     QPoint vertex;
     QPoint focus;
     Parser_parabola *parser;
-    //Retta directrix;
+    string getDescription(int);
     string str;
 };
 

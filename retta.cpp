@@ -2,10 +2,15 @@
 
 #include <QRegExp>
 #include <QString>
+#include <iomanip>
+#include <locale>
+#include <sstream>
 #include <iostream>
 
 Retta::Retta(string str)
+
 {
+
 this->str = str;
   parser = new Parser (str);
     m = parser->getM();
@@ -45,6 +50,71 @@ bool Retta::isOK(){
 
   }
 
+  string Retta::getDescription(int i){
+string color = "";
+double y0 = (-q/m);
+
+i++;
+      switch (i){
+      case (1):
+      color = "blue";
+      break;
+
+      case (2):
+      color = "red";
+      break;
+
+      case 3:
+      color = "yellow";
+      break;
+
+      case 4:
+      color = "black";
+      break;
+
+      case 5:
+      color = "green";
+      break;
+
+}
+      char s[32];
+      sprintf(s, "%f", m);
+
+cout << color << endl;
+std::ostringstream m_n;
+std::ostringstream q_n;
+std::ostringstream y_n;
+  m_n << std::setprecision(2) << m;
+  q_n << std::setprecision(2) << q;
+  y_n << std::setprecision(2) << y0;
+
+  string str = y_n.str();
+
+
+//std::string str = boost::lexical_cast<string>(m);
+      string result =
+      "<h1>STRAIGHT LINE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
+      + "<cp></cp>"
+      + "<h2>m = "+ m_n.str() +"</h2>"
+      + "<cp></cp>"
+      + "<h2>q = "+ q_n.str() +"</h2>"
+      + "<br></br>";
+
+      if (q != 0 ){
+      result = result + "<p><font size=\"4\">It meets the <b>X axis</b> in the point ("+str+", 0)</font></p>"
+      + "<br></br>"
+      + "<p><font size=\"4\">It meets the <b>Y axis</b> in the point (0, "+q_n.str()+")</font></p>";}
+
+      else{
+          result = result + "<p><font size=\"4\">It meets the <b>X axis</b> and <b>Y axis</b> in the <b>origin</b>. </font></p>";
+
+
+
+      }
+
+
+return result;
+  }
 
 
   QVector<double> Retta::getX(){

@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-Parabola::Parabola(string str)
+Parabola::Parabola(string str) : Shape()
 {
 this->str = str;
 
@@ -101,6 +101,16 @@ string Parabola::getString(){
 
 
 }
+
+
+string Parabola::getDescription(int i){
+    return "è una parabola";
+
+
+
+}
+
+
 
 
 bool Parabola::isOK(){
