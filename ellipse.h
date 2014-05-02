@@ -4,10 +4,11 @@
 #include <QVector>
 #include <QPoint>
 #include "parser_ellipse.h"
+#include "shape.h"
 
 
 
-class Ellipse
+class Ellipse : public Shape
 {
 public:
     Ellipse(string);
@@ -33,6 +34,7 @@ private:
     QPoint vertex;
     QPoint focus;
     parser_ellipse *parser;
+    string getDescription(int);
 
 
 

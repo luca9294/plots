@@ -1,5 +1,9 @@
 #include "parabola.h"
 #include <QRegExp>
+#include <iomanip>
+#include <locale>
+#include <sstream>
+#include <iostream>
 
 
 #include <iostream>
@@ -104,7 +108,136 @@ string Parabola::getString(){
 
 
 string Parabola::getDescription(int i){
-    return "è una parabola";
+
+
+    string color = "";
+
+
+
+          switch (i){
+          case (1):
+          color = "blue";
+          break;
+
+          case (2):
+          color = "red";
+          break;
+
+          case 3:
+          color = "yellow";
+          break;
+
+          case 4:
+          color = "black";
+          break;
+
+          case 5:
+          color = "green";
+          break;
+
+    }
+
+
+
+    std::ostringstream a_n;
+    std::ostringstream b_n;
+    std::ostringstream c_n;
+      a_n << std::setprecision(3) << a;
+      b_n << std::setprecision(3) << b;
+      c_n << std::setprecision(3) << c;
+
+
+
+
+    //std::string str = boost::lexical_cast<string>(m);
+          string result =
+          "<h1>PARABOLA of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
+          + "<cp></cp>"
+          + "<h2>a = "+ a_n.str() +"</h2>"
+          + "<cp></cp>"
+          + "<h2>b = "+ b_n.str() +"</h2>"
+          + "<cp></cp>"
+          + "<h2>c = "+ c_n.str() +"</h2>"
+          + "<br></br>";
+
+          //TIPO y = ax^2 + bx + c
+          if (!parser->isX()){
+            double x_vertex = -(b/(2*a));
+            double y_vertex = a*(x_vertex*x_vertex) + b*(x_vertex) + c;
+            double y_focus = (1 - b*b + 4*a*c)/(4*a);
+            double directrix = -((1 + b*b - 4*a*c)/(4*a));
+
+            std::ostringstream v1;
+            std::ostringstream v2;
+            std::ostringstream v3,v4;
+
+              v1 << std::setprecision(3) << x_vertex;
+              v2 << std::setprecision(3) << y_vertex;
+              v3 << std::setprecision(3) << y_focus;
+              v4 << std::setprecision(3) << directrix;
+
+               string str = v1.str();
+               if (str == "-0"){
+
+                   str = "0";
+               }
+
+
+            result = result +
+                    "<p><font size=\"4\">The <b>vertex</b> of the parabola is in the point V("+str+", "+v2.str()+")</font></p>"
+                    +"<br></br>"
+                    +"<p><font size=\"4\">The <b>focus</b> of the parabola is in the point F("+str+", "+v3.str()+")</font></p>"
+                    +"<br></br>"
+                    +"<p><font size=\"4\">The <b>axis of symmetry</b> of the parabola has equation x = "+str+ "</font></p>"
+                    +"<br></br>"
+                    +"<p><font size=\"4\">The <b>directrix</b> of the parabola has equation y = "+v4.str()+ "</font></p>"
+                    ;
+
+
+          }
+
+          else{
+              double x_vertex = -((b*b - 4*a*c)/(4*a));
+              double y_vertex = -(b/(2*a));
+              double x_focus = (1 - b*b + 4*a*c)/(4*a);
+              double directrix = -((1 + b*b - 4*a*c)/(4*a));
+
+              std::ostringstream v1;
+              std::ostringstream v2;
+              std::ostringstream v3,v4;
+
+                v1 << std::setprecision(3) << x_vertex;
+                v2 << std::setprecision(3) << y_vertex;
+                v3 << std::setprecision(3) << x_focus;
+                v4 << std::setprecision(3) << directrix;
+
+                 string str = v2.str();
+                 if (str == "-0"){
+
+                     str = "0";
+                 }
+
+
+              result = result +
+                      "<p><font size=\"4\">The <b>vertex</b> of the parabola is in the point V("+v1.str()+", "+str+")</font></p>"
+                      +"<br></br>"
+                      +"<p><font size=\"4\">The <b>focus</b> of the parabola is in the point F("+v3.str()+", "+str+")</font></p>"
+                      +"<br></br>"
+                      +"<p><font size=\"4\">The <b>axis of symmetry</b> of the parabola has equation y = "+str+ "</font></p>"
+                      +"<br></br>"
+                      +"<p><font size=\"4\">The <b>directrix</b> of the parabola has equation x = "+v4.str()+ "</font></p>"
+                      ;
+
+
+
+
+
+          }
+
+
+
+
+          return result;
 
 
 

@@ -84,9 +84,9 @@ cout << color << endl;
 std::ostringstream m_n;
 std::ostringstream q_n;
 std::ostringstream y_n;
-  m_n << std::setprecision(2) << m;
-  q_n << std::setprecision(2) << q;
-  y_n << std::setprecision(2) << y0;
+  m_n << std::setprecision(3) << m;
+  q_n << std::setprecision(3) << q;
+  y_n << std::setprecision(3) << y0;
 
   string str = y_n.str();
 
@@ -100,7 +100,30 @@ std::ostringstream y_n;
       + "<h2>q = "+ q_n.str() +"</h2>"
       + "<br></br>";
 
-      if (q != 0 ){
+      if (parser->isX()){
+          result = "<h1>STRAIGHT LINE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
+          + "<cp></cp>"
+          + "<h2>m = "+ m_n.str() +"</h2>"
+          + "<cp></cp>";
+
+
+      }
+
+      //TIPO y = k
+      if (m_n.str()=="0"  && !parser->isX()){
+        result = result + + "<p><font size=\"4\">It meets the <b>Y axis</b> in the point (0, "+q_n.str()+")</font></p>";
+
+
+      }
+      //TIPO x = k
+      else if (m_n.str()=="0"  && parser->isX()){
+    result = result + + "<p><font size=\"4\">It meets the <b>X axis</b> in the point ("+q_n.str()+", 0)</font></p>";
+
+      }
+
+
+
+      else if (q != 0 ){
       result = result + "<p><font size=\"4\">It meets the <b>X axis</b> in the point ("+str+", 0)</font></p>"
       + "<br></br>"
       + "<p><font size=\"4\">It meets the <b>Y axis</b> in the point (0, "+q_n.str()+")</font></p>";}

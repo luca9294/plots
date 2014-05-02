@@ -3,8 +3,14 @@
 
 #include <math.h>
 #include <iostream>
+#include <iomanip>
+#include <locale>
+#include <sstream>
+#include <iostream>
 
-Ellipse::Ellipse(string str)
+
+
+Ellipse::Ellipse(string str) : Shape()
 {
 
     if (!str.empty()){
@@ -172,5 +178,107 @@ QVector<double> Ellipse::getY1(){
 
 
 }
+
+
+string Ellipse::getDescription(int i){
+    string result;
+    string color = "";
+
+
+
+          switch (i){
+          case (1):
+          color = "blue";
+          break;
+
+          case (2):
+          color = "red";
+          break;
+
+          case 3:
+          color = "yellow";
+          break;
+
+          case 4:
+          color = "black";
+          break;
+
+          case 5:
+          color = "green";
+          break;
+
+    }
+
+
+
+    std::ostringstream a_n;
+    std::ostringstream b_n;
+    std::ostringstream f1;
+    std::ostringstream f2;
+    std::ostringstream ecc;
+    a_n << std::setprecision(3) << a;
+    b_n << std::setprecision(3) << b;
+
+
+
+          if (a > b){
+
+              f1 << std::setprecision(3) << sqrt(a*a - b*b);
+              f2 << std::setprecision(3) << -sqrt(a*a - b*b);
+              ecc << std::setprecision(3) << (sqrt(a*a - b*b)) / a;
+
+         result =
+          "<h1>ELLIPSE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
+         + "<br></br>"
+          + "<p> <FONT size = \"5\"> MAJOR <b>SEMI-AXIS A</b> = "+ a_n.str() +"</FONT></p>"
+          + "<br></br>"
+          + "<p><FONT size = \"5\">MINOR <b>SEMI-AXIS B</b> = "+ b_n.str() +"</p></FONT>"
+          + "<br></br>"
+         + "<p> <FONT size = \"5\"> <b>FOCUS 1</b> is in the point F1("+ f1.str() +", 0)</FONT></p>"
+         + "<br></br>"
+          + "<p> <FONT size = \"5\"> <b>FOCUS 2</b> is in the point F2("+ f2.str() +", 0)</FONT></p>"
+         + "<br></br>"
+         + "<p> <FONT size = \"5\"> The <b>eccentricity</b> of the ellipse has value "+ ecc.str()+ "</FONT></p>"
+        + "<br></br>";
+
+
+}
+
+          else{
+              f1 << std::setprecision(3) << sqrt(b*b - a*a);
+              f2 << std::setprecision(3) << -sqrt(b*b - a*a);
+              ecc << std::setprecision(3) << (sqrt(b*b - a*a)) / b;
+
+
+
+              result = "<h1>ELLIPSE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
+             + "<br></br>"
+              + "<p> <FONT size = \"4\"> MAJOR <b>SEMI-AXIS A</b> = "+ b_n.str() +"</FONT></p>"
+              + "<br></br>"
+              + "<p><FONT size = \"4\">MINOR <b>SEMI-AXIS B</b> = "+ a_n.str() +"</p></FONT>"
+              + "<br></br>"
+             + "<p> <FONT size = \"4\"> <b>FOCUS 1</b> is in the point F1(0, "+ f1.str() +")</FONT></p>"
+             + "<br></br>"
+              + "<p> <FONT size = \"4\"> <b>FOCUS 2</b> is in the point F2(0, "+ f2.str() +")</FONT></p>"
+             + "<br></br>"
+              + "<p> <FONT size = \"4\"> The <b>eccentricity</b> of the ellipse has value "+ ecc.str()+ "</FONT></p>"
+             + "<br></br>";
+
+
+
+
+
+          }
+
+
+
+
+
+          return result;
+
+
+}
+
+
 
 

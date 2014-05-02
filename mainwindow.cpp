@@ -45,7 +45,6 @@
 #include <iostream>
 
 #include "mainwindow.h"
-#include "Form.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
 #include <circle_d.h>
@@ -128,10 +127,6 @@ connect(ui->customPlot, SIGNAL(plottableClick(QCPAbstractPlottable*,QMouseEvent*
 
 
  bar->addMenu(menu1);
-
- _widget=ui->stackedWidget;
- _widget->addWidget(new QWidget);
- _widget->addWidget(new Form);
 
 
 
@@ -349,6 +344,9 @@ void MainWindow::ellipseAction(string str)
 
 
          Ellipse eclipse (str);
+
+
+
          if (!eclipse.isOK())  {
              QMessageBox msgBox;
              msgBox.setText("The INPUT format is not right.\nPay attention to the white spaces!\nAccept formats: x^2/A + y^2/B = 1");
@@ -362,8 +360,11 @@ void MainWindow::ellipseAction(string str)
 else{
 
         drawPoints(eclipse.getX(), eclipse.getY(),ui->customPlot);
+        Shape *test = &eclipse;
+        list.push_back(test->getDescription(i));
         i--;
         drawPoints(eclipse.getX1(), eclipse.getY1(),ui->customPlot);
+        list.push_back(test->getDescription(i));
 
 
 
@@ -400,15 +401,15 @@ QString string = "<b>";
            ui->label4->setStyleSheet("color : green; background-color : white;");
            break;
            }
-}
-}
+}}
+
 
     else{
         QMessageBox msgBox;
         msgBox.setText("Unfortunatly, you can draw max 5 functions in the same cartesian plane");
         msgBox.exec();
-    }
-}
+    }}
+
 
 void MainWindow::ellipseAction2(string str)
 {
@@ -521,9 +522,8 @@ void MainWindow::parabolaAction(string str)
             Shape *shape = &parabola;
             list.push_back(shape->getDescription(i));
             i--;
-            drawPoints(parabola.getX1(), parabola.getY1(),ui->customPlot);}
-            Shape *shape = &parabola;
-            list.push_back(shape->getDescription(i));
+            drawPoints(parabola.getX1(), parabola.getY1(),ui->customPlot);
+            list.push_back(shape->getDescription(i));}
             QString string = "<b>";
            string.append(QString::fromUtf8(parabola.getString().c_str()));
            string.append("</b>");
@@ -575,6 +575,7 @@ void MainWindow::clearAction()
     ui->label2->clear();
     ui->label3->clear();
     ui->label4->clear();
+    ui->label_2->clear();
 
 }
 
