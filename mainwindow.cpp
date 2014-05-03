@@ -576,6 +576,7 @@ void MainWindow::clearAction()
     ui->label3->clear();
     ui->label4->clear();
     ui->label_2->clear();
+    list.clear();
 
 }
 

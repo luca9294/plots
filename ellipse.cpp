@@ -112,38 +112,11 @@ bool Ellipse::isOK(){
 
 
 
-    // y = ax^2
-       // QRegExp r1("[y] [=] [-+]?[0-9]*[.]?[0-9]?x2");
-
-    // y = ax^2 + c
-        //QRegExp r2("[y] [=] [-+]?[0-9]*[.]?[0-9]*x2 [-+] [0-9]*[.]?[0-9]*");
-
-    // x = ax^2 + bx
-//        QRegExp r3("[y] [=] [-+]?[0-9]*[.]?[0-9]*x2 [+-] [0-9]*[.]?[0-9]*x");
-
-        // y = ax^2 + bx + c
-//        QRegExp r4("[x] [=] [-+]?[0-9]*[.]?[0-9]*y2 [+-] [0-9]*[.]?[0-9]*y [+-] [0-9]+[.]?[0-9]*");
-
-    // y = ax^2
-  //      QRegExp r5("[x] [=] [-+]?[0-9]*[.]?[0-9]?y2");
-
-    // y = ax^2 + c
-    //    QRegExp r6("[x] [=] [-+]?[0-9]*[.]?[0-9]*y2 [-+] [0-9]*[.]?[0-9]*");
-
-    // x = ax^2 + bx
-      //  QRegExp r7("[x] [=] [-+]?[0-9]*[.]?[0-9]*y2 [+-] [0-9]*[.]?[0-9]*y");
 
 
 
 
     if (r.exactMatch(string)){return true;}
-    /*else if (r1.exactMatch(string)){return true;}
-    else if (r2.exactMatch(string)){return true;}
-    else if (r3.exactMatch(string)){return true;}
-    else if (r4.exactMatch(string)){return true;}
-    else if (r5.exactMatch(string)){return true;}
-    else if (r6.exactMatch(string)){return true;}
-    else if (r7.exactMatch(string)){return true;}*/
 
     else return false;
 
@@ -230,21 +203,21 @@ string Ellipse::getDescription(int i){
          result =
           "<h1>ELLIPSE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
          + "<br></br>"
-          + "<p> <FONT size = \"5\"> MAJOR <b>SEMI-AXIS A</b> = "+ a_n.str() +"</FONT></p>"
+          + "<p> <FONT size = \"4\"> MAJOR <b>SEMI-AXIS A</b> = "+ a_n.str() +"</FONT></p>"
           + "<br></br>"
-          + "<p><FONT size = \"5\">MINOR <b>SEMI-AXIS B</b> = "+ b_n.str() +"</p></FONT>"
+          + "<p><FONT size = \"4\">MINOR <b>SEMI-AXIS B</b> = "+ b_n.str() +"</p></FONT>"
           + "<br></br>"
-         + "<p> <FONT size = \"5\"> <b>FOCUS 1</b> is in the point F1("+ f1.str() +", 0)</FONT></p>"
+         + "<p> <FONT size = \"4\"> <b>FOCUS 1</b> is in the point F1("+ f1.str() +", 0)</FONT></p>"
          + "<br></br>"
-          + "<p> <FONT size = \"5\"> <b>FOCUS 2</b> is in the point F2("+ f2.str() +", 0)</FONT></p>"
+          + "<p> <FONT size = \"4\"> <b>FOCUS 2</b> is in the point F2("+ f2.str() +", 0)</FONT></p>"
          + "<br></br>"
-         + "<p> <FONT size = \"5\"> The <b>eccentricity</b> of the ellipse has value "+ ecc.str()+ "</FONT></p>"
+         + "<p> <FONT size = \"4\"> The <b>eccentricity</b> of the ellipse has value "+ ecc.str()+ "</FONT></p>"
         + "<br></br>";
 
 
 }
 
-          else{
+           else if (a < b){
               f1 << std::setprecision(3) << sqrt(b*b - a*a);
               f2 << std::setprecision(3) << -sqrt(b*b - a*a);
               ecc << std::setprecision(3) << (sqrt(b*b - a*a)) / b;
@@ -265,6 +238,18 @@ string Ellipse::getDescription(int i){
              + "<br></br>";
 
 
+
+
+
+          }
+
+          else{
+              result = "<h1>CIRCLE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
+             + "<br></br>"
+                + "<p> <FONT size = \"4\">The center of the <b>circle</b> is the origin of the axes </FONT></p>"
+                 + "<br></br>"
+              + "<p> <FONT size = \"4\"><b>RADIUS</b> = "+ b_n.str() +"</FONT></p>"
+              + "<br></br>";
 
 
 
