@@ -424,9 +424,15 @@ void MainWindow::ellipseAction2(string str)
 
          if (eclipse.isOK()){
 
+             Shape *test = &eclipse;
+
+
+
          drawPoints(eclipse.getX(), eclipse.getY(),ui->customPlot);
+         list.push_back(test->getDescription(i));
          i--;
          drawPoints(eclipse.getX1(), eclipse.getY1(),ui->customPlot);
+         list.push_back(test->getDescription(i));
 
 
 

@@ -3,6 +3,14 @@
 
 #include <math.h>
 #include <iostream>
+#include <math.h>
+#include <iostream>
+#include <iomanip>
+#include <locale>
+#include <sstream>
+#include <iostream>
+
+
 
 Ellipse_n::Ellipse_n(string str) : Ellipse("")
 {
@@ -18,6 +26,132 @@ this->str = str;
      perform();
 
 }
+
+
+
+string Ellipse_n::getDescription(int i){
+    string result;
+    string color = "";
+          switch (i){
+          case (1):
+          color = "blue";
+          break;
+
+          case (2):
+          color = "red";
+          break;
+
+          case 3:
+          color = "yellow";
+          break;
+
+          case 4:
+          color = "black";
+          break;
+
+          case 5:
+          color = "green";
+          break;
+
+    }
+
+
+
+    std::ostringstream a_n;
+    std::ostringstream b_n;
+    std::ostringstream c_1;
+    std::ostringstream c_2;
+    std::ostringstream f1;
+    std::ostringstream f2;
+    std::ostringstream ecc;
+    a_n << std::setprecision(3) << a;
+    b_n << std::setprecision(3) << b;
+
+
+
+          if (a > b){
+
+              f1 << std::setprecision(3) << sqrt(a*a - b*b) + Xc;
+              f2 << std::setprecision(3) << -sqrt(a*a - b*b) + Xc;
+              ecc << std::setprecision(3) << (sqrt(a*a - b*b)) / a;
+
+              c_1 << std::setprecision(3) << Xc;
+              c_2 << std::setprecision(3) << Yc;
+
+         result =
+          "<h1>ELLIPSE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
+         + "<br></br>"
+         + "<p> <FONT size = \"4\"> The ellipse is traslated with center in C("+ c_1.str()+ ", " + c_2.str() + ") </FONT></p>"
+          + "<br></br>"
+          + "<p> <FONT size = \"4\"> MAJOR <b>SEMI-AXIS A</b> = "+ a_n.str() +" on the line y = "+ c_2.str()+ "</FONT></p>"
+          + "<br></br>"
+          + "<p><FONT size = \"4\">MINOR <b>SEMI-AXIS B</b> = "+ b_n.str() +" on the line x = "+ c_1.str() +"</p></FONT>"
+          + "<br></br>"
+         + "<p> <FONT size = \"4\"> <b>FOCUS 1</b> is in the point F1("+ f1.str() +", "+ c_2.str()+")</FONT></p>"
+         + "<br></br>"
+          + "<p> <FONT size = \"4\"> <b>FOCUS 2</b> is in the point F2("+ f2.str() +", "+ c_2.str()+")</FONT></p>"
+         + "<br></br>"
+         + "<p> <FONT size = \"4\"> The <b>eccentricity</b> of the ellipse has value "+ ecc.str()+ "</FONT></p>"
+        + "<br></br>";
+
+
+}
+
+           else if (a < b){
+              c_1 << std::setprecision(3) << Xc;
+              c_2 << std::setprecision(3) << Yc;
+              f1 << std::setprecision(3) << sqrt(b*b - a*a) + Yc;
+              f2 << std::setprecision(3) << -sqrt(b*b - a*a) + Yc;
+              ecc << std::setprecision(3) << (sqrt(b*b - a*a)) / b;
+
+
+
+              result = "<h1>ELLIPSE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
+             + "<br></br>"
+             + "<p> <FONT size = \"4\"> The ellipse is traslated with center in C("+ c_1.str()+ ", " + c_2.str() + ") </FONT></p>"
+             + "<br></br>"
+             + "<p> <FONT size = \"4\"> MAJOR <b>SEMI-AXIS A</b> = "+ b_n.str() +" on the line x = "+ c_1.str()+"</FONT></p>"
+              + "<br></br>"
+              + "<p><FONT size = \"4\">MINOR <b>SEMI-AXIS B</b> = "+ a_n.str() +" on the line y = "+ c_2.str()+"</p></FONT>"
+              + "<br></br>"
+             + "<p> <FONT size = \"4\"> <b>FOCUS 1</b> is in the point F1("+c_1.str()+", "+ f1.str() +")</FONT></p>"
+             + "<br></br>"
+              + "<p> <FONT size = \"4\"> <b>FOCUS 2</b> is in the point F2("+c_1.str()+", "+ f2.str() +")</FONT></p>"
+             + "<br></br>"
+              + "<p> <FONT size = \"4\"> The <b>eccentricity</b> of the ellipse has value "+ ecc.str()+ "</FONT></p>"
+             + "<br></br>";
+
+
+
+
+
+          }
+
+          else{
+              c_1 << std::setprecision(3) << Xc;
+              c_2 << std::setprecision(3) << Yc;
+              result = "<h1>CIRCLE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
+             + "<br></br>"
+                + "<p> <FONT size = \"4\">The center of the <b>circle</b> is in the point C("+c_1.str()+", "+c_2.str()+") </FONT></p>"
+                 + "<br></br>"
+              + "<p> <FONT size = \"4\"><b>RADIUS</b> = "+ b_n.str() +"</FONT></p>"
+              + "<br></br>";
+
+
+
+          }
+
+
+
+
+
+          return result;
+
+
+}
+
+
+
 
 
 
