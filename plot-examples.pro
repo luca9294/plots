@@ -8,6 +8,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 TARGET = plot-examples
 TEMPLATE = app
 
+RC_FILE = icon.txt
+
 SOURCES += main.cpp\
            mainwindow.cpp \
     qcustomplot.cpp \
@@ -65,4 +67,10 @@ FORMS    += mainwindow.ui \
     parabola_d.ui \
     hyperbole_d.ui \
     form.ui
+
+RESOURCES += \
+    resource.qrc
+
+OTHER_FILES += \
+    icon.txt
 

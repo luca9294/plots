@@ -91,20 +91,14 @@ std::ostringstream y_n;
   string str = y_n.str();
 
 
-//std::string str = boost::lexical_cast<string>(m);
       string result =
-      "<h1>STRAIGHT LINE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
-      + "<cp></cp>"
-      + "<h2>m = "+ m_n.str() +"</h2>"
-      + "<cp></cp>"
-      + "<h2>q = "+ q_n.str() +"</h2>"
-      + "<br></br>";
+      " <p><FONT size=\"4\">Straight Line of equation </FONT><b><FONT  size=\"5\" COLOR=\""+color+"\">"+getString()+"</FONT></b></p>"
+      + "<p><FONT size=\"4\"> <b>m</b> = "+ m_n.str() +"</FONT></p>"
+      + "<p><FONT size=\"4\"><b>q</b> = "+ q_n.str() +"</FONT></p>";
 
       if (parser->isX()){
-          result = "<h1>STRAIGHT LINE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
-          + "<cp></cp>"
-          + "<h2>m = "+ m_n.str() +"</h2>"
-          + "<cp></cp>";
+          result = "<p><FONT size=\"4\">STRAIGHT LINE of equation </FONT> <FONT COLOR=\""+color+"\">"+getString()+"</FONT></p>"
+          + "<p><FONT size=\"4\">m = "+ m_n.str() +"<p></FONT>";
 
 
       }
@@ -125,7 +119,7 @@ std::ostringstream y_n;
 
       else if (q != 0 ){
       result = result + "<p><font size=\"4\">It meets the <b>X axis</b> in the point ("+str+", 0)</font></p>"
-      + "<br></br>"
+
       + "<p><font size=\"4\">It meets the <b>Y axis</b> in the point (0, "+q_n.str()+")</font></p>";}
 
       else{

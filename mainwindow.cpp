@@ -128,6 +128,23 @@ connect(ui->customPlot, SIGNAL(plottableClick(QCPAbstractPlottable*,QMouseEvent*
 
  bar->addMenu(menu1);
 
+ QLabel *mylabel = ui->label;
+  QLabel *mylabel1 = ui->label_3;
+
+QPixmap pixmap(":/icons/titoloenorme2.png");
+QPixmap pixmap1(":/icons/logo.png");
+pixmap = pixmap.scaled(600,10000, Qt::KeepAspectRatio);
+pixmap1 = pixmap1.scaled(100,130, Qt::KeepAspectRatio);
+mylabel->setPixmap(pixmap);
+
+mylabel1->setPixmap(pixmap1);
+
+QFont f( "Arial", 15);
+ui->label1->setFont(f);
+ui->label2->setFont(f);
+ui->label3->setFont(f);
+ui->label4->setFont(f);
+ui->label0->setFont(f);
 
 
 }

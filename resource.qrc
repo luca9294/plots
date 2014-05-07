@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>scritta.png</file>
+        <file>Math-Logo.ico</file>
+        <file>titolopiccolo.png</file>
+        <file>titoloenorme.png</file>
+        <file>MathLogo.png</file>
+        <file>logo.png</file>
+        <file>titoloenorme2.png</file>
+    </qresource>
+</RCC>
