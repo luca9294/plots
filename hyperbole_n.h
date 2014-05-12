@@ -18,6 +18,7 @@ public:
 
 private:
         parser_ellipse_n *parser;
+        string getDescription(int);
 
 
 };

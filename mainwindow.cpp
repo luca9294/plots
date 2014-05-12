@@ -662,24 +662,35 @@ void MainWindow::hyperboleAction(string str){
         if (h.isOK()){
 
             if (!h.isX()){
+         Shape *shape = &h;
         drawPoints(h.xg,h.yg,ui->customPlot);
+        list.push_back(shape->getDescription(i));
         i--;
         drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+        list.push_back(shape->getDescription(i));
         h.perform2();
         i--;
         drawPoints(h.xg,h.yg,ui->customPlot);
+        list.push_back(shape->getDescription(i));
         i--;
-        drawPoints(h.xg1 ,h.yg1,ui->customPlot);}
+        drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+        list.push_back(shape->getDescription(i));
+            }
 
             else{
+                Shape *shape = &h;
                 drawPoints(h.xg,h.yg,ui->customPlot);
+                list.push_back(shape->getDescription(i));
                 i--;
                 drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+                list.push_back(shape->getDescription(i));
                 h.perform2();
                 i--;
                 drawPoints(h.xg,h.yg,ui->customPlot);
+                list.push_back(shape->getDescription(i));
                 i--;
                 drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+                list.push_back(shape->getDescription(i));
             }
 
 
@@ -745,14 +756,19 @@ void MainWindow::hyperboleAction2(string str){
 
         if (i < 5){
        if (h.isOK()){
+               Shape *shape = &h;
                 drawPoints(h.xg,h.yg,ui->customPlot);
+                list.push_back(shape->getDescription(i));
                 i--;
                 drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+                list.push_back(shape->getDescription(i));
                 h.perform2();
                 i--;
                 drawPoints(h.xg,h.yg,ui->customPlot);
+                list.push_back(shape->getDescription(i));
                 i--;
                 drawPoints(h.xg1 ,h.yg1,ui->customPlot);
+                list.push_back(shape->getDescription(i));
 
 
 

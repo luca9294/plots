@@ -2,8 +2,13 @@
 #include <math.h>
 #include "parser_hyperbole.h"
 #include <QRegExp>
+#include <iomanip>
+#include <locale>
+#include <sstream>
+#include <iostream>
 
-Hyperbole::Hyperbole(string str)
+
+Hyperbole::Hyperbole(string str) : Shape()
 {
 
 if (!str.empty())  {
@@ -49,6 +54,90 @@ bool Hyperbole::isX(){
     return  t.isX();
 
 
+}
+
+
+string Hyperbole::getDescription(int i){
+    string result;
+    string color = "";
+
+
+          switch (i){
+          case (1):
+          color = "blue";
+          break;
+
+          case (2):
+          color = "red";
+          break;
+
+          case 3:
+          color = "yellow";
+          break;
+
+          case 4:
+          color = "black";
+          break;
+
+          case 5:
+          color = "green";
+          break;
+
+    }
+
+          std::ostringstream a_n;
+          std::ostringstream b_n;
+          std::ostringstream f1;
+          std::ostringstream f2;
+          std::ostringstream as;
+          std::ostringstream ecc;
+          a_n << std::setprecision(3) << a;
+          b_n << std::setprecision(3) << b;
+
+
+
+
+if (!this->isX()){
+              ecc << std::setprecision(3) << sqrt(a*a + b*b) / a;
+              as << std::setprecision(3)  << b / a;
+              f1 << std::setprecision(3) << sqrt(a*a + b*b);
+              f2 << std::setprecision(3) << -sqrt(a*a + b*b);
+
+
+         result =
+          "<p><FONT size = \"4\">Hyperbole of equation</FONT> <b><FONT size = \"4\" COLOR=\""+color+"\">"+getString()+"</FONT></b></p>"
+          + "<p> <FONT size = \"4\"> The distance from the origin <b>a</b> is "+ a_n.str() +"</FONT></p>"
+          + "<p> <FONT size = \"4\"> <b>FOCUS 1</b> is in the point F1("+ f1.str() +", 0)</FONT></p>"
+          + "<p> <FONT size = \"4\"> <b>FOCUS 2</b> is in the point F2("+ f2.str() +", 0)</FONT></p>"
+          + "<p> <FONT size = \"4\">The <b>eccentricity</b> of the hyperbole is "+ ecc.str()+"</FONT></p>"
+          + "<p> <FONT size = \"4\"> The <b>equations</b> of the asymptotes are y = +/- "+ as.str()+ "x</FONT></p>"
+    ;
+
+
+}
+
+
+else{
+
+    ecc << std::setprecision(3) << sqrt(a*a + b*b) / a;
+    as << std::setprecision(3)  << b / a;
+    f1 << std::setprecision(3) << sqrt(a*a + b*b);
+    f2 << std::setprecision(3) << -sqrt(a*a + b*b);
+
+
+result =
+"<p><FONT size = \"4\">Hyperbole of equation</FONT> <b><FONT size = \"4\" COLOR=\""+color+"\">"+getString()+"</FONT></b></p>"
++ "<p> <FONT size = \"4\"> The distance from the origin <b>a</b> is "+ a_n.str() +"</FONT></p>"
++ "<p> <FONT size = \"4\"> <b>FOCUS 1</b> is in the point F1(0, "+ f1.str()+")</FONT></p>"
++ "<p> <FONT size = \"4\"> <b>FOCUS 2</b> is in the point F2(0, "+ f2.str() +")</FONT></p>"
++ "<p> <FONT size = \"4\">The <b>eccentricity</b> of the hyperbole is "+ ecc.str()+"</FONT></p>"
++ "<p> <FONT size = \"4\"> The <b>equations</b> of the asymptotes are y = +/- "+ as.str()+ "x</FONT></p>"
+;
+
+
+
+}
+return result;
 }
 
 
@@ -263,17 +352,6 @@ yg1 = y1;}
 
 
     }
-/*
-
-for (int i = 0; i<100*a*2 + 1; i ++){
-xg[i] = xg[i];
-
-yg[i] = (yg[i]);
-
-xg1[i] = xg1[i];
-yg1[i] = yg1[i];
-
-*/
 
 
 

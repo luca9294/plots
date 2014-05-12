@@ -2,9 +2,9 @@
 #define HYPERBOLE_H
 #include<QVector>
 using namespace std;
+#include "shape.h"
 
-
-class Hyperbole
+class Hyperbole : public Shape
 {
 public:
     Hyperbole(string);
@@ -24,7 +24,8 @@ public:
     QVector<double> xg1;
     QVector<double> yg1;
 
-
+private:
+    string getDescription(int);
 
 
 };
