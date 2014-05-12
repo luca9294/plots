@@ -9,6 +9,11 @@ public:
     circle_n(string);
     bool isOK();
     void perform2();
+
+private:
+
+
+
 };
 
 #endif // CIRCLE_N_H

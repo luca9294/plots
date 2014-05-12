@@ -79,20 +79,14 @@ string Ellipse_n::getDescription(int i){
               c_2 << std::setprecision(3) << Yc;
 
          result =
-          "<h1>ELLIPSE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
-         + "<br></br>"
+          "<p><FONT size = \"4\"> Ellipse traslated of equation <b><FONT COLOR=\""+color+"\">"+getString()+"</FONT></FONT></b></p>"
          + "<p> <FONT size = \"4\"> The ellipse is traslated with center in C("+ c_1.str()+ ", " + c_2.str() + ") </FONT></p>"
-          + "<br></br>"
           + "<p> <FONT size = \"4\"> MAJOR <b>SEMI-AXIS A</b> = "+ a_n.str() +" on the line y = "+ c_2.str()+ "</FONT></p>"
-          + "<br></br>"
           + "<p><FONT size = \"4\">MINOR <b>SEMI-AXIS B</b> = "+ b_n.str() +" on the line x = "+ c_1.str() +"</p></FONT>"
-          + "<br></br>"
          + "<p> <FONT size = \"4\"> <b>FOCUS 1</b> is in the point F1("+ f1.str() +", "+ c_2.str()+")</FONT></p>"
-         + "<br></br>"
           + "<p> <FONT size = \"4\"> <b>FOCUS 2</b> is in the point F2("+ f2.str() +", "+ c_2.str()+")</FONT></p>"
-         + "<br></br>"
          + "<p> <FONT size = \"4\"> The <b>eccentricity</b> of the ellipse has value "+ ecc.str()+ "</FONT></p>"
-        + "<br></br>";
+   ;
 
 
 }
@@ -106,20 +100,13 @@ string Ellipse_n::getDescription(int i){
 
 
 
-              result = "<h1>ELLIPSE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
-             + "<br></br>"
+              result = "<p><FONT size = \"4\">Ellipse of equation <b><FONT COLOR=\""+color+"\">"+getString()+"</FONT></b></FONT></p>"
              + "<p> <FONT size = \"4\"> The ellipse is traslated with center in C("+ c_1.str()+ ", " + c_2.str() + ") </FONT></p>"
-             + "<br></br>"
              + "<p> <FONT size = \"4\"> MAJOR <b>SEMI-AXIS A</b> = "+ b_n.str() +" on the line x = "+ c_1.str()+"</FONT></p>"
-              + "<br></br>"
               + "<p><FONT size = \"4\">MINOR <b>SEMI-AXIS B</b> = "+ a_n.str() +" on the line y = "+ c_2.str()+"</p></FONT>"
-              + "<br></br>"
              + "<p> <FONT size = \"4\"> <b>FOCUS 1</b> is in the point F1("+c_1.str()+", "+ f1.str() +")</FONT></p>"
-             + "<br></br>"
               + "<p> <FONT size = \"4\"> <b>FOCUS 2</b> is in the point F2("+c_1.str()+", "+ f2.str() +")</FONT></p>"
-             + "<br></br>"
-              + "<p> <FONT size = \"4\"> The <b>eccentricity</b> of the ellipse has value "+ ecc.str()+ "</FONT></p>"
-             + "<br></br>";
+              + "<p> <FONT size = \"4\"> The <b>eccentricity</b> of the ellipse has value "+ ecc.str()+ "</FONT></p>";
 
 
 
@@ -130,12 +117,9 @@ string Ellipse_n::getDescription(int i){
           else{
               c_1 << std::setprecision(3) << Xc;
               c_2 << std::setprecision(3) << Yc;
-              result = "<h1>CIRCLE of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
-             + "<br></br>"
-                + "<p> <FONT size = \"4\">The center of the <b>circle</b> is in the point C("+c_1.str()+", "+c_2.str()+") </FONT></p>"
-                 + "<br></br>"
-              + "<p> <FONT size = \"4\"><b>RADIUS</b> = "+ b_n.str() +"</FONT></p>"
-              + "<br></br>";
+              result = "<p><FONT size = \"4\">Circle of equation <b><FONT COLOR=\""+color+"\">"+getString()+"</FONT></b></FONT></p>"
+              + "<p> <FONT size = \"4\">The center of the <b>circle</b> is in the point C("+c_1.str()+", "+c_2.str()+") </FONT></p>"
+              + "<p> <FONT size = \"4\">The <b>Radius</b> of the circle has value "+ b_n.str() +"</FONT></p>";
 
 
 

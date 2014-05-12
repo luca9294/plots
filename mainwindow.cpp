@@ -154,9 +154,7 @@ ui->label0->setFont(f);
 void MainWindow::circleAction(string str)
 {
 
-
     if (i<5){
-        cout << str << endl;
         Circle circle (str);
 
       if (!circle.isOK())  {
@@ -171,9 +169,17 @@ void MainWindow::circleAction(string str)
 
 
   (circle.getX(), circle.getY(),ui->customPlot);
-           drawPoints(circle.getX(), circle.getY(),ui->customPlot);
+          Shape *shape = &circle;
+
+
+
+          drawPoints(circle.getX(), circle.getY(),ui->customPlot);
+           list.push_back(shape->getDescription(i));
           i--;
-           drawPoints(circle.getX1(), circle.getY1(),ui->customPlot);
+
+          drawPoints(circle.getX1(), circle.getY1(),ui->customPlot);
+          cout << "i qua " << i <<endl;
+          list.push_back(shape->getDescription(i));
            QString string = "<b>";
            string.append(QString::fromUtf8(circle.getString().c_str()));
            string.append("</b>");
@@ -231,9 +237,12 @@ void MainWindow::circleAction2(string str)
 
         else{
 
+         Shape *shape = &circle;
          drawPoints(circle.getX(), circle.getY(),ui->customPlot);
-          i--;
-          drawPoints(circle.getX1(), circle.getY1(),ui->customPlot);
+         list.push_back(shape->getDescription(i));
+         i--;
+         drawPoints(circle.getX1(), circle.getY1(),ui->customPlot);
+         list.push_back(shape->getDescription(i));
            QString string = "<b>";
            string.append(QString::fromUtf8(circle.getString().c_str()));
            string.append("</b>");
@@ -280,7 +289,6 @@ void MainWindow::circleAction2(string str)
 void MainWindow::rettaAction(string str)
 {
 if (i < 5){
-        cout << str << endl;
 
         Retta retta (str);
         Shape *test = &retta;
@@ -884,7 +892,7 @@ customPlot->addGraph();
 
  customPlot->yAxis->scaleRange(1, customPlot->xAxis->range().center());
 
-      customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+      customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
     customPlot->replot();
         i++;
 

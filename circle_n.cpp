@@ -3,6 +3,9 @@
 #include <qstring.h>
 #include <qregexp.h>
 #include <iostream>
+#include <iomanip>
+#include <locale>
+#include <sstream>
 
 
 
@@ -61,3 +64,11 @@ bool circle_n::isOK(){
 
 
 }
+
+
+
+
+
+
+
+

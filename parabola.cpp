@@ -19,9 +19,7 @@ this->str = str;
       parser = new Parser_parabola (str);
       perform();
 
-        cout << a << endl;
-        cout << b << endl;
-        cout << c << endl;
+
 }
 
 bool Parabola::isX(){
@@ -151,14 +149,10 @@ string Parabola::getDescription(int i){
 
     //std::string str = boost::lexical_cast<string>(m);
           string result =
-          "<h1>PARABOLA of equation <FONT COLOR=\""+color+"\">"+getString()+"</FONT></h1>"
-          + "<cp></cp>"
-          + "<h2>a = "+ a_n.str() +"</h2>"
-          + "<cp></cp>"
-          + "<h2>b = "+ b_n.str() +"</h2>"
-          + "<cp></cp>"
-          + "<h2>c = "+ c_n.str() +"</h2>"
-          + "<br></br>";
+          "<p><FONT size=\"4\">Parabola of equation </FONT><b><FONT  size=\"4\" COLOR=\""+color+"\">"+getString()+"</FONT></b>"
+          + "<p><b><FONT size=\"4\">a </b> = "+ a_n.str() +"</FONT></p>"
+          + "<p><b><FONT size=\"4\">b </b>= "+ b_n.str() +"</FONT></p>"
+          + "<p><b><FONT size=\"4\">c = </b>"+ c_n.str() +"</FONT></p>";
 
           //TIPO y = ax^2 + bx + c
           if (!parser->isX()){
@@ -185,11 +179,8 @@ string Parabola::getDescription(int i){
 
             result = result +
                     "<p><font size=\"4\">The <b>vertex</b> of the parabola is in the point V("+str+", "+v2.str()+")</font></p>"
-                    +"<br></br>"
                     +"<p><font size=\"4\">The <b>focus</b> of the parabola is in the point F("+str+", "+v3.str()+")</font></p>"
-                    +"<br></br>"
                     +"<p><font size=\"4\">The <b>axis of symmetry</b> of the parabola has equation x = "+str+ "</font></p>"
-                    +"<br></br>"
                     +"<p><font size=\"4\">The <b>directrix</b> of the parabola has equation y = "+v4.str()+ "</font></p>"
                     ;
 
@@ -220,11 +211,8 @@ string Parabola::getDescription(int i){
 
               result = result +
                       "<p><font size=\"4\">The <b>vertex</b> of the parabola is in the point V("+v1.str()+", "+str+")</font></p>"
-                      +"<br></br>"
                       +"<p><font size=\"4\">The <b>focus</b> of the parabola is in the point F("+v3.str()+", "+str+")</font></p>"
-                      +"<br></br>"
                       +"<p><font size=\"4\">The <b>axis of symmetry</b> of the parabola has equation y = "+str+ "</font></p>"
-                      +"<br></br>"
                       +"<p><font size=\"4\">The <b>directrix</b> of the parabola has equation x = "+v4.str()+ "</font></p>"
                       ;
 

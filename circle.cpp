@@ -1,6 +1,13 @@
 #include "circle.h"
 #include <math.h>
 #include <QRegExp>
+#include <iostream>
+#include <iomanip>
+#include <locale>
+#include <sstream>
+
+
+
 
 
 Circle::Circle(string str) : Ellipse(str)
@@ -17,8 +24,6 @@ string str1 = str.substr(12,str.length()-12);
 double af = atof(str1.c_str());
 a =  sqrt (af);
 b =  sqrt (af);
-
-
 
 }
 
@@ -70,3 +75,59 @@ bool Circle::isOK(){
 
 
 }
+
+string Circle::getDescription(int i){
+    string result;
+
+    string color = "";
+
+
+
+          switch (i){
+          case (1):
+          color = "blue";
+          break;
+
+          case (2):
+          color = "red";
+          break;
+
+          case 3:
+          color = "yellow";
+          break;
+
+          case 4:
+          color = "black";
+          break;
+
+          case 5:
+          color = "green";
+          break;
+
+    }
+
+
+
+    std::ostringstream a_n;
+    std::ostringstream b_n;
+
+    a_n << std::setprecision(3) << a;
+    b_n << std::setprecision(3) << b;
+
+
+
+   result = "<p> <FONT size = \"4\">Circle of equation <b><FONT COLOR=\""+color+"\">"+getString()+"</FONT></FONT></b></p>"
+              + "<p> <FONT size = \"4\">The center of the <b>circle</b> is the origin of the axes </FONT></p>"
+              + "<p> <FONT size = \"4\">The <b>Radius</b> of the circle has value "+ b_n.str() +"</FONT></p>";
+
+
+
+
+
+
+
+          return result;
+
+
+}
+
