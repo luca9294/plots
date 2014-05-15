@@ -3,6 +3,8 @@
 #
 
 QT       += core gui
+QT       += testlib
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = plot-examples
@@ -32,7 +34,8 @@ SOURCES += main.cpp\
     parabola_d.cpp \
     hyperbole_d.cpp \
     hyperbole_n.cpp \
-    form.cpp
+    form.cpp \
+    tests/test2.cpp
 
 HEADERS  += mainwindow.h \
     qcustomplot.h \
@@ -57,7 +60,9 @@ HEADERS  += mainwindow.h \
     hyperbole_d.h \
     hyperbole_n.h \
     shape.h \
-    form.h
+    form.h \
+    tests/test2.h \
+    tests/AutoTest.h
 
 FORMS    += mainwindow.ui \
     dialog_line.ui \

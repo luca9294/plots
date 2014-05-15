@@ -25,10 +25,27 @@
 
 #include <QApplication>
 #include "mainwindow.h"
+#include <tests/AutoTest.h>
+#include <QDebug>
+
 
 
 int main(int argc, char *argv[])
 {
+    int failures = AutoTest::run(argc, argv);
+           if (failures == 0)
+
+           {
+               qDebug() << "ALL TESTS PASSED";
+           }
+           else
+           {
+               qDebug() << failures << " TESTS FAILED!";
+           }
+
+
+
+
 #if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
   QApplication::setGraphicsSystem("raster");
 
