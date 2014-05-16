@@ -97,7 +97,7 @@ std::ostringstream y_n;
       + "<p><FONT size=\"4\"><b>q</b> = "+ q_n.str() +"</FONT></p>";
 
       if (parser->isX()){
-          result = "<p><FONT size=\"4\">STRAIGHT LINE of equation </FONT> <FONT COLOR=\""+color+"\">"+getString()+"</FONT></p>"
+          result = "<p><FONT size=\"4\">Straight Line of equation </FONT> <FONT COLOR=\""+color+"\">"+getString()+"</FONT></p>"
           + "<p><FONT size=\"4\">m = "+ m_n.str() +"<p></FONT>";
 
 

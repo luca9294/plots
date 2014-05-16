@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "parser_line.h"
+#include "retta.h"
 #include "tests/AutoTest.h"
 
 
@@ -14,15 +15,24 @@ public:
 
 private:
     Parser *col;
+    Retta *retta;
 
 signals:
 
 public slots:
 
 private slots:
-
-
+    //Line Parsers
     void getM();
+    void getQ();
+    void isX();
+
+    //Line Class
+    void isOKLine();
+    void getXLine();
+    void getYLine();
+    void getDescriptionLine();
+
 
 
    /* void testCreateUser();
