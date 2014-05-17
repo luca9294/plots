@@ -403,8 +403,7 @@ void Test2::getDescriptionEllipseN(){
   string str2 = ellipseN->getDescription(1);
   str2 = str2.substr(0, 35);
   str = str.substr(0, 35);
-  cout << "str1 " << str << endl;
-  cout << "str2 " << str2 << endl;
+
 
   QVERIFY(str2==str);
 }
@@ -497,7 +496,114 @@ QVector<double> yPoints = circle->getY1();
 
 }
 
+void Test2::getDescriptionCircle(){
+   circle = new Circle("x^2 + y^2 = 1");
+  string str = "<p> <FONT size = \"4\">Circle of equa";
+  string str2 = circle->getDescription(1);
+  str2 = str2.substr(0, 35);
+  str = str.substr(0, 35);
 
+  QVERIFY(str2==str);
+}
+
+//Test Circle TRASLATED
+void Test2::isOKCircleN(){
+circleN = new circle_n("(x - 1)^2 + (y - 1)^2 = 1");
+QVERIFY(circle->isOK());
+}
+
+void Test2::getXCircleN(){
+circleN = new circle_n("(x - 1)^2 + (y - 1)^2 = 1");
+QVector<double> xPoints = circleN->getX();
+QVector<double> yPoints = circleN->getY();
+
+ int indexg = 0;
+ for (int i = 0 ; i < yPoints.length(); i++){
+     if ((int)yPoints.at(i) == 2){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)xPoints.at(indexg);
+
+
+ QVERIFY(e == 1);
+
+}
+
+void Test2::getYCircleN(){
+circleN = new circle_n("(x - 1)^2 + (y - 1)^2 = 1");
+QVector<double> xPoints = circleN->getX();
+QVector<double> yPoints = circleN->getY();
+
+ int indexg = 0;
+ for (int i = 0 ; i < xPoints.length(); i++){
+     if ((int)xPoints.at(i) == 0){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)yPoints.at(indexg);
+
+
+ QVERIFY(e == 1);
+
+}
+
+
+void Test2::getX1CircleN(){
+circleN = new circle_n("(x - 1)^2 + (y - 1)^2 = 1");
+QVector<double> xPoints = circleN->getX1();
+QVector<double> yPoints = circleN->getY1();
+
+ int indexg = 0;
+ for (int i = 0 ; i < yPoints.length(); i++){
+     if ((int)yPoints.at(i) == 1){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)xPoints.at(indexg);
+
+
+ QVERIFY(e == 0);
+
+}
+
+void Test2::getY1CircleN(){
+circleN = new circle_n("(x - 1)^2 + (y - 1)^2 = 1");
+QVector<double> xPoints = circleN->getX1();
+QVector<double> yPoints = circleN->getY1();
+
+ int indexg = 0;
+ for (int i = 0 ; i < xPoints.length(); i++){
+     if ((int)xPoints.at(i) == 1){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)yPoints.at(indexg);
+
+
+ QVERIFY(e == 0);
+
+}
+
+void Test2::getDescriptionCircleN(){
+  circleN = new circle_n("(x - 1)^2 + (y - 1)^2 = 1");
+  string str = "<p><FONT size = \"4\">Circle of equat";
+  string str2 = circleN->getDescription(1);
+  str2 = str2.substr(0, 35);
+  str = str.substr(0, 35);
+  cout << "str " << str << endl;
+  cout << "str2 " << str2 << endl;
+
+  QVERIFY(str2==str);
+}
 
 
 

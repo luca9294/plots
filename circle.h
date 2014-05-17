@@ -9,9 +9,9 @@ public:
     Circle(string);
     void perform2();
     bool isOK();
-
+      string getDescription(int);
 private:
-       string getDescription(int);
+
 };
 
 #endif // CIRCLE_H

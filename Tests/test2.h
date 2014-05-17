@@ -9,6 +9,7 @@
 #include "parser_parabola.h"
 #include "ellipse.h"
 #include "ellipse_n.h"
+#include "circle_n.h"
 #include "parser_ellipse_n.h"
 #include "parser_ellipse.h"
 #include "tests/AutoTest.h"
@@ -29,6 +30,7 @@ private:
     Ellipse_n *ellipseN;
     Retta *retta;
     Circle *circle;
+    circle_n *circleN;
     Parabola *parabola;
 
 signals:
@@ -89,7 +91,7 @@ private slots:
     void getYCircle();
     void getX1Circle();
     void getY1Circle();
-    //void getDescriptionCircle();
+    void getDescriptionCircle();
 
 
 
@@ -100,6 +102,15 @@ private slots:
     void getX1EllipseN();
     void getY1EllipseN();
     void getDescriptionEllipseN();
+
+
+    //Circle traslated Class
+    void isOKCircleN();
+    void getXCircleN();
+    void getYCircleN();
+    void getX1CircleN();
+    void getY1CircleN();
+    void getDescriptionCircleN();
 
 
 
