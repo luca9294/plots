@@ -105,11 +105,79 @@ void Test2::isOKParabola(){
 
 void Test2::getYParabola(){
     parabola = new Parabola("y = x^2");
-    int index = (parabola->getX()).indexOf(1);
-    cout << "TTES " << index << endl;
-    QVERIFY(parabola->getY().at(index) == 0);
+    QVector<double> xPoints = parabola->getX();
+    QVector<double> yPoints = parabola->getY();
+    int index = (10010); //position of 1 in the X array
+    int e = (int)yPoints.at(index);
+    QVERIFY(e == 1);
 
 }
+
+
+
+void Test2::getXParabola(){
+    parabola = new Parabola("y = x^2 + 1");
+    QVector<double> xPoints = parabola->getX();
+    QVector<double> yPoints = parabola->getY();
+    int x = (10010); //index of y = 2
+    QVERIFY((int)xPoints.at(x) == 1);
+
+}
+
+
+
+
+void Test2::getY1Parabola(){
+    parabola = new Parabola("x = y^2");
+    QVector<double> xPoints = parabola->getX1();
+    QVector<double> yPoints = parabola->getY1();
+    int indexg = 0;
+    for (int i = 0 ; i < xPoints.length(); i++){
+        if ((int)xPoints.at(i) == 1){
+            indexg = i;
+            break;
+        }
+    }
+
+    //indexg position of x = 1
+
+    QVERIFY((int)yPoints.at(indexg) == -1);
+
+}
+
+
+
+
+void Test2::getX1Parabola(){
+    parabola = new Parabola("x = y^2");
+    QVector<double> xPoints = parabola->getX1();
+    QVector<double> yPoints = parabola->getY1();
+    int indexg = 0;
+    for (int i = 0 ; i < yPoints.length(); i++){
+        if ((int)yPoints.at(i) == -2){
+            indexg = i;
+            break;
+        }
+    }
+
+    //indexg position of y = 2
+
+    QVERIFY((int)xPoints.at(indexg) == 4);
+
+}
+
+void Test2::getDescriptionParabola(){
+  parabola = new Parabola("y = 3x^2 + x + 2");
+  string str = "<p><FONT size=\"4\">Parabola of equation";
+  string str2 = parabola->getDescription(1);
+  str2 = str2.substr(0, 35);
+  str = str.substr(0, 35);
+  QVERIFY(str2==str);
+}
+
+
+
+
 
 
 

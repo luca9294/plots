@@ -46,11 +46,11 @@ private slots:
 
     //Parabola
     void isOKParabola();
-    //void getXParabola();
+    void getXParabola();
     void getYParabola();
-   // void getX1Parabola();
-   // void getY1Parabola();
-   // void getDescriptionParabola();
+    void getX1Parabola();
+    void getY1Parabola();
+    void getDescriptionParabola();
 
 
 

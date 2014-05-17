@@ -24,6 +24,7 @@ public:
     bool isOK();
      bool isX();
     string getString();
+     string getDescription(int);
 
 private:
     double a,b,c;
@@ -34,7 +35,7 @@ private:
     QPoint vertex;
     QPoint focus;
     Parser_parabola *parser;
-    string getDescription(int);
+
     string str;
 };
 
