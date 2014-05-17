@@ -4,6 +4,7 @@
 #include <QObject>
 #include "parser_line.h"
 #include "retta.h"
+#include "circle.h"
 #include "parabola.h"
 #include "parser_parabola.h"
 #include "ellipse.h"
@@ -27,6 +28,7 @@ private:
     Ellipse *ellipse;
     Ellipse_n *ellipseN;
     Retta *retta;
+    Circle *circle;
     Parabola *parabola;
 
 signals:
@@ -81,13 +83,23 @@ private slots:
     void getY1Ellipse();
     void getDescriptionEllipse();
 
+    //Circle Class
+    void isOKCircle();
+    void getXCircle();
+    void getYCircle();
+    void getX1Circle();
+    void getY1Circle();
+    //void getDescriptionCircle();
+
+
+
     //Ellipse Traslated Class
     void isOKEllipseN();
     void getXEllipseN();
     void getYEllipseN();
     void getX1EllipseN();
     void getY1EllipseN();
-   // void getDescriptionEllipseN();*/
+    void getDescriptionEllipseN();
 
 
 

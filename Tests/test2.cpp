@@ -391,23 +391,111 @@ void Test2::getX1EllipseN(){
             break;
         }}
 
-    cout << indexg << endl;
+
     int e = (int)xPoints.at(indexg);
     QVERIFY(e == -8);
 
 }
-/*
-void Test2::getDescriptionEllipse(){
-  ellipse = new Ellipse("x^2/81 + y^2/9 = 1");
-  string str = "<p><FONT size = \"4\">Ellipse of equation";
-  string str2 = ellipse->getDescription(1);
+
+void Test2::getDescriptionEllipseN(){
+    ellipseN = new Ellipse_n("(x - 1)^2/81 + (y - 1)^2/9 = 1");
+  string str = "<p><FONT size = \"4\"> Ellipse trasla";
+  string str2 = ellipseN->getDescription(1);
   str2 = str2.substr(0, 35);
   str = str.substr(0, 35);
+  cout << "str1 " << str << endl;
+  cout << "str2 " << str2 << endl;
+
   QVERIFY(str2==str);
 }
-*/
 
 
+//Test Circle
+void Test2::isOKCircle(){
+circle = new Circle("x^2 + y^2 = 1");
+QVERIFY(circle->isOK());
+}
+
+void Test2::getXCircle(){
+circle = new Circle("x^2 + y^2 = 1");
+QVector<double> xPoints = circle->getX();
+QVector<double> yPoints = circle->getY();
+
+ int indexg = 0;
+ for (int i = 0 ; i < yPoints.length(); i++){
+     if ((int)yPoints.at(i) == 1){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)xPoints.at(indexg);
+
+
+ QVERIFY(e == 0);
+
+}
+
+void Test2::getYCircle(){
+circle = new Circle("x^2 + y^2 = 1");
+QVector<double> xPoints = circle->getX();
+QVector<double> yPoints = circle->getY();
+
+ int indexg = 0;
+ for (int i = 0 ; i < xPoints.length(); i++){
+     if ((int)xPoints.at(i) == -1){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)yPoints.at(indexg);
+
+
+ QVERIFY(e == 0);
+
+}
+
+
+void Test2::getX1Circle(){
+circle = new Circle("x^2 + y^2 = 1");
+QVector<double> xPoints = circle->getX1();
+QVector<double> yPoints = circle->getY1();
+
+ int indexg = 0;
+ for (int i = 0 ; i < yPoints.length(); i++){
+     if ((int)yPoints.at(i) == -1){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)xPoints.at(indexg);
+
+
+ QVERIFY(e == 0);
+
+}
+
+void Test2::getY1Circle(){
+circle = new Circle("x^2 + y^2 = 1");
+QVector<double> xPoints = circle->getX1();
+QVector<double> yPoints = circle->getY1();
+
+ int indexg = 0;
+ for (int i = 0 ; i < xPoints.length(); i++){
+     if ((int)xPoints.at(i) == 1){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)yPoints.at(indexg);
+
+
+ QVERIFY(e == 0);
+
+}
 
 
 
