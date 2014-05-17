@@ -6,7 +6,8 @@
 #include "retta.h"
 #include "parabola.h"
 #include "parser_parabola.h"
-
+#include "ellipse.h"
+#include "parser_ellipse.h"
 #include "tests/AutoTest.h"
 
 
@@ -19,6 +20,8 @@ public:
 private:
     Parser *col;
     Parser_parabola *par;
+    parser_ellipse *parEl;
+    Ellipse *ellipse;
     Retta *retta;
     Parabola *parabola;
 
@@ -38,6 +41,10 @@ private slots:
     void getCParabola();
     void isXParabola();
 
+    //Center ellipse parser
+    void getAEllipse();
+    void getBEllipse();
+
     //Line Class
     void isOKLine();
     void getXLine();
@@ -51,6 +58,14 @@ private slots:
     void getX1Parabola();
     void getY1Parabola();
     void getDescriptionParabola();
+
+    //Ellipse Class
+    void isOKEllipse();
+    void getXEllipse();
+    void getYEllipse();
+    void getX1Ellipse();
+    void getY1Ellipse();
+    void getDescriptionEllipse();
 
 
 

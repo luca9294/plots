@@ -175,7 +175,115 @@ void Test2::getDescriptionParabola(){
   QVERIFY(str2==str);
 }
 
+//Test Ellipse CENTERED Parser
+void Test2::getAEllipse(){
+    parEl = new parser_ellipse("x^2/81 + y^2/9 = 1");
+    QVERIFY(parEl->getA() == 9);
 
+}
+
+void Test2::getBEllipse(){
+    parEl = new parser_ellipse("x^2/81 + y^2/9 = 1");
+    QVERIFY(parEl->getB() == 3);
+
+}
+
+
+
+//Test Ellipse CENTERED class
+void Test2::isOKEllipse(){
+    ellipse = new Ellipse("x^2/81 + y^2/9 = 1");
+    QVERIFY(ellipse->isOK());
+
+}
+
+
+void Test2::getYEllipse(){
+    ellipse = new Ellipse("x^2/81 + y^2/9 = 1");
+    QVector<double> xPoints = ellipse->getX();
+    QVector<double> yPoints = ellipse->getY();
+
+    int indexg = 0;
+    for (int i = 0 ; i < xPoints.length(); i++){
+        if ((int)xPoints.at(i) == 9){
+            indexg = i;
+            break;
+        }
+
+        cout <<"size " <<xPoints.length() << endl;
+    int e = (int)yPoints.at(indexg);
+    QVERIFY(e == 0);
+
+}}
+
+
+void Test2::getXEllipse(){
+    ellipse = new Ellipse("x^2/81 + y^2/9 = 1");
+    QVector<double> xPoints = ellipse->getX();
+    QVector<double> yPoints = ellipse->getY();
+
+    int indexg = 0;
+    for (int i = 0 ; i < yPoints.length(); i++){
+        if ((int)yPoints.at(i) == 3){
+            indexg = i;
+            break;
+        }}
+
+
+    int e = (int)xPoints.at(indexg);
+    QVERIFY(e == 0);
+
+}
+
+
+
+
+void Test2::getY1Ellipse(){
+    ellipse = new Ellipse("x^2/81 + y^2/9 = 1");
+    QVector<double> xPoints = ellipse->getX1();
+    QVector<double> yPoints = ellipse->getY1();
+
+    int indexg = 0;
+    for (int i = 0 ; i < xPoints.length(); i++){
+        if ((int)xPoints.at(i) == 9){
+            indexg = i;
+            break;
+        }}
+
+
+    int e = (int)yPoints.at(indexg);
+    QVERIFY(e == 0);
+
+}
+
+
+void Test2::getX1Ellipse(){
+    ellipse = new Ellipse("x^2/81 + y^2/9 = 1");
+
+    QVector<double> xPoints = ellipse->getX1();
+    QVector<double> yPoints = ellipse->getY1();
+
+    int indexg = 0;
+    for (int i = 0 ; i < yPoints.length(); i++){
+        if ((int)yPoints.at(i) == 0){
+            indexg = i;
+            break;
+        }}
+
+    cout << indexg << endl;
+    int e = (int)xPoints.at(indexg);
+    QVERIFY(e == -9);
+
+}
+
+void Test2::getDescriptionEllipse(){
+  ellipse = new Ellipse("x^2/81 + y^2/9 = 1");
+  string str = "<p><FONT size = \"4\">Ellipse of equation";
+  string str2 = ellipse->getDescription(1);
+  str2 = str2.substr(0, 35);
+  str = str.substr(0, 35);
+  QVERIFY(str2==str);
+}
 
 
 
