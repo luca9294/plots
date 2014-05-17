@@ -7,6 +7,8 @@
 #include "parabola.h"
 #include "parser_parabola.h"
 #include "ellipse.h"
+#include "ellipse_n.h"
+#include "parser_ellipse_n.h"
 #include "parser_ellipse.h"
 #include "tests/AutoTest.h"
 
@@ -21,7 +23,9 @@ private:
     Parser *col;
     Parser_parabola *par;
     parser_ellipse *parEl;
+    parser_ellipse_n *parElN;
     Ellipse *ellipse;
+    Ellipse_n *ellipseN;
     Retta *retta;
     Parabola *parabola;
 
@@ -30,6 +34,7 @@ signals:
 public slots:
 
 private slots:
+
     //Line Parser
     void getM();
     void getQ();
@@ -44,6 +49,15 @@ private slots:
     //Center ellipse parser
     void getAEllipse();
     void getBEllipse();
+
+
+    //Ellipse_n parser
+    void getAEllipseN();
+    void getBEllipseN();
+    void getXcEllipseN();
+    void getYcEllipseN();
+
+
 
     //Line Class
     void isOKLine();
@@ -66,6 +80,15 @@ private slots:
     void getX1Ellipse();
     void getY1Ellipse();
     void getDescriptionEllipse();
+
+    //Ellipse Traslated Class
+    void isOKEllipseN();
+    void getXEllipseN();
+    void getYEllipseN();
+    void getX1EllipseN();
+    void getY1EllipseN();
+   // void getDescriptionEllipseN();*/
+
 
 
 

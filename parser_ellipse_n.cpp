@@ -42,7 +42,6 @@ void parser_ellipse_n::perform(){
 result = d.toStdString();
 
 
-    cout << "test: " << result << endl;
 
     tokenizer words(result, " "); //the delimiters are space and = and ;
 
@@ -124,7 +123,7 @@ a = 1;
 
     str = *i;
 
-cout << str << endl;
+
     if (str == "-"){
         negative = false;
 
