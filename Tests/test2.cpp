@@ -269,7 +269,6 @@ void Test2::getX1Ellipse(){
             break;
         }}
 
-    cout << indexg << endl;
     int e = (int)xPoints.at(indexg);
     QVERIFY(e == -9);
 
@@ -599,13 +598,24 @@ void Test2::getDescriptionCircleN(){
   string str2 = circleN->getDescription(1);
   str2 = str2.substr(0, 35);
   str = str.substr(0, 35);
-  cout << "str " << str << endl;
-  cout << "str2 " << str2 << endl;
-
   QVERIFY(str2==str);
 }
 
 
+//Test Hyperbole parser
+void Test2::getAHyperbole(){
+parHy = new parser_hyperbole("x^2/25 - y^2/9 = 1");
+QVERIFY(parHy->getA()==5);
+}
 
+void Test2::getBHyperbole(){
+parHy = new parser_hyperbole("x^2/25 - y^2/9 = 1");
+QVERIFY(parHy->getB()==3);
+}
+
+void Test2::isXHyperbole(){
+parHy = new parser_hyperbole("y^2/25 - x^2/9 = 1");
+QVERIFY (parHy->isX());
+}
 
 

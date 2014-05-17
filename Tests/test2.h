@@ -12,6 +12,7 @@
 #include "circle_n.h"
 #include "parser_ellipse_n.h"
 #include "parser_ellipse.h"
+#include "parser_hyperbole.h"
 #include "tests/AutoTest.h"
 
 
@@ -31,6 +32,7 @@ private:
     Retta *retta;
     Circle *circle;
     circle_n *circleN;
+    parser_hyperbole *parHy;
     Parabola *parabola;
 
 signals:
@@ -60,6 +62,11 @@ private slots:
     void getBEllipseN();
     void getXcEllipseN();
     void getYcEllipseN();
+
+    //Hyperbole parser
+    void getAHyperbole();
+    void getBHyperbole();
+    void isXHyperbole();
 
 
 
