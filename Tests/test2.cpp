@@ -28,7 +28,7 @@ void Test2::isX(){
   QVERIFY(col->isX());
 }
 
-//Test line class
+//Test RETTA class
 void Test2::isOKLine(){
   retta = new Retta("y = 3x + 1");
   QVERIFY(retta->isOK());
@@ -68,4 +68,57 @@ void Test2::getXLine(){
 
   QVERIFY(xPoints.at(index) == 0);
 }
+
+
+//Test PARABOLA parser
+void Test2::getAParabola(){
+    par = new Parser_parabola("y = 3x^2 + 2x + 1");
+    QVERIFY(par->getA() == 3);
+
+}
+
+void Test2::getBParabola(){
+    par = new Parser_parabola("y = 3x^2 + 2x + 1");
+    QVERIFY(par->getB() == 2);
+
+}
+
+void Test2::getCParabola(){
+    par = new Parser_parabola("y = 3x^2 + 2x + 1");
+    QVERIFY(par->getC() == 1);
+
+}
+
+void Test2::isXParabola(){
+par = new Parser_parabola("x = 3y^2 + 2y + 1");
+QVERIFY(par->isX());
+
+}
+
+//Test Parabola
+void Test2::isOKParabola(){
+    parabola = new Parabola("y = 3x^2 + 2x + 1");
+    QVERIFY(parabola->isOK());
+
+}
+
+
+void Test2::getYParabola(){
+    parabola = new Parabola("y = x^2");
+    int index = (parabola->getX()).indexOf(1);
+    cout << "TTES " << index << endl;
+    QVERIFY(parabola->getY().at(index) == 0);
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
