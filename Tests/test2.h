@@ -128,11 +128,11 @@ private slots:
     void getYHyperbole();
     void getX1Hyperbole();
     void getY1Hyperbole();
-    /*void getX2Hyperbole();
+    void getX2Hyperbole();
     void getY2Hyperbole();
     void getX3Hyperbole();
     void getY3Hyperbole();
-    void getDescriptionHyperbole();*/
+    void getDescriptionHyperbole();
 
 
 

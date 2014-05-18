@@ -23,9 +23,10 @@ public:
     QVector<double> yg;
     QVector<double> xg1;
     QVector<double> yg1;
+    string getDescription(int);
 
 private:
-    string getDescription(int);
+
 
 
 };
