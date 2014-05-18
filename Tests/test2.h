@@ -10,6 +10,7 @@
 #include "ellipse.h"
 #include "ellipse_n.h"
 #include "circle_n.h"
+#include "hyperbole.h"
 #include "parser_ellipse_n.h"
 #include "parser_ellipse.h"
 #include "parser_hyperbole.h"
@@ -29,6 +30,7 @@ private:
     parser_ellipse_n *parElN;
     Ellipse *ellipse;
     Ellipse_n *ellipseN;
+    Hyperbole *hyp;
     Retta *retta;
     Circle *circle;
     circle_n *circleN;
@@ -118,6 +120,19 @@ private slots:
     void getX1CircleN();
     void getY1CircleN();
     void getDescriptionCircleN();
+
+
+    //Hyperbole traslated Class
+    void isOKHyperbole();
+    void getXHyperbole();
+    void getYHyperbole();
+    void getX1Hyperbole();
+    void getY1Hyperbole();
+    /*void getX2Hyperbole();
+    void getY2Hyperbole();
+    void getX3Hyperbole();
+    void getY3Hyperbole();
+    void getDescriptionHyperbole();*/
 
 
 

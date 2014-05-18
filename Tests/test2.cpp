@@ -619,3 +619,114 @@ QVERIFY (parHy->isX());
 }
 
 
+//Test Hyperbole class
+
+void Test2::isOKHyperbole(){
+hyp = new Hyperbole("x^2 - y^2 = 1");
+QVERIFY(hyp->isOK());
+}
+
+void Test2::getXHyperbole(){
+hyp = new Hyperbole("x^2/3 - y^2/3 = 1");
+QVector<double> xPoints = hyp->xg;
+QVector<double> yPoints = hyp->yg;
+
+ int indexg = 0;
+ for (int i = 0 ; i < yPoints.length(); i++){
+     if ((int)yPoints.at(i) == 1){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)xPoints.at(indexg);
+ cout << "e "  << indexg << endl;
+cout << "e "  << xPoints.length() << endl;
+
+ QVERIFY(e == 2);
+
+}
+
+void Test2::getYHyperbole(){
+hyp = new Hyperbole("x^2/4 - y^2/4 = 1");
+QVector<double> xPoints = hyp->xg;
+QVector<double> yPoints = hyp->yg;
+
+ int indexg = 0;
+ for (int i = 0 ; i < xPoints.length(); i++){
+     if ((int)xPoints.at(i) == 2){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)yPoints.at(indexg);
+ cout << "e "  << indexg << endl;
+cout << "e "  << xPoints.length() << endl;
+
+ QVERIFY(e == 0);
+
+}
+
+//DA RIGUARDARE NON FUNZIONA
+void Test2::getX1Hyperbole(){
+hyp = new Hyperbole("x^2/3 - y^2/3 = 1");
+QVector<double> xPoints = hyp->xg1;
+QVector<double> yPoints = hyp->yg1;
+
+ int indexg = 0;
+ for (int i = 0 ; i < yPoints.length(); i++){
+     if ((int)yPoints.at(i) == 1){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)xPoints.at(indexg);
+ cout << "e "  << indexg << endl;
+cout << "e "  << xPoints.length() << endl;
+
+ QVERIFY(e == -2);
+
+}
+
+void Test2::getY1Hyperbole(){
+hyp = new Hyperbole("x^2/4 - y^2/4 = 1");
+QVector<double> xPoints = hyp->xg;
+QVector<double> yPoints = hyp->yg;
+
+ int indexg = 0;
+ for (int i = 0 ; i < xPoints.length(); i++){
+     if ((int)xPoints.at(i) == -2){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)yPoints.at(indexg);
+
+
+ QVERIFY(e == 0);
+
+}
+/*
+void Test2::getYCircle(){
+circle = new Circle("x^2 + y^2 = 1");
+QVector<double> xPoints = circle->getX();
+QVector<double> yPoints = circle->getY();
+
+ int indexg = 0;
+ for (int i = 0 ; i < xPoints.length(); i++){
+     if ((int)xPoints.at(i) == -1){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)yPoints.at(indexg);
+
+
+ QVERIFY(e == 0);
+
+}*/
+
