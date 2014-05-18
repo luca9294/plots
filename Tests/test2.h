@@ -15,7 +15,7 @@
 #include "parser_ellipse.h"
 #include "parser_hyperbole.h"
 #include "tests/AutoTest.h"
-
+#include "hyperbole_n.h"
 
 class Test2 : public QObject
 {
@@ -31,6 +31,7 @@ private:
     Ellipse *ellipse;
     Ellipse_n *ellipseN;
     Hyperbole *hyp;
+    Hyperbole_n *hypN;
     Retta *retta;
     Circle *circle;
     circle_n *circleN;
@@ -122,7 +123,7 @@ private slots:
     void getDescriptionCircleN();
 
 
-    //Hyperbole traslated Class
+    //Hyperbole Class
     void isOKHyperbole();
     void getXHyperbole();
     void getYHyperbole();
@@ -133,6 +134,19 @@ private slots:
     void getX3Hyperbole();
     void getY3Hyperbole();
     void getDescriptionHyperbole();
+
+
+    //Hyperbole Traslated Class
+    void isOKHyperboleN();
+    void getXHyperboleN();
+    void getYHyperboleN();
+    void getX1HyperboleN();
+    void getY1HyperboleN();
+    void getX2HyperboleN();
+    void getY2HyperboleN();
+    void getX3HyperboleN();
+    void getY3HyperboleN();
+    void getDescriptionHyperboleN();
 
 
 

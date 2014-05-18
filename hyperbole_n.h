@@ -15,10 +15,10 @@ public:
     bool isOK();
     double Xc;
     double Yc;
-
+    string getDescription(int);
 private:
-        parser_ellipse_n *parser;
-        string getDescription(int);
+    parser_ellipse_n *parser;
+
 
 
 };

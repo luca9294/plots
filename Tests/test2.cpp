@@ -640,8 +640,7 @@ QVector<double> yPoints = hyp->yg;
 
 
  int e = (int)xPoints.at(indexg);
- cout << "e "  << indexg << endl;
-cout << "e "  << xPoints.length() << endl;
+
 
  QVERIFY(e == 2);
 
@@ -661,8 +660,7 @@ QVector<double> yPoints = hyp->yg;
 
 
  int e = (int)yPoints.at(indexg);
- cout << "e "  << indexg << endl;
-cout << "e "  << xPoints.length() << endl;
+
 
  QVERIFY(e == 0);
 
@@ -808,4 +806,192 @@ void Test2::getDescriptionHyperbole(){
   cout << "str2 " << str2 << endl;
   QVERIFY(str2==str);
 }
+
+//Test TRASLATED Hyperbole class
+
+void Test2::isOKHyperboleN(){
+hypN = new Hyperbole_n("(x - 1)^2 - (y - 1)^2 = 1");
+QVERIFY(hyp->isOK());
+}
+
+void Test2::getXHyperboleN(){
+hypN = new Hyperbole_n("(x - 1)^2 - (y - 1)^2 = 1");
+QVector<double> xPoints = hypN->xg;
+QVector<double> yPoints = hypN->yg;
+
+ int indexg = 0;
+ for (int i = 0 ; i < yPoints.length(); i++){
+     if ((int)yPoints.at(i) == 1){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)xPoints.at(indexg);
+
+
+ QVERIFY(e == 2);
+
+}
+
+void Test2::getYHyperboleN(){
+hypN = new Hyperbole_n("(x - 1)^2 - (y - 1)^2 = 1");
+QVector<double> xPoints = hypN->xg;
+QVector<double> yPoints = hypN->yg;
+
+ int indexg = 0;
+ for (int i = 0 ; i < xPoints.length(); i++){
+     if ((int)xPoints.at(i) == 2){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)yPoints.at(indexg);
+
+
+ QVERIFY(e == 1);
+
+}
+
+
+void Test2::getX1HyperboleN(){
+hypN = new Hyperbole_n("(x - 1)^2 - (y - 1)^2 = 1");
+QVector<double> xPoints = hypN->xg1;
+QVector<double> yPoints = hypN->yg1;
+
+ int indexg = 0;
+ for (int i = 0 ; i < yPoints.length(); i++){
+     if ((int)yPoints.at(i) == 1){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)xPoints.at(indexg);
+
+
+ QVERIFY(e == 2);
+
+}
+
+void Test2::getY1HyperboleN(){
+hypN = new Hyperbole_n("(x - 1)^2 - (y - 1)^2 = 1");
+QVector<double> xPoints = hypN->xg1;
+QVector<double> yPoints = hypN->yg1;
+
+ int indexg = 0;
+ for (int i = 0 ; i < xPoints.length(); i++){
+     if ((int)xPoints.at(i) == 2){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)yPoints.at(indexg);
+
+
+ QVERIFY(e == 1);
+
+}
+
+
+void Test2::getX2HyperboleN(){
+hypN = new Hyperbole_n("(x - 1)^2 - (y - 1)^2 = 1");
+hypN->perform2();
+QVector<double> xPoints = hypN->xg;
+QVector<double> yPoints = hypN->yg;
+
+ int indexg = 0;
+ for (int i = 0 ; i < yPoints.length(); i++){
+     if ((int)yPoints.at(i) == 1){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)xPoints.at(indexg);
+
+
+
+ QVERIFY(e == 0);
+
+}
+
+void Test2::getY2HyperboleN(){
+hypN = new Hyperbole_n("(x - 1)^2 - (y - 1)^2 = 1");
+hypN->perform2();
+QVector<double> xPoints = hypN->xg;
+QVector<double> yPoints = hypN->yg;
+
+ int indexg = 0;
+ for (int i = 0 ; i < xPoints.length(); i++){
+     if ((int)xPoints.at(i) == 0){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)yPoints.at(indexg);
+
+
+ QVERIFY(e == 1);
+
+}
+
+void Test2::getX3HyperboleN(){
+hypN = new Hyperbole_n("(x - 1)^2 - (y - 1)^2 = 1");
+hypN->perform2();
+QVector<double> xPoints = hypN->xg1;
+QVector<double> yPoints = hypN->yg1;
+
+ int indexg = 0;
+ for (int i = 0 ; i < yPoints.length(); i++){
+     if ((int)yPoints.at(i) == 1){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)xPoints.at(indexg);
+
+
+
+ QVERIFY(e == 0);
+
+}
+
+void Test2::getY3HyperboleN(){
+hypN = new Hyperbole_n("(x - 1)^2 - (y - 1)^2 = 1");
+hypN->perform2();
+QVector<double> xPoints = hypN->xg1;
+QVector<double> yPoints = hypN->yg1;
+
+ int indexg = 0;
+ for (int i = 0 ; i < xPoints.length(); i++){
+     if ((int)xPoints.at(i) == 0){
+         indexg = i;
+         break;
+     }}
+
+
+ int e = (int)yPoints.at(indexg);
+
+
+ QVERIFY(e == 1);
+
+}
+
+
+void Test2::getDescriptionHyperboleN(){
+  hypN = new Hyperbole_n("(x - 1)^2 - (y - 1)^2 = 1");
+  string str = "<p><FONT size = \"4\">Hyperbole of equation";
+  string str2 = hypN->getDescription(1);
+  str2 = str2.substr(0, 35);
+  str = str.substr(0, 35);
+  cout << "str " << str << endl;
+  cout << "str1 " << str2 << endl;
+  QVERIFY(str2==str);
+}
+
 
